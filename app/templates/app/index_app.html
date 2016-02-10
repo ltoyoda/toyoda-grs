@@ -1,0 +1,38 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2>List of Questions</h2>
+<h3>{{ message }}</h3>
+
+<address>
+    Click on the right answer<br />
+    and it will take you to the next one<br />
+    <abbr title="Phone">:P :</abbr>
+    works as a tree
+</address>
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="/app/{{ question.id }}/">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No questions are available.</p>
+{% endif %}
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

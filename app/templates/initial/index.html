@@ -1,0 +1,33 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>Elicitation Questionaire</h1>
+    <p class="lead">List of questions created to help researchers improve InSAR models</p>
+    <p><a href="{% url 'index' %}" class="btn btn-primary btn-large">Ready to rock? &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>List of questions</h2>
+        <p>
+            Get started with the questionaire
+        </p>
+
+
+        <p><a class="btn btn-default" href="{% url 'index' %}">Make your own questions &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Data availability</h2>
+        <p>This connects you to the ESA and NASA sites, to see if there is data on the time you need!Get started with the questionaire</p>
+        <p><a class="btn btn-default" href="{% url 'index' %}">Go Go Go! &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Visualize in Google Earth</h2>
+        <p>A link to a great visualization tool, just using coordinates!</p>
+        <p><a class="btn btn-default" href="{% url 'points' %}">Have a look! &raquo;</a></p>
+    </div>
+</div>
+
+{% endblock %}
