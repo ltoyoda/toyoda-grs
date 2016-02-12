@@ -32,6 +32,13 @@ urlpatterns = [
 ######################################################################################3
     url(r'^$', 'app.views.home', name='home'),
     url(r'^points$', 'app.views.poi_list', name='points'),
+
+    url(r'^points_amir$', 'app.views.poi_list_amir', name='points_amir'),
+    url(r'^testando$', 'app.views.testando', name='testando'),
+    url(r'^model$', 'app.views.model', name='model'),
+    url(r'^query$', 'app.views.query', name='query'),
+
+
     url(r'^grs$', 'app.views.grs', name='grs'),
     url(r'^links$', 'app.views.links', name='links'),
 
@@ -40,7 +47,7 @@ urlpatterns = [
     url(r'^login/$',
         'django.contrib.auth.views.login',
         {
-            'template_name': 'app/login.html',
+            'template_name': 'initial/login.html',
             'authentication_form': BootstrapAuthenticationForm,
             'extra_context':
             {

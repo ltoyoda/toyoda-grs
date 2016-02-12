@@ -1,0 +1,42 @@
+{% extends "initial/layout.html" %}
+
+{% block content %}
+
+<h2>{{title}}</h2>
+<h3>{{ message }}</h3>
+
+<address>
+    Write your description here - change in testando.html<br />
+    and add nother line with this - change in testando.html<br />
+</address>
+
+<!-- Add script here -->
+
+
+
+<h2>List of Questions</h2>
+
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="/app/{{ question.id }}/">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No questions are available.</p>
+{% endif %}
+
+
+
+
+<!-- Finish script here -->
+
+{% endblock %}
+
+
+
+
+
+
+

@@ -1,127 +1,116 @@
 from django.shortcuts import render
-
-# Create your views here.
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import loader
-# Create your views here.
-
-#########################################################################
-from django.shortcuts import render, render_to_response
-from django.http import HttpRequest, HttpResponse
-from django.template import RequestContext
+from django.shortcuts import render, render_to_response, get_object_or_404
+from django.http import HttpResponse, HttpRequest
+from django.template import loader, RequestContext
+from django.views import generic
 from datetime import datetime
 from app.models import *
 
 
-# def index(request):
-#     return HttpResponse("Primeira resposta na tela, vai bem assim!!!.")
-# def index(request):
-#     latest_question_list = Question.objects.order_by('-pub_date')[:5]
-#     output = ', '.join([q.question_text for q in latest_question_list])
-#     return HttpResponse(output)
-# def index(request):
-#     latest_question_list = Question.objects.order_by('-pub_date')[:5]
-#     template = loader.get_template('app/index_app.html')
-#     context = {
-#         'latest_question_list': latest_question_list,
-#     }
-#     return HttpResponse(template.render(context, request))
-
-# What will be shown in the screen is determined here:
+# Create your views here.
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
     context = {'latest_question_list': latest_question_list}
-    return render(request, 'app/index_app.html', context)
+    return render(request, 'app/questions.html', context)
 
 def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'app/detail_app.html', {'question': question})
+    return render(request, 'app/detail.html', {'question': question})
 
-# This shows the results of the voting = need to be changed
 def results(request, question_id):
-    response = "Agora o resultado de cada uma   You're looking at the results of question %s."
-    return HttpResponse(response % question_id)
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'app/results.html', {'question': question})
 
-# Nao adicionar vote pra esse exemplo
-# def vote(request, question_id):
-#     return HttpResponse("You're voting on question %s." % question_id)
+
+################################################################################
+
+class IndexView(generic.ListView):
+    template_name = 'app/questions.html'
+ #       template_name = 'app/index_app.html'
+    context_object_name = 'latest_question_list'
+
+    def get_queryset(self):
+    #     """ Return the last five published questions (not including those set to be
+    # published in the future)."""
+         return Question.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')[:5]
+        # """Excludes any questions that aren't published yet. """
+    #    return Question.objects.filter(pub_date__lte=timezone.now())
+
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = 'app/detail.html'
+    def get_queryset(self):
+        """        Excludes any questions that aren't published yet        """
+        return Question.objects.filter(pub_date__lte=timezone.now())
+
+class ResultsView(generic.DetailView):
+    model = Question
+    template_name = 'app/results.html'
+
+def vote(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    try:
+        selected_choice = question.choice_set.get(pk=request.POST['choice'])
+    except (KeyError, Choice.DoesNotExist):
+        # Redisplay the question voting form.
+        return render(request, 'app/detail.html', {
+            'question': question,
+            'error_message': "You didn't select a choice, tente de novo!!!",
+        })
+    else:
+        selected_choice.votes += 1
+        selected_choice.save()
+        # Always return an HttpResponseRedirect after successfully dealing
+        # with POST data. This prevents data from being posted twice if a
+        # user hits the Back button.
+        return HttpResponseRedirect(reverse('app:results', args=(question.id,)))
 
 
 ##################################################################################
+### *** Code for the second part
 
-### Normal code
 def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'initial/index.html',
-        context_instance = RequestContext(request,
-        {
-            'title':'Home Page',
-            'year':datetime.now().year,
-        })
-    )
-
+    return render(request, 'initial/index.html', context_instance = RequestContext(request,
+        {'title':'Home Page',
+            'year':datetime.now().year,}))
 
 def grs(request):
-    """Renders the GRS page."""  # http://www.citg.tudelft.nl/over-faculteit/afdelingen/geoscience-and-remote-sensing/
+    """Renders the home page: www.grs.citg.tudelft.nl """
     assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'initial/grs.html',
-        context_instance = RequestContext(request,
-        {
-            'title':'GRS Home Page',
-            'year':datetime.now().year,
-        })
-    )
-
+    return render(request, 'initial/grs.html', context_instance = RequestContext(request,
+        {'title':'Geoscience & Remote Sensing',
+            'message':'TU Delft',
+            'year':datetime.now().year,}))
 
 def contact(request):
     """Renders the contact page."""
     assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'initial/contact.html',
-        context_instance = RequestContext(request,
-        {
-            'title':'Contact',
+    return render(request, 'initial/contact.html', context_instance = RequestContext(request,
+        { 'title':'Contact Us',
             'message':'Your contact page.',
-            'year':datetime.now().year,
-        })
-    )
+            'year':datetime.now().year,}))
 
 def about(request):
     """Renders the about page."""
     assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'initial/about.html',
-        context_instance = RequestContext(request,
-        {
-            'title':'About',
+    return render(request, 'initial/about.html', context_instance = RequestContext(request,
+        {'title':'Luciana Toyoda',
             'message':'Your application description page.',
-            'year':datetime.now().year,
-        })
-    )
-
+            'year':datetime.now().year,}))
 
 def links(request):
-    """Renders the about page."""
+    """Renders the links page."""
     assert isinstance(request, HttpRequest)
-    return render(
-        request,
+    return render(request,
         'initial/links.html',
         context_instance = RequestContext(request,
-        {
-            'title':'Links',
-            'message':'Your application description page.',
-            'year':datetime.now().year,
-        })
-    )
+        {'title':'Links',
+            'message':'Some useful links:',
+            'year':datetime.now().year,}))
+
 
 ############################################################################
 from django.shortcuts import render
@@ -132,16 +121,139 @@ from .models import PointOfInterest
 #     return render(request, 'app/poi_list.html', {'pois': pois})
 
 def poi_list(request):
-    """Renders the about page."""
+    """Renders the Google maps page."""
     pois = PointOfInterest.objects.all()
     assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'initial/poi_list.html',
-        context_instance = RequestContext(request,
-        {
-            'title':'About',
+    return render(request,'initial/poi_list.html', context_instance = RequestContext(request,
+        {'title':'Mapping the study area',
+            'message':'Locating using coordinates.',
+            'year':datetime.now().year,}))
+
+def poi_list_amir(request):
+    """Renders Amir's map."""
+    pois = PointOfInterest.objects.all()
+    assert isinstance(request, HttpRequest)
+    return render(request,'initial/poi_list_amir.html', context_instance = RequestContext(request,
+        {'title':'Map Amir',
             'message':'Your application description page.',
-            'year':datetime.now().year,
-        })
-    )
+            'year':datetime.now().year,}))
+
+def query(request):
+    """Renders the example/template page."""
+#     pois = PointOfInterest.objects.all()
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/query.html',context_instance = RequestContext(request,
+        {'title':'Initial Query',
+            'message':'What would you like to do first?',
+            'year':datetime.now().year,}))
+
+def testando(request):
+    """Renders the example/template page."""
+#     pois = PointOfInterest.objects.all()
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/testando.html',context_instance = RequestContext(request,
+        {'title':'teste',
+            'message':'testando?',
+            'year':datetime.now().year,}))
+
+def model(request):
+    """Renders the example/template page."""
+#     pois = PointOfInterest.objects.all()
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/model.html',context_instance = RequestContext(request,
+        {'title':'Template for new pages - change in app/views.py',
+            'message':'Your application description page - change in app/views.py',
+            'year':datetime.now().year,}))
+
+#####################################################################################
+# # Simple views for the questionaire:
+## Filhos
+def B1(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/B1.html',context_instance = RequestContext(request,
+        {'title':'Prospection',
+            'message':'Your application description page - change in app/views.py',
+            'year':datetime.now().year,}))
+
+def B2(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/B2.html',context_instance = RequestContext(request,
+        {'title':'Natural Hazards',
+            'message':'Your application description page - change in app/views.py',
+            'year':datetime.now().year,}))
+
+def B3(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/B3.html',context_instance = RequestContext(request,
+        {'title':'Soil Decomposition',
+            'message':'Your application description page - change in app/views.py',
+            'year':datetime.now().year,}))
+
+### Netos
+def B1_a(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/B1_a.html',context_instance = RequestContext(request,
+        {'title':'Oil',
+            'message':'Your application description page - change in app/views.py',
+            'year':datetime.now().year,}))
+
+def B1_b(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/B1_b.html',context_instance = RequestContext(request,
+        {'title':'Gas',
+            'message':'Your application description page - change in app/views.py',
+            'year':datetime.now().year,}))
+
+def B1_c(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/B1_b.html',context_instance = RequestContext(request,
+        {'title':'Mineral extraction',
+            'message':'Your application description page - change in app/views.py',
+            'year':datetime.now().year,}))
+
+##
+def B2_a(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/B2_a.html',context_instance = RequestContext(request,
+        {'title':'Landslides',
+            'message':'Your application description page - change in app/views.py',
+            'year':datetime.now().year,}))
+
+def B2_b(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/B2_b.html',context_instance = RequestContext(request,
+        {'title':'Earthquakes',
+            'message':'Your application description page - change in app/views.py',
+            'year':datetime.now().year,}))
+
+def B2_c(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/B2_c.html',context_instance = RequestContext(request,
+        {'title':'Vulcanism',
+            'message':'Your application description page - change in app/views.py',
+            'year':datetime.now().year,}))
+##
+def B3_a(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/B3_a.html',context_instance = RequestContext(request,
+        {'title':'Question B3_a',
+            'message':'Your application description page - change in app/views.py',
+            'year':datetime.now().year,}))
+
+def B3_b(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/B3_b.html',context_instance = RequestContext(request,
+        {'title':'Question B3_b',
+            'message':'Your application description page - change in app/views.py',
+            'year':datetime.now().year,}))
+
+def variogram_input(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/variogram_imput.html',context_instance = RequestContext(request,
+        {'title':'variogram_imput B2',
+            'message':'Your application description page - change in app/views.py',
+            'year':datetime.now().year,}))
+
+
+
+

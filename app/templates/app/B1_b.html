@@ -2,27 +2,26 @@
 
 {% block content %}
 
-<h2>List of Questions</h2>
+<h2>{{title}}</h2>
 <h3>{{ message }}</h3>
 
 <address>
     Click on the right answer<br />
     and it will take you to the next one<br />
-    <abbr title="Phone">:P :</abbr>
-    works as a tree
+
 </address>
 
 
-    <p class="lead">What is the cause of the deformation?</p>
-        <a class="btn btn-default" href="{% url 'B1' %}">Oil and Gas</a>
-        <a class="btn btn-default" href="{% url 'B2' %}"> Natural Hazards </a>
-        <a class="btn btn-default" href="{% url 'B3' %}"> Earthquakes </a>
+    <p class="lead">List of questions:</p>
 
 
 
  <!--
 
-         <a class="btn btn-default" href="{% url 'testando' %}"> Earthquakes </a>
+         <a class="btn btn-default" href="{% url 'testando' %}">Oil</a>
+        <a class="btn btn-default" href="{% url 'testando' %}"> Gas </a>
+
+
 {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}

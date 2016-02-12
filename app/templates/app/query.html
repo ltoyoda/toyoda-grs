@@ -1,0 +1,66 @@
+{% extends "initial/layout.html" %}
+
+{% block content %}
+
+<h2>{{title}}</h2>
+<h3>{{ message }}</h3>
+
+            <p> </p>
+            <br />
+            <p> </p>
+            <br />
+            <p></p>
+
+<!-- Add script here -->
+
+<div class="row">
+    <div class="col-md-4">
+        <a href="{% url 'questions' %}"><h2>Questionnaire</h2></a></p>
+            <p> Get started with the questionaire.</p>
+    </div>
+
+    <div class="col-md-4">
+        <a href="{% url 'links' %}"><h2>Data Check</h2></a></p>
+            <p>This connects you to other sites,<br /> to see if there is data on the time you need.</p>
+    </div>
+
+    <div class="col-md-4">
+        <a href="{% url 'points' %}"><h2>Study Area</h2></a></p>
+            <p>A link to select the study area <br /> using coordinates.</p>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Finish script here -->
+
+{% endblock %}
+
+
+
+
+
+<!--
+
+<h2>List of Questions</h2>
+
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="/app/{{ question.id }}/">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No questions are available.</p>
+{% endif %}
+
+
+<address>
+    Write your description here - change in testando.html<br />
+    and add nother line with this - change in testando.html<br />
+</address>
+-->
