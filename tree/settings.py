@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'geoposition',
+#    'hw1',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -77,10 +78,22 @@ WSGI_APPLICATION = 'tree.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+#######################################################
+# # From the Django for scientists tutorial
+
+def relative2absolute_path(relative_path):
+    """Return the absolute path correspodning to relative_path."""
+    dir_of_this_file = os.path.dirname(os.path.abspath(__file__))
+    return dir_of_this_file + '/' + relative_path
+
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # # From the Django for scientists tutorial
+        'NAME': relative2absolute_path('../database.db')
     }
 }
 
@@ -107,6 +120,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
+# from django.utils.translation import ugettext_lazy as _
+# LANGUAGES = (
+#     ('en', _('English')),
+#     ('ca', _('Catalan')),
+#     ('pt-br', _('Portuguese')),
+#     ('nl', _('Dutch')),
+# )
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Europe/Amsterdam'
@@ -124,6 +145,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+
 #########################################################
 #
 GEOPOSITION_MAP_OPTIONS = {
@@ -134,3 +156,8 @@ GEOPOSITION_MAP_OPTIONS = {
 GEOPOSITION_MARKER_OPTIONS = {
     'cursor': 'move'
 }
+
+
+
+
+

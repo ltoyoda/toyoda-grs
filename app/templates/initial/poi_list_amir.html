@@ -1,11 +1,13 @@
+
+
+
+<!--
+ {% include 'initial/upper_bar.html' %}
+  -->
 <!DOCTYPE HTML>
 <html>
 <head>
 <title>Map Amir</title>
-
-    {% include 'initial/upper_bar.html' %}
-
-
 <link rel="stylesheet" type="text/css" href="style.css" />
   <style type="text/css">
 	 #map_canvas {height:400px;width:600px}
@@ -21,9 +23,9 @@
 	var polyArrayAll = new Array();
 	var count = 0;
         function initMap() {
-            var LatInput = "50";
-		    var LngInput = "20";
-			
+            var LatInput = "43";
+		    var LngInput = "22";
+
 			if (LatInput) {
                 var latlng = new google.maps.LatLng(LatInput,LngInput);
 			} else {
@@ -54,16 +56,16 @@
                    { visibility: "off"}
                ]
                }
-            ] 
+            ]
 
             var element = document.getElementById("map_canvas");
-            
+
             var mapTypeIds = [];
             for(var type in google.maps.MapTypeId) {
                 mapTypeIds.push(google.maps.MapTypeId[type]);
             }
             mapTypeIds.push("SRTMtype");
- 
+
             var map = new google.maps.Map(element, {
                 center: latlng,
                 zoom: 11,
@@ -72,7 +74,7 @@
                     mapTypeIds: ["terrain","SRTMtype","OSM"]
                 }
             });
- 
+
             map.mapTypes.set("SRTMtype", new google.maps.ImageMapType({
                 getTileUrl: function(a,b) {
                     return "http://maps-for-free.com/layer/relief/z" + b + "/row" + a.y + "/" + b + "_" + a.x + "-" + a.y + ".jpg";
@@ -81,7 +83,7 @@
                 name: "SRTM",
                 maxZoom: 20
             }));
-            
+
             map.mapTypes.set("OSM", new google.maps.ImageMapType({
                 getTileUrl: function(coord, zoom) {
                     return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
@@ -91,8 +93,8 @@
                 maxZoom: 20
             }));
 
-            map.setOptions({styles: myStyle});     
-      
+            map.setOptions({styles: myStyle});
+
             google.maps.event.addListener(map, "click", function(event)
             {
                count++;
@@ -101,7 +103,7 @@
 			   lngC1 = polyArrayAll[polyArrayAll.length - 2].lng().toFixed(6);
 			   latC2 = polyArrayAll[polyArrayAll.length - 1].lat().toFixed(6);
 			   lngC2 = polyArrayAll[polyArrayAll.length - 1].lng().toFixed(6);
-			   
+
 			   if (latC1 > latC2) {
 				  document.getElementById("field1").value = latC1;
 			      document.getElementById("field2").value = lngC1;
@@ -113,8 +115,8 @@
 			      document.getElementById("field3").value = latC1;
 			      document.getElementById("field4").value = lngC1;
 			   }
-			   
-				
+
+
             });
 		            map.setOptions({styles: myStyle});
 
@@ -123,15 +125,15 @@
 	    function placeMarker(map,location) {
 
                 var marker = new google.maps.Marker({
-                    position: location, 
+                    position: location,
                     icon: 'imgs/red-pin-md.png',
 					draggable: true,
                     map: map
                 });
             markersArray.push(marker);
 			polyArrayAll.push(location);
-			
-			
+
+
 			var rad = function(x) {
                 return x * Math.PI / 180;
             };
@@ -147,7 +149,7 @@
 				  return d; // returns the distance in meter
 			};
 			if (polyArrayAll.length > 2) {
-	  
+
 			     d1 = getDistance(polyArrayAll[polyArrayAll.length - 3],polyArrayAll[polyArrayAll.length - 1]);
 			     d2 = getDistance(polyArrayAll[polyArrayAll.length - 2],polyArrayAll[polyArrayAll.length - 1]);
 
@@ -157,7 +159,7 @@
 			   polyArrayAll.swap(l-3,l-2);
 			 }
 			}
-			
+
 			lengthPolyArray = polyArrayAll.length;
 
 
@@ -177,13 +179,13 @@
                 document.getElementById('lat').value = event.latLng.lat();
                 document.getElementById('lng').value = event.latLng.lng();
             });
-			
+
 		    marker.setMap(map);
 			if (lengthPolyArray > 1) {
 
 	  		   UL = polyArrayAll[lengthPolyArray-2];
 	  		   LR = polyArrayAll[lengthPolyArray-1];
-			   
+
 	  		   var polygonCoordinates = [
                        new google.maps.LatLng(UL.lat(),UL.lng()),
                        new google.maps.LatLng(UL.lat(),LR.lng()),
@@ -191,7 +193,7 @@
                        new google.maps.LatLng(LR.lat(),UL.lng()),
 					   new google.maps.LatLng(UL.lat(),UL.lng())
                ];
-			
+
 			    var flightPath = new google.maps.Polygon({
 				  path: polygonCoordinates,
 				  geodesic: true,
@@ -202,7 +204,7 @@
 			    });
 			    polyArray.push(flightPath);
 				flightPath.setMap(map);
-				
+
 				if (count > 2) {
 				  deleteOverlays(markersArray,map,'Marker');
 				  deleteOverlays(polyArray,map,'Polygon');
@@ -210,7 +212,7 @@
 			}
         }
 
-      
+
 	     function deleteOverlays(overlayArray,map,Overlaytype) {
             if ( Overlaytype == 'Marker') {
 			      overlayArray[overlayArray.length - 3].setMap(null);
@@ -218,14 +220,14 @@
 			   overlayArray[overlayArray.length - 2].setMap(null);
 			}
          }
-	  
-	  
-	    function copyText(LatField,LonField) {	
+
+
+	    function copyText(LatField,LonField) {
             document.getElementById(LatField).value=document.getElementById("latUL").value;
             document.getElementById(LonField).value=document.getElementById("lngUL").value;
             return false;
          }
-		
+
         Array.prototype.swap = function (x,y) {
             var b = this[x];
             this[x] = this[y];
@@ -234,7 +236,7 @@
          }
 
 
-		
+
    </script>
 </head>
 
@@ -243,8 +245,8 @@
 	<h1>Overview</h1>
 
 	<div class="mail">
-    <div id="map_canvas" style="margin-left: 3em;"></div>  
-			
+    <div id="map_canvas" style="margin-left: 3em;"></div>
+
 		<form id="formail" action="" method ="post">
 <br><b>1. Select the area of interest:</b><br>
 
@@ -268,13 +270,13 @@ select frequency of measurements:<br><br>
 <font size="2">(move the pointer over the text areas to see the definitions)</font>
 <div id="DailyCheckBoxes">
 <table>
-<tr> 
+<tr>
 <td>  <input type="checkbox" name="DailyParameters" class="selector" value="DDVEC">
-<abbr title="vector mean wind direction [deg]">DDVEC</abbr></td> 
+<abbr title="vector mean wind direction [deg]">DDVEC</abbr></td>
 <td>  <input type="checkbox" name="DailyParameters" class="selector" value="FHVEC">
 <abbr title="vector mean wind speed [m/s]">FHVEC</abbr></td>
 <td>  <input type="checkbox" name="DailyParameters" class="selector" value="FG">
-<abbr title="daily mean wind speed [m/s]">FG</abbr></td> 
+<abbr title="daily mean wind speed [m/s]">FG</abbr></td>
 <td>  <input type="checkbox" name="DailyParameters" class="selector" value="FHX">
 <abbr title="maximum hourly mean windspeed [m/s]">FHX</abbr></td>
 <td>  <input type="checkbox" name="DailyParameters" class="selector" value="FHXH">
@@ -423,10 +425,10 @@ select frequency of measurements:<br><br>
   <input type="button" value="Retrieve data" id="getweather" name="getweather"/><p>
 
 <div id="response2"></div><p>
-                 
+
 <b>4. Download parameter file<b><br><br>
     <input type="submit" value="Set parameters" id="downloadpara" name="downloadpara" /><p>
-	
+
 
 <div id="response3"></div>
 <br></br>
@@ -439,5 +441,4 @@ select frequency of measurements:<br><br>
 </p>
 </div>
 </body>
-{% include 'initial/footer.html' %}
 </html>

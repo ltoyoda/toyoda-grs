@@ -43,3 +43,20 @@ class PointOfInterest(models.Model):
 
     class Meta:
         verbose_name_plural = 'points of interest'
+
+######################################################################################################3
+# # # From the Django for scientists tutorial
+
+from django.forms import ModelForm
+
+class Input(models.Model):
+    r = models.FloatField()
+    s = models.FloatField()
+    t = models.FloatField()
+    u = models.FloatField()
+
+class InputForm(ModelForm):
+    class Meta:
+        model = Input
+        fields = ['r', 's', 't', 'u']
+

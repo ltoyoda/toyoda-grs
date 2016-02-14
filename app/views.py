@@ -254,6 +254,75 @@ def variogram_input(request):
             'message':'Your application description page - change in app/views.py',
             'year':datetime.now().year,}))
 
+##############################################################################################
+# # # From the Django for scientists tutorial
 
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from django.http import HttpResponse
+from app.models import InputForm
+from app.compute import compute, soma, mean
 
+# def index_hw1(request):
+#     if request.method == 'POST':
+#         form = InputForm(request.POST)
+#         if form.is_valid():
+#             form = form.save(commit=False)
+#             return present_output(form)
+#     else:
+#         form = InputForm()
+#
+#     return render_to_response('hw1/hw2.html',
+#             {'form': form}, context_instance=RequestContext(request))
+
+# def present_output(form):
+#     r = form.r
+#     s = form.s
+#     t = form.t
+#     u = form.u
+#     a = compute(r,s,t,u)
+#     b = soma(r,s,t,u)
+#     c = mean(r,s,t,u)
+#     return HttpResponse(' voce e a melhor mae do mundo!;D  The calculated result is: sin (%s) = %s' % (r, a))
+
+def index_math_hw2(request):
+    a = None  # initial value of result
+    b = None  # initial value of result
+    c = None  # initial value of result
+    if request.method == 'POST':
+        form = InputForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            r = form.r
+            s = form.s
+            t = form.t
+            u = form.u
+            a = compute(r)
+            b = soma(r,s,t,u)
+            c = mean(r,s,t,u)
+    else:
+        form = InputForm()
+
+    return render_to_response('hw1/hw2.html',
+            {'form': form,
+             'b': '%.2f' % b if isinstance(b, float) else '',
+             'a': '%.2f' % a if isinstance(a, float) else '',
+             'c': '%.2f' % c if isinstance(c, float) else ''
+             }, context_instance=RequestContext(request))
+
+# def index_math_hw2(request):
+#     s = None  # initial value of result
+#     if request.method == 'POST':
+#         form = InputForm(request.POST)
+#         if form.is_valid():
+#             form = form.save(commit=False)
+#             r = form.r
+#             s = compute(r)
+#     else:
+#         form = InputForm()
+#
+#     return render_to_response('hw2.html',
+#             {'form': form,
+#              's': '%.5f' % s if isinstance(s, float) else ''
+#              }, context_instance=RequestContext(request))
 

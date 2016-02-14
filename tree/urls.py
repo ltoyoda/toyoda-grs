@@ -26,8 +26,9 @@ from app.forms import BootstrapAuthenticationForm
 urlpatterns = [
     url(r'^app/', include('app.urls')),
     url(r'^admin/', admin.site.urls,name = 'adm'),
-
-
+####################################################################################
+    url(r'^hw1/', include('hw1.urls')),
+#    url(r'^hw2/', 'app.views.index_hw2',name='hw2'),
 
 ######################################################################################3
     url(r'^$', 'app.views.home', name='home'),
