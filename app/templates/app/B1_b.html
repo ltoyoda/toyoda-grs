@@ -11,25 +11,40 @@
 
 </address>
 
-  <p class="lead">List of questions:</p>
+
+    <p class="lead">List of questions:</p>
 
 
             <p>  </p><br />
-        <p> Question 1    {{ form.r }} </p>
+        <p> Question 1  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx..............................................................   <input type="text" size=10 id="field1" />  {{ form.r }}  </p>
                 <p>  </p><br />
-        <p> Question 2    {{ form.s }} </p>
+        <p> Question 2  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.............................................................. <input type="text" size=10 id="field1" /> {{ form.s }} </p>
                 <p>  </p><br />
-        <p> Question 3    {{ form.t }} </p>
+        <p> Question 3 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx..............................................................  <input type="text" size=10 id="field1" />  {{ form.t }} </p>
                 <p>  </p><br />
-        <p> Question 4    {{ form.u }} </p>
+        <p> Question 4  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.............................................................. <input type="text" size=10 id="field1" />  {{ form.u }} </p>
                 <p>  </p><br />
-        <p> Question 5    {{ form.u }} </p>
+        <p> Question 5 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx..............................................................  <input type="text" size=10 id="field1" />  {{ form.u }} </p>
                 <p>  </p><br />
-        <p> Question 6    {{ form.u }} </p>
+        <p> Question 6  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.............................................................. <input type="text" size=10 id="field1" />  {{ form.u }} </p>
                 <p>  </p><br />
-        <p> Question 7    {{ form.u }} </p>
+        <p> Question 7  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.............................................................. <input type="text" size=10 id="field1" />  {{ form.u }} </p>
                 <p>  </p><br />
-        <p> Question 8    {{ form.u }} </p>
+        <p> Question 8  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.............................................................. <input type="text" size=10 id="field1" />  {{ form.u }} </p>
+
+            <p> </p>
+            <br />
+            <p></p>
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="/app/{{ question.id }}/">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No questions are available.</p>
+{% endif %}
 
 
 

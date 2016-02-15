@@ -1,6 +1,14 @@
 __author__ = 'Toyoda'
 
 import math
+import time
+
+# from numpy import exp, cos, linspace
+import numpy
+# import matplotlib.pyplot
+# import matplotlib.pyplot as plt
+# import os, time, glob
+# import numpy as np
 
 def compute(r):
     return math.sin(r)
@@ -12,7 +20,31 @@ def soma(r, s, t, u):
 def mean(r, s, t, u):
 #    return math.sin(r)
     return ((r + s + t + u)/4.)
+
+# if __name__ == '__main__':
+#     print compute(20)
+#     print soma(20,3,5,8)
+# def plotando(r,s,t,u):
+#     x = [5, 10, 50, 100]
+#     y = [r, s, t, u]
+#     return (plt.plot(x, y))
 #
+# if __name__ == "__main__":
+#
+#     print plotando(2,3,4,5)
+
+    # print y
+    # plt.plot(x, y)
+    # plt.title('Extrapolated Running time of program DelaunayTriangulation')
+    # plt.xlabel('Number of Points')
+    # plt.grid(True)
+    # plt.ylabel('Running time')
+    # plt.show()
+
+# if __name__ == '__main__':
+#     print compute(20)
+
+#############################################################
 # from numpy import exp, cos, linspace
 # import matplotlib.pyplot as plt
 # import os, time, glob
@@ -20,9 +52,9 @@ def mean(r, s, t, u):
 # def damped_vibrations(t, A, b, w):
 #     return A*exp(-b*t)*cos(w*t)
 #
-# def compute(A, b, w, T, resolution=500):
+# def compute2(A, b, w, T, resolution=500):
 #     """Return filename of plot of the damped_vibration function."""
-#     print os.getcwd()
+#     print (os.getcwd())
 #     t = linspace(0, T, resolution+1)
 #     y = damped_vibrations(t, A, b, w)
 #     plt.figure()  # needed to avoid adding curves in plot
@@ -41,4 +73,4 @@ def mean(r, s, t, u):
 #     return plotfile
 #
 # if __name__ == '__main__':
-#     print compute(1, 0.1, 1, 20)
+#     print (compute2(1, 0.1, 1, 20))

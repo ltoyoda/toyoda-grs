@@ -310,19 +310,5 @@ def index_math_hw2(request):
              'c': '%.2f' % c if isinstance(c, float) else ''
              }, context_instance=RequestContext(request))
 
-# def index_math_hw2(request):
-#     s = None  # initial value of result
-#     if request.method == 'POST':
-#         form = InputForm(request.POST)
-#         if form.is_valid():
-#             form = form.save(commit=False)
-#             r = form.r
-#             s = compute(r)
-#     else:
-#         form = InputForm()
-#
-#     return render_to_response('hw2.html',
-#             {'form': form,
-#              's': '%.5f' % s if isinstance(s, float) else ''
-#              }, context_instance=RequestContext(request))
+
 

@@ -48,15 +48,36 @@ class PointOfInterest(models.Model):
 # # # From the Django for scientists tutorial
 
 from django.forms import ModelForm
+# from math import pi
+#
+# # class Input(models.Model):
+# #     r = models.FloatField()
+# #     s = models.FloatField()
+# #     t = models.FloatField()
+# #     u = models.FloatField()
+# #
+# # class InputForm(ModelForm):
+# #     class Meta:
+# #         model = Input
+# #         fields = ['r', 's', 't', 'u']
+
 
 class Input(models.Model):
-    r = models.FloatField()
-    s = models.FloatField()
-    t = models.FloatField()
-    u = models.FloatField()
+    r = models.FloatField(
+        verbose_name=' amplitude (m)', default=1.0)
+    s = models.FloatField(
+        verbose_name=' damping coefficient (kg/s)', default=0.0)
+    t = models.FloatField(
+        verbose_name=' frequency (1/s)', default=2*3.141516)
+    u = models.FloatField(
+        verbose_name=' time interval (s)', default=18)
 
 class InputForm(ModelForm):
     class Meta:
         model = Input
+#         fields = ['A', 'b', 'w', 'T']
         fields = ['r', 's', 't', 'u']
+
+
+
 
