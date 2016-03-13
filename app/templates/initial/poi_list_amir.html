@@ -1,11 +1,6 @@
+{% extends "initial/layout.html" %}
 
-
-
-<!--
- {% include 'initial/upper_bar.html' %}
-  -->
-<!DOCTYPE HTML>
-<html>
+{% block content %}
 <head>
 <title>Map Amir</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
@@ -256,185 +251,186 @@
 <br>Lower-corner coordinates:<br>
     <input type="text" size=10 id="field3"/>,
     <input type="text" size=10 id="field4"/>
-<br><br><b>2. Check data availability (ERS and Envisat data)</b><br><br>
-    <input type="button" value="check data" id="checkdata" name="checkdata" /><p>
+            <!-- -->
+<!--<br><br><b>2. Check data availability (ERS and Envisat data)</b><br><br>-->
+    <!--<input type="button" value="check data" id="checkdata" name="checkdata" /><p>-->
 
-<div id="response1"></div><p>
-
-
-<br><b>3. Ancillary weather data (KNMI data)</b><br><br>
-select frequency of measurements:<br><br>
-<input type="radio" name="meas_freq" value="daily"  onclick="hideCheckBox(HourlyCheckBoxes),displayCheckBox(DailyCheckBoxes),checkAll(false,'HourlyParameters')">daily
-<input type="radio" name="meas_freq" value="hourly"  onclick="hideCheckBox(DailyCheckBoxes),displayCheckBox(HourlyCheckBoxes),checkAll(false,'DailyParameters')">hourly<br>
-<br>select the desired parameters:<br>
-<font size="2">(move the pointer over the text areas to see the definitions)</font>
-<div id="DailyCheckBoxes">
-<table>
-<tr>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="DDVEC">
-<abbr title="vector mean wind direction [deg]">DDVEC</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="FHVEC">
-<abbr title="vector mean wind speed [m/s]">FHVEC</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="FG">
-<abbr title="daily mean wind speed [m/s]">FG</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="FHX">
-<abbr title="maximum hourly mean windspeed [m/s]">FHX</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="FHXH">
-<abbr title="hourly division in which FHX was measured">FHXH</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="FHN">
-<abbr title="minimum hourly mean windspeed [m/s]">FHN</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="FHNH">
-<abbr title="hourly division in which FHNH was measured">FHNH</td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="FXX">
-<abbr title="maximum wind gust [m/s]">FXX</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="FXXH">
-<abbr title="hourly division in which FXX was measured">FXXH</abbr></td>
-</tr>
-<tr>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="TG">
-<abbr title="daily mean temperature [&#176C]">TG</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="TN">
-<abbr title="minimum temperature [&#176C]">TN</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="TNH">
-<abbr title="hourly division in which TN was measured">TNH</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="TX">
-<abbr title="maximum temperature [&#176C]">TX</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="TXH">
-<abbr title="hourly division in which TX was measured">TXH</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="T10N">
-<abbr title="minimum temperature at 10cm above surface">T10N</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="T10NH">
-<abbr title="6-hourly division in which T10N was measured">T10NH</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="SQ">
-<abbr title="sunshine duration (in 0.1 hour)">SQ</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="SP">
-<abbr title="percentage of maximum potential sunshine duration">SP</abbr></td>
-</tr>
-<tr>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="Q">
-<abbr title="global radiation in [J/cm2]">Q</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="DR">
-<abbr title="precipitation duration (in 0.1 hour)">DR</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="RH">
-<abbr title="daily precipitation amount (in 0.1 mm)">RH</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="RHX">
-<abbr title="maximum hourly precipitation amount">RHX</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="RHXH">
-<abbr title="hourly division in which RHX was measured">RHXN</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="PG">
-<abbr title="daily mean sea level pressure (in 0.1 hPa)">PG</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="PX">
-<abbr title="maximum hourly sea level pressure (in 0.1 hPa)">PX</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="PXH">
-<abbr title="hourly division in which PX was measured">PXH</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="PN">
-<abbr title="minimum hourly sea level pressure (in 0.1 hPa)">PN</abbr></td>
-
-</tr>
-<tr>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="PNH">
-<abbr title="hourly division in which PN was measured">PNH</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="VVN">
-<abbr title="minimum visibility">VVN</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="VVNH">
-<abbr title="hourly division in which VVN was measured">VVNH</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="VVX">
-<abbr title="maximum visibility">VVX</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="VVXH">
-<abbr title="hourly division in which VVX was measured">VVXH</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="NG">
-<abbr title="mean daily cloud cover">NG</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="UG">
-<abbr title="daily mean relative atmospheric humidity (in %)">UG</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="UX">
-<abbr title="maximum relative atmospheric humidity (in %)">UX</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="UXH">
-<abbr title="hourly division in which UX was measured">UXH</abbr></td>
-</tr>
-
-<tr>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="UN">
-<abbr title="minimum relative atmospheric humidity (in %)">UN</abbr></td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="UNH">
-<abbr title="hourly division in which UN was measured">UNH</abbr> </td>
-<td>  <input type="checkbox" name="DailyParameters" class="selector" value="EV24">
-<abbr title="potential evapotranspiration (in 0.1 mm)">EV24</abbr></td>
-</tr>
+<!--<div id="response1"></div><p>-->
 
 
-</table>
-</div>
-<div id="HourlyCheckBoxes">
-<table>
-<tr>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="DD">
-<abbr title="wind direction [deg]">DD</abbr></td>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="FH">
-<abbr title="hourly average wind speed [0.1 m/s]">FH</abbr></td>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="FF">
-<abbr title="mean wind speed (in 0.1 m/s) during the 10-minute period preceding the time of observation">FF</abbr></td>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="FX">
-<abbr title="maximum wind gust (in 0.1 m/s) during the hourly division">FX</abbr></td>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="T">
-<abbr title="temperature (in 0.1 degrees Celsius) at 1.50 m at the time of observation">T</abbr></td>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="T10N">
-<abbr title="minimum temperature (in 0.1 degrees Celsius) at 0.1 m in the preceding 6-hour period">T10N</abbr></td>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="TD">
-<abbr title="Dew point temperature (in 0.1 degrees Celsius) at 1.50 m at the time of observation">TD</abbr></td>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="SQ">
-<abbr title="sunshine duration (in 0.1 hour) during the hourly division, calculated from global radiation (-1 for <0.05 hour)">SQ</abbr></td>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="Q">
-<abbr title="global radiation (in J/cm2) during the hourly division">Q</abbr></td>
-</tr>
-<tr>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="DR">
-<abbr title="precipitation duration (in 0.1 hour) during the hourly division">DR</abbr></td>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="RH">
-<abbr tile="hourly precipitation amount (in 0.1 mm) (-1 for <0.05 mm)">RH</abbr></td>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="P">
-<abbr title="air pressure (in 0.1 hPa) reduced to mean sea level, at the time of observation">P</abbr></td>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="VV">
-<abbr title="horizontal visibility at the time of observation">VV</abbr></td>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="N">
-<abbr title="cloud cover (in octants)">N</abbr></td>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="U">
-<abbr title="relative atmospheric humidity (in percents)">U</abbr></td>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="WW">
-<abbr title="present weather code (00-99)">WW</abbr></td>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="IX">
-<abbr title="indicator present weather code">IX</abbr></td>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="M">
-<abbr title="Fog">M</abbr></td>
-</tr>
-<tr>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="R">
-<abbr title="rainfall">R</abbr></td>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="S">
-<abbr title="snow">S</abbr></td>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="O">
-<abbr title="thunder">O</abbr></td>
-<td><input type="checkbox" name="HourlyParameters" class="selector" value="Y">
-<abbr title="ice formation">Y</abbr></td>
-</tr>
-</table>
-</div>
+<!--<br><b>3. Ancillary weather data (KNMI data)</b><br><br>-->
+<!--select frequency of measurements:<br><br>-->
+<!--<input type="radio" name="meas_freq" value="daily"  onclick="hideCheckBox(HourlyCheckBoxes),displayCheckBox(DailyCheckBoxes),checkAll(false,'HourlyParameters')">daily-->
+<!--<input type="radio" name="meas_freq" value="hourly"  onclick="hideCheckBox(DailyCheckBoxes),displayCheckBox(HourlyCheckBoxes),checkAll(false,'DailyParameters')">hourly<br>-->
+<!--<br>select the desired parameters:<br>-->
+<!--<font size="2">(move the pointer over the text areas to see the definitions)</font>-->
+<!--<div id="DailyCheckBoxes">-->
+<!--<table>-->
+<!--<tr>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="DDVEC">-->
+<!--<abbr title="vector mean wind direction [deg]">DDVEC</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="FHVEC">-->
+<!--<abbr title="vector mean wind speed [m/s]">FHVEC</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="FG">-->
+<!--<abbr title="daily mean wind speed [m/s]">FG</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="FHX">-->
+<!--<abbr title="maximum hourly mean windspeed [m/s]">FHX</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="FHXH">-->
+<!--<abbr title="hourly division in which FHX was measured">FHXH</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="FHN">-->
+<!--<abbr title="minimum hourly mean windspeed [m/s]">FHN</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="FHNH">-->
+<!--<abbr title="hourly division in which FHNH was measured">FHNH</td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="FXX">-->
+<!--<abbr title="maximum wind gust [m/s]">FXX</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="FXXH">-->
+<!--<abbr title="hourly division in which FXX was measured">FXXH</abbr></td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="TG">-->
+<!--<abbr title="daily mean temperature [&#176C]">TG</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="TN">-->
+<!--<abbr title="minimum temperature [&#176C]">TN</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="TNH">-->
+<!--<abbr title="hourly division in which TN was measured">TNH</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="TX">-->
+<!--<abbr title="maximum temperature [&#176C]">TX</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="TXH">-->
+<!--<abbr title="hourly division in which TX was measured">TXH</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="T10N">-->
+<!--<abbr title="minimum temperature at 10cm above surface">T10N</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="T10NH">-->
+<!--<abbr title="6-hourly division in which T10N was measured">T10NH</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="SQ">-->
+<!--<abbr title="sunshine duration (in 0.1 hour)">SQ</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="SP">-->
+<!--<abbr title="percentage of maximum potential sunshine duration">SP</abbr></td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="Q">-->
+<!--<abbr title="global radiation in [J/cm2]">Q</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="DR">-->
+<!--<abbr title="precipitation duration (in 0.1 hour)">DR</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="RH">-->
+<!--<abbr title="daily precipitation amount (in 0.1 mm)">RH</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="RHX">-->
+<!--<abbr title="maximum hourly precipitation amount">RHX</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="RHXH">-->
+<!--<abbr title="hourly division in which RHX was measured">RHXN</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="PG">-->
+<!--<abbr title="daily mean sea level pressure (in 0.1 hPa)">PG</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="PX">-->
+<!--<abbr title="maximum hourly sea level pressure (in 0.1 hPa)">PX</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="PXH">-->
+<!--<abbr title="hourly division in which PX was measured">PXH</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="PN">-->
+<!--<abbr title="minimum hourly sea level pressure (in 0.1 hPa)">PN</abbr></td>-->
 
-<br>
+<!--</tr>-->
+<!--<tr>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="PNH">-->
+<!--<abbr title="hourly division in which PN was measured">PNH</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="VVN">-->
+<!--<abbr title="minimum visibility">VVN</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="VVNH">-->
+<!--<abbr title="hourly division in which VVN was measured">VVNH</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="VVX">-->
+<!--<abbr title="maximum visibility">VVX</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="VVXH">-->
+<!--<abbr title="hourly division in which VVX was measured">VVXH</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="NG">-->
+<!--<abbr title="mean daily cloud cover">NG</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="UG">-->
+<!--<abbr title="daily mean relative atmospheric humidity (in %)">UG</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="UX">-->
+<!--<abbr title="maximum relative atmospheric humidity (in %)">UX</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="UXH">-->
+<!--<abbr title="hourly division in which UX was measured">UXH</abbr></td>-->
+<!--</tr>-->
 
-<br>
-  <input type="button" value="Retrieve data" id="getweather" name="getweather"/><p>
+<!--<tr>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="UN">-->
+<!--<abbr title="minimum relative atmospheric humidity (in %)">UN</abbr></td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="UNH">-->
+<!--<abbr title="hourly division in which UN was measured">UNH</abbr> </td>-->
+<!--<td>  <input type="checkbox" name="DailyParameters" class="selector" value="EV24">-->
+<!--<abbr title="potential evapotranspiration (in 0.1 mm)">EV24</abbr></td>-->
+<!--</tr>-->
 
-<div id="response2"></div><p>
 
-<b>4. Download parameter file<b><br><br>
-    <input type="submit" value="Set parameters" id="downloadpara" name="downloadpara" /><p>
+<!--</table>-->
+<!--</div>-->
+<!--<div id="HourlyCheckBoxes">-->
+<!--<table>-->
+<!--<tr>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="DD">-->
+<!--<abbr title="wind direction [deg]">DD</abbr></td>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="FH">-->
+<!--<abbr title="hourly average wind speed [0.1 m/s]">FH</abbr></td>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="FF">-->
+<!--<abbr title="mean wind speed (in 0.1 m/s) during the 10-minute period preceding the time of observation">FF</abbr></td>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="FX">-->
+<!--<abbr title="maximum wind gust (in 0.1 m/s) during the hourly division">FX</abbr></td>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="T">-->
+<!--<abbr title="temperature (in 0.1 degrees Celsius) at 1.50 m at the time of observation">T</abbr></td>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="T10N">-->
+<!--<abbr title="minimum temperature (in 0.1 degrees Celsius) at 0.1 m in the preceding 6-hour period">T10N</abbr></td>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="TD">-->
+<!--<abbr title="Dew point temperature (in 0.1 degrees Celsius) at 1.50 m at the time of observation">TD</abbr></td>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="SQ">-->
+<!--<abbr title="sunshine duration (in 0.1 hour) during the hourly division, calculated from global radiation (-1 for <0.05 hour)">SQ</abbr></td>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="Q">-->
+<!--<abbr title="global radiation (in J/cm2) during the hourly division">Q</abbr></td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="DR">-->
+<!--<abbr title="precipitation duration (in 0.1 hour) during the hourly division">DR</abbr></td>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="RH">-->
+<!--<abbr tile="hourly precipitation amount (in 0.1 mm) (-1 for <0.05 mm)">RH</abbr></td>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="P">-->
+<!--<abbr title="air pressure (in 0.1 hPa) reduced to mean sea level, at the time of observation">P</abbr></td>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="VV">-->
+<!--<abbr title="horizontal visibility at the time of observation">VV</abbr></td>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="N">-->
+<!--<abbr title="cloud cover (in octants)">N</abbr></td>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="U">-->
+<!--<abbr title="relative atmospheric humidity (in percents)">U</abbr></td>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="WW">-->
+<!--<abbr title="present weather code (00-99)">WW</abbr></td>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="IX">-->
+<!--<abbr title="indicator present weather code">IX</abbr></td>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="M">-->
+<!--<abbr title="Fog">M</abbr></td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="R">-->
+<!--<abbr title="rainfall">R</abbr></td>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="S">-->
+<!--<abbr title="snow">S</abbr></td>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="O">-->
+<!--<abbr title="thunder">O</abbr></td>-->
+<!--<td><input type="checkbox" name="HourlyParameters" class="selector" value="Y">-->
+<!--<abbr title="ice formation">Y</abbr></td>-->
+<!--</tr>-->
+<!--</table>-->
+<!--</div>-->
+
+<!--<br>-->
+
+<!--<br>-->
+  <!--<input type="button" value="Retrieve data" id="getweather" name="getweather"/><p>-->
+
+<!--<div id="response2"></div><p>-->
+
+<!--<b>4. Download parameter file<b><br><br>-->
+    <!--<input type="submit" value="Set parameters" id="downloadpara" name="downloadpara" /><p>-->
 
 
-<div id="response3"></div>
-<br></br>
+<!--<div id="response3"></div>-->
+<!--<br></br>-->
 
-</form>
-</div>
+<!--</form>-->
+<!--</div>-->
 
 
 <p>
@@ -442,3 +438,4 @@ select frequency of measurements:<br><br>
 </div>
 </body>
 </html>
+{% endblock %}

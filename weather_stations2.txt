@@ -1,0 +1,56 @@
+06210 Valkenburg  52°11’  04°25’
+06225 IJmuiden  52°28’ 04°34’
+06229 Texelhors  53°00’ 04°43’
+06235 De Kooy  52°55’ 04°47’
+06239 F-3  54°51’ 04°44’
+06240 Schiphol  52°18’ 04°46’
+06242 Vlieland LH  53°15’ 04°57’
+06247 Bloemendaal  52°25’ 04°33’
+06248 Wijdenes  52°38’ 05°10’
+06249 Berkhout  52°39’ 04°59’
+06250 Terschelling  53°22’ 05°13’
+06251 Hoorn Terschelling  53°23’ 05°21’
+06252 K13/A  53°13’ 03°13’
+06254 Meetpost Noordwijk  52°16’ 04°18’
+06260 De Bilt  52°06’ 05°11’
+06265 Soesterberg  52°08’ 05°17’
+06267 Stavoren  52°53’ 05°23’
+06268 Houtribsluizen  52°32’ 05°26’
+06269 Lelystad  52°27’ 05°32’
+06270 Leeuwarden  53°13’ 05°46’
+06271 Stavoren Haven  52°53’ 05°21’
+06273 Marknesse  52°42’ 05°53’
+06275 Deelen  52°04’ 05°53’
+06277 Lauwersoog  53°25’ 06°12’
+06278 Heino  52°26’ 06°16’
+06279 Hoogeveen  52°44’ 06°31’
+06280 Eelde  53°08’ 06°35’
+06283 Hupsel  52°04’ 06°39’
+06285 Huibengat  53°34’ 06°24’
+06286 Nieuw Beerta  53°12’ 07°09’
+06290 Twenthe  52°16’ 06°54’
+06308 Cadzand  51°23’ 03°23’
+06310 Vlissingen  51°27’ 03°36’
+06311 Hoofdplaat  51°23’ 03°40’
+06312 Oosterschelde  51°46’ 03°37’
+06313 Vlakte vd Raan  51°30’ 03°15’
+06315 Hansweert  51°27’ 04°00’
+06316 Schaar  51°39’ 03°41’
+06319 Westdorpe  51°14’ 03°50’
+06320 LE Goeree  51°56’ 03°40’
+06321 Euro Platform  52°00’ 03°17’
+06323 Wilhelminadorp  51°32’ 03°54’
+06324 Stavenisse 51°36’ 04°00’
+06330 Hoek v Holland  51°59’ 04°06’
+06331 Tholen  51°31’ 04°08’
+06340 Woensdrecht  51°27’ 04°20’
+06343 Geulhaven  51°53’ 04°19’
+06344 Zestienhoven  51°57’ 04°27’
+06348 Meetmast Cabauw  51°58’ 04°56’
+06350 Gilze Rijen  51°34’ 04°56’
+06356 Herwijnen  51°52’ 05°09’
+06370 Eindhoven  51°27’ 05°25’
+06375 Volkel  51°39’ 05°42’
+06377 Ell  51°12’ 05°46’
+06380 Zuid Limburg  50°55’ 05°47’
+06391 Arcen  51°30’ 06°12

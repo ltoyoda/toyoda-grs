@@ -1,0 +1,194 @@
+{% extends "initial/layout.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <p>  </p><br />
+<h2>{{title}}</h2>
+<h3>{{ message }}</h3>
+<br />
+
+</head>
+  <body>
+
+<p> <h3><strong>Information table for weather stations - KNMI </strong></h3></p>
+  <iframe src="ftp://ftp.knmi.nl/pub_weerberichten/tabel_10min_data.html"...
+        scrolling=no width=550 height=912 frameborder=no></iframe><br/>
+
+<p> <h3><strong>Detailed Information - Buienradar </strong></h3></p>
+  <iframe src="http://weergrafieken.buienradar.nl" scrolling=no width=520 height=820 frameborder=no></iframe><br /><br/>
+
+<p> <h3><strong>Cloud Cover Forecast - Buienradar</strong></h3></p>
+  <iframe src="http://www.buienradar.nl/lokalebuienradar/?lat=52.08169&lng=4.2901&overname=2&zoom=8&naam=2518gj&size=3&voor=1"...
+        scrolling=no width=550 height=512 frameborder=no></iframe><br /><br/><br/>
+
+<!--<p> <h3><strong>Surface Weather Map - KNMI </strong></h3></p>-->
+  <!--<iframe src="ftp://ftp.knmi.nl/pub_weerberichten/AL1200.gif "...-->
+          <!--scrolling=no width=550 height=412 frameborder=no></iframe><br/>-->
+
+<!--<p> <h3><strong>Extra text - testing ftp knmi</strong></h3></p>-->
+  <!--<iframe src="ftp://ftp.knmi.nl/pub_weerberichten/alarm_waarschuwing_scheepvaart_kust.txt"...-->
+        <!--scrolling=no width=550 height=312 frameborder=no></iframe>  <br />-->
+
+<!------------------------------------------------------------------------------------>
+<h2>Calculations in JavaScript </h2>
+
+<script language="javascript" type="text/javascript">
+var siteID = new Array();
+function IDArray(ID,lat,lon,elev) {
+this.ID=ID;
+this.lat=lat;
+this.lon=lon;
+this.elev=elev;
+}
+siteID[0]=new IDArray("Drexel",39.955,-75.188,10.);
+siteID[1]=new IDArray("home",40.178,-75.333,140.);
+siteID[2]=new IDArray("NC",35.452,-81.022,246);
+siteID[3]=new IDArray("Argentina",-34.617,-58.37,30.);
+siteID[4]=new IDArray("Netherlands",52.382,4.933,-1);
+var i;
+for (i=0; i<siteID.length; i++){
+document.write(siteID[i].ID + ", " + siteID[i].lat + ", " + siteID[i].lon+ "," +siteID[i].elev + "<br />");
+}
+</script>
+
+ <br /> <br />
+  <br /> <br />
+<body><form>
+Enter coefficients for ax<sup>2</sup> + bx + c = 0:
+<br />
+a = <input type="text" value="2" name="a" />
+(must not be 0)<br />
+b = <input type="text" value="-9" name="b" /><br />
+c = <input type="text" value="3" name="c" /><br />
+
+<input type="button" name="Calculate" value="Click here to get r1: "
+onclick="var A=parseFloat(a.value),B=parseFloat(b.value),C=parseFloat(c.value);
+r1.value=(-B+Math.sqrt(B*B-4.*A*C))/2./A; " />
+<input type="text" value="0" name="r1" /> <br />
+
+<input type="button" name="Calculate" value="Click here to get r2: "
+onclick="var A=parseFloat(a.value),B=parseFloat(b.value),C=parseFloat(c.value);
+r2.value=(-B-Math.sqrt(B*B-4.*A*C))/2./A; " />
+<input type="text" value="0" name="r2"  />
+
+</form></body>
+
+
+  </body>
+{% endblock %}
+
+<!--
+    <!--<br /> <br />-->
+    <!--<img src="{% static "app/images/julia.jpg" %}" alt="My image"  width="25%" height="25%"/>-->
+    <!--<img src="{% static "app/images/grafico.png" %}" alt="My image"  width="50%" height="50%"/>-->
+  <!--<img src="{ftp://ftp.knmi.nl/pub_weerberichten/AL0200.gif"}" alt="My image"  width="50%" height="50%"/>
+
+<head>
+<title>Solving the Quadratic Equation</title>
+</head><body><form>
+Enter coefficients for ax<sup>2</sup> + bx + c = 0:
+<br />
+a = <input type="text" value="2" name="a" />
+(must not be 0)<br />
+b = <input type="text" value="-9" name="b" /><br />
+c = <input type="text" value="3" name="c" /><br />
+
+<input type="button" name="Calculate" value="Click here to get r1: "
+onclick="var A=parseFloat(a.value),B=parseFloat(b.value),C=parseFloat(c.value);
+r1.value=(-B+Math.sqrt(B*B-4.*A*C))/2./A; " />
+<input type="text" value="0" name="r1" /> <br />
+
+<input type="button" name="Calculate" value="Click here to get r2: "
+onclick="var A=parseFloat(a.value),B=parseFloat(b.value),C=parseFloat(c.value);
+r2.value=(-B-Math.sqrt(B*B-4.*A*C))/2./A; " />
+<input type="text" value="0" name="r2"  />
+
+</form></body>
+  <br /> <br />
+
+<head>
+<font size="+1">
+<b>Convert sea level pressure to station pressure
+(true pressure)</b></font><br /><br />
+</head>
+<body bgcolor="lightblue">
+This application converts sea level pressure to station pressure. <br />
+Station pressure is the actual pressure at an observer's observing site. <br />
+It is always less than or equal to sea level pressure (unless you are below <br />
+sea level). <br />
+<form>
+Fill in elevation and sea-level pressure:
+<input type="text" name="elevation" value="0" size="8" maxlength="7" /> (m)
+<input type="text" name="sea_level_pressure" value="1013.25" size="8" maxlength="7" /> (mbar) <br />
+<input type="button" name="Calculate" value="Click here to get station pressure: "
+
+onclick= "result.value = parseFloat(sea_level_pressure.value)- parseFloat(elevation.value)/9.2; " />
+<input type="text" name="result" value="1013.25" size="8" maxlength="7" /> (mbar)<br />
+<input type="reset" value="Reset all fields." />
+</form>
+</body>
+
+<br /><br />
+
+<form method="post"
+action="mailto:my_mail@university.edu"
+enctype="text/plain">
+
+<br />Please enter your last name:
+<input type="text" name="last_name" value="your_name" size="20"
+maxlength="20" /><br />
+
+<br />Please enter your latitude:
+<input type="text" name="lat" value="40" size="7"
+maxlength="7" />
+    N <input type="radio" name="NS" value="N" checked />
+or S <input type="radio" name="NS" value="S" /><br />
+
+    <br />Please enter your longitude:
+<input type="text" name="lon" value="75" size="8"
+maxlength="8" />
+E <input type="radio" name="EW" value="E" /> or W
+<input type="radio" name="EW" value="W" checked /><br />
+
+<br /> Please enter your elevation:
+<input type="text" name="elevation" value="-5" size="8" maxlength="8"
+/> meters<br />
+
+    <br /> Please indicate the seasons during which your site reports
+data:<br />
+Winter: <input type="checkbox" name="seasons"
+value="Winter" />
+Spring: <input type="checkbox" name="seasons"
+value="Spring" />
+Summer: <input type="checkbox" name="seasons"
+value="Spring" />
+Fall: <input type="checkbox" name="seasons"
+value="Fall" />
+   <br /> <br />  <input type="submit"
+value="Click here to send your data. " />
+
+    <br /> <br />
+</form>
+
+Select a month from this menu:
+<select name="testing">
+<option value="1" selected>January</option>
+<option value="2">February</option>
+<option value="3">March</option>
+<option value="4">April</option>
+<option value="5">May</option>
+<option value="6">June</option>
+<option value="7">July</option>
+<option value="8">August</option>
+<option value="9">September</option>
+<option value="10">October</option>
+<option value="11">November</option>
+<option value="12">December</option>
+</select>
+
+
+
+  -->

@@ -1,0 +1,27 @@
+{% extends "initial/layout.html" %}
+
+{% block content %}
+
+<h2>Using Admin for creating questions</h2>
+<h3>{{ message }}</h3>
+
+<address>
+    Let's see ow this is going to work out... <br/>
+
+</address>
+
+
+    {% if latest_question_list %}
+    <ul>
+        {% for question in latest_question_list %}
+            <li><a href="/app/{{ question.id }}/">{{ question.question_text }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No questions are available.</p>
+    {% endif %}
+
+
+
+{% endblock %}
+

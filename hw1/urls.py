@@ -19,9 +19,7 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-#    url(r'^hw1/', 'hw1.views.index',name='hw1'),
-#    url(r'^points$', 'app.views.poi_list', name='points'),
-#    url(r'^hw1/', 'app.views.index_hw1',name='hw1'),
-    url(r'^hw2/', 'app.views.index_math_hw2',name='hw2'),
-#    url(r'^hw3/', 'hw1.views.index',name='vib1'),
+    # url(r'^$', 'hw1.views.index_math', name='home_hw1'),
+    url(r'^vib1/', views.index, name='vib1'),
+#    url(r'^hw2/', 'hw1.views.index_math',name='hw2'),
 ]

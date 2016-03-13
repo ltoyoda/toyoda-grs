@@ -1,0 +1,90 @@
+{% extends "initial/layout.html" %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+            <p>  </p><br />
+            <p>  </p><br />
+<form method="post" action="">{% csrf_token %}
+
+    <p> <strong>What is your project name?  (also output filename.txt)   ...........        {{ form.f }} </strong></p>
+
+                <p>  </p><br />
+
+    <p><strong>First calculations! <br /> Input numbers <br />  Testing for simple math (input float!) </strong></p>
+            <p>  </p><br />
+        <p> Question 1...........   answer =  {{ form.r }} </p>
+                <p>  </p><br />
+        <p> Question 2...........   answer =  {{ form.s }} </p>
+                <p>  </p><br />
+        <p> Question 3...........   answer =  {{ form.t }} </p>
+                <p>  </p><br />
+        <p> Question 4...........   answer =  {{ form.u }} </p>
+                <p>  </p><br />
+
+        <p> <input type="submit"value="calculate" /> </p>
+                <p>  </p><br />
+
+
+     <p><a href="txt">Download txt File</a></p>
+                <p>  </p><br />
+
+
+                    <p> </p> <br />
+      <p> testing for filename.txt...........   answer =  {{ form.f }} </p>
+
+
+
+
+
+                    <p> </p> <br />
+<a href='d' target='_blank'>download</a>
+              <p> </p> <br />
+
+<a href="out-views_2p.txt" target="_blank">Download txt</a>
+
+
+
+    <p> The sum is =
+    {% if b != '' %}
+    {{ b }}
+    {% endif %}</p>
+
+    <p> The mean is =
+    {% if c != '' %}
+    {{ c }}
+    {% endif %}</p>
+
+    <p> The sin of input question 1 is =
+    {% if a != '' %}
+    {{ a }}
+    {% endif %}</p>
+
+
+</form>
+
+
+</body>
+
+{% endblock %}
+
+<!--
+
+# Make info needed in the web form
+form = InputForm()
+# Make HTML code
+render_to_response('hw1.html',
+    {'form': form}, context_instance=RequestContext(request))
+
+
+<form method="post" action="">
+<div style='display:none'>
+<input type='hidden' name='csrfmiddlewaretoken'
+value='oPWMuuy1gLlXm9GvUZINv49eVUYnux5Q' /></div>
+    Hello, World! The sine of <input type="text" name="r" id="id_r" />
+    <input type="submit" value="equals" />
+</form>  -->

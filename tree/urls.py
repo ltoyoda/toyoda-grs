@@ -21,32 +21,22 @@ from datetime import datetime
 from django.conf.urls import patterns, url
 from app.forms import BootstrapAuthenticationForm
 
-
-
+# urls for external applications:
 urlpatterns = [
     url(r'^app/', include('app.urls')),
     url(r'^admin/', admin.site.urls,name = 'adm'),
-####################################################################################
+    url(r'^plot/', include('plot.urls')),
     url(r'^hw1/', include('hw1.urls')),
-#    url(r'^hw2/', 'app.views.index_hw2',name='hw2'),
+    url(r'^lua/', include('lua.urls')),
+    # url(r'^contacts/', include('contacts.urls')),
 
-######################################################################################3
+# # urls for the initial part
     url(r'^$', 'app.views.home', name='home'),
-    url(r'^points$', 'app.views.poi_list', name='points'),
 
-    url(r'^points_amir$', 'app.views.poi_list_amir', name='points_amir'),
-    url(r'^testando$', 'app.views.testando', name='testando'),
-    url(r'^model$', 'app.views.model', name='model'),
-    url(r'^query$', 'app.views.query', name='query'),
-
-
-    url(r'^grs$', 'app.views.grs', name='grs'),
-    url(r'^links$', 'app.views.links', name='links'),
-
-    url(r'^contact$', 'app.views.contact', name='contact'),
-    url(r'^about', 'app.views.about', name='about'),
+# urls already installed
     url(r'^login/$',
         'django.contrib.auth.views.login',
+        # 'login',
         {
             'template_name': 'initial/login.html',
             'authentication_form': BootstrapAuthenticationForm,

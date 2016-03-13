@@ -1,0 +1,393 @@
+{% extends "initial/layout.html" %}
+
+{% block content %}
+
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>PSI Questionnaire</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script scr="jss.js" type="text/javascript"></script>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="ajaxIndex.js"></script>
+<script>
+  // global variable for number of questions
+  var nr_of_q = 6;
+</script>
+<title>Questionnaire</title>
+</head>
+<div id="body">
+<body onLoad="collapsePages(nr_of_q)">
+<div id="wrapQuestions">
+<h1>PSI Questionnaire</h1>
+
+<div class="mail">
+
+<!--STARTPAGE-->
+<form id="page1" enctype="multipart/form-data" action="" method ="post">
+
+<ul id="page_1">
+<span class="qId"></span> - Enter the name of the project and location of the area of interest: <p>
+<!--STARTINPUT-->
+<ul>
+<table>
+  <tr>
+    <td>
+    Project name
+    </td>
+    <td>
+    <input type="text" name="name" id="name" maxlength="10" size="12" value="" />
+    </td>
+  </tr>
+  <tr>
+     <td>
+     Location by postal code <br> (example NL-2611AP)
+     </td>
+     <td>
+     <input type="text" name="country" size="2" maxlength="2" value="">
+     <input type="text" name="zipcode" maxlength="8" size="10" value=""> <br>
+     </td>
+  </tr>
+  <tr>
+     <td>
+     Location <br> by latitude, longitude
+     </td>
+     <td>
+     <input type="text" name="lat" size="6" maxlength="6" value="">
+     <input type="text" name="lon" size="6" maxlength="6" value="">
+     </td>
+  </tr>
+</table>
+</ul>
+<!--ENDINPUT-->
+
+
+<div class="BCNbuttons">
+  <span class="BackClassButton"></span>
+  <span class="ContinueClassButton"></span>
+</div>
+
+<span class="progId"></span>
+
+</ul>
+
+<ul id="page_2">
+<span class="qId"></span> - Which of the following graphs best represents the time domain of deformation phenomenon?<br>
+<!--STARTINPUT-->
+<ul>
+<table>
+  <tr>
+    <td>
+    <img src="imgs/DefoModelsPlot/Linear.png" style="cursor:pointer; display: block; width: 120px; height: 100px; margin:10px; padding:0px; border:none" onclick="showImage('DefoModelsPlot/Linear.png');" />
+    </td>
+    <td>
+    <img src="imgs/DefoModelsPlot/Periodic.png" style="cursor:pointer; display: block; width: 120px; height: 100px; margin:10px; padding:0px; border:none" onclick="showImage('DefoModelsPlot/Periodic.png');" />
+    </td>
+    <td>
+    <img src="imgs/DefoModelsPlot/Quad-1.png" style="cursor:pointer; display: block; width: 120px; height: 100px; margin:10px; padding:0px; border:none" onclick="showImage('DefoModelsPlot/Quad-1.png');" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+    <input type="radio" name="DefoModel" value="Linear" onclick="hideTextBox(Quadratic1TB)"/>
+    Linear
+    </td>
+    <td>
+    <input type="radio" name="DefoModel" value="Periodic" onclick="hideTextBox(Quadratic1TB)"/>
+    Periodic
+    </td>
+    <td>
+    <input type="radio" name="DefoModel" value="Quadratic-1" onclick="displayTextBox(Quadratic1TB)"/>
+    Quadratic-1
+    </td>
+  </tr>
+  <tr>
+    <td>
+    <img src="imgs/DefoModelsPlot/Quad-2.png" style="cursor:pointer; display: block; width: 120px; height: 100px; margin:10px; padding:0px; border:none" onclick="showImage('DefoModelsPlot/Quad-2.png');" />
+    </td>
+    <td>
+    <img src="imgs/DefoModelsPlot/Cubic.png" style="cursor:pointer; display: block; width: 120px; height: 100px; margin:10px; padding:0px; border:none" onclick="showImage('DefoModelsPlot/Cubic.png');" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+    <input type="radio" name="DefoModel" value="Quadratic-2" onclick="hideTextBox(Quadratic1TB)"/>
+    Quadratic-2
+    </td>
+    <td>
+    <input type="radio" name="DefoModel" value="Cubic" onclick="hideTextBox(Quadratic1TB)"/>
+    Cubic
+    </td>
+    <td>
+      <div id="Quadratic1TB" style="display:none;visibility:hidden;margin-left: 2em">
+         <input type="textbox" name="QuadBias" maxlength="3" size="4" />
+         [mm/yr<sup>2</sup>]
+      </div>
+    </td>
+  </tr>
+</table>
+</ul>
+<div id="largeImgPanel" onclick="hideMe(this);">
+   <img id="largeImg" style="height: 100%; margin: 0; padding: 0;" />
+</div>
+<!--ENDINPUT-->
+
+
+<div class="BCNbuttons">
+  <span class="BackClassButton"></span>
+  <span class="ContinueClassButton"></span>
+</div>
+
+<span class="progId"></span>
+
+</ul>
+
+<ul id="page_3">
+<span class="qId"></span> - Do you expect discrete temporal change in the deformation mechanism ? <br>
+
+<!--div style="margin-left: 1em; margin-top: 1em;"-->
+<!--STARTINPUT-->
+<ul>
+<table>
+   <tr>
+     <td>
+      <input type="radio" name="DiscreteChange" value="no" onclick="hideTextBox(DiscreteText1),hideTextBox(DiscreteText2),hideTextBox(DiscreteText3),hideTextBox(DiscreteChangeTextBox),hideMultipleTextBoxes('BreakPointTextBox',10)"/>No
+     </td>
+   </tr>
+   <tr>
+      <td>
+        <input type="radio" name="DiscreteChange" value="yes" onclick="displayTextBox(DiscreteChangeTextBox),displayTextBox(DiscreteText1)">Yes
+      </td>
+   </tr>
+   <tr>
+      <td>
+        <div id="DiscreteText1" style="display:none;visibility:hidden;margin-left: 2em">
+          How many changes do you expect ?
+        </div>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <input type="textbox" id="DiscreteChangeTextBox" style="display:none;visibility:hidden;margin-left: 2em" name="DiscreteChangeFreq" maxlength="2" size="4"/>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <div id="DiscreteText2" style="display:none;visibility:hidden;margin-left: 2em">
+              Enter the approximate date on which this change occured:
+         </div>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <div id="DiscreteText3" style="display:none;visibility:hidden;margin-left: 2em">
+              Enter the approximate dates on which these changes occured:
+         </div>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <div id="BreakPointTextBox1" style="display:none;visibility:hidden;margin-left: 2em">
+              <input type="textbox" name="BreakPoint1"/> [DDMMYYYY]
+         </div>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <div id="BreakPointTextBox2" style="display:none;visibility:hidden;margin-left: 2em">
+              <input type="textbox" name="BreakPoint2"/> [DDMMYYYY]
+         </div>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <div id="BreakPointTextBox3" style="display:none;visibility:hidden;margin-left: 2em">
+              <input type="textbox" name="BreakPoint3"/> [DDMMYYYY]<br>
+         </div>
+      </td>
+   </tr>
+</table>
+</ul>
+<!--ENDINPUT-->
+
+
+<div class="BCNbuttons">
+  <span class="BackClassButton"></span>
+  <span class="ContinueClassButton"></span>
+</div>
+
+<span class="progId"></span>
+
+</ul>
+
+<ul id="page_4">
+<span class="qId"></span> - What is the maximum expected deformation in the area of interest? <br>
+<!--STARTINPUT-->
+<table>
+  <tr>
+     <div style="margin-left: 2em; margin-top: 1em;">
+	<input type="text" name="defcor" cols=10 rows=3 maxlength="3" size="10" value=""> [m/yr]
+     </div>
+  </tr>
+</table>
+<!--ENDINPUT-->
+
+
+<div class="BCNbuttons">
+  <span class="BackClassButton"></span>
+  <span class="ContinueClassButton"></span>
+</div>
+
+<span class="progId"></span>
+
+</ul>
+
+<ul id="page_5">
+<span class="qId"></span> - What is the maximum building height with respect to the ground in the area of interest?
+<!--STARTINPUT-->
+<table>
+     <div style="margin-left: 2em; margin-top: 1em;">
+         <input type="text" name="defcor" cols=10 rows=3 maxlength="3" size="10" value=""> [m]
+     </div>
+</table>
+<!--ENDINPUT-->
+
+
+<div class="BCNbuttons">
+  <span class="BackClassButton"></span>
+  <span class="ContinueClassButton"></span>
+</div>
+
+
+<span class="progId"></span>
+
+</ul>
+
+<ul id="page_6">
+<span class="qId"></span> - Do you know relative deformation over different lengths?
+
+<!--STARTINPUT-->
+<table>
+    <tr>
+       <td>
+          <div style="margin-left: 2em; margin-top:1em;">
+            <input type="radio" id="defoarc" name="DefoArc" value="NoDefoArc" onclick="hideTextBox(DefoArcTextBox1)"/>
+          No
+          </div>
+       </td>
+    </tr>
+    <tr>
+       <td>
+          <div style="margin-left: 2em; margin-top:0em;">
+               <input type="radio" id="defoarc" name="DefoArc" onclick="displayTextBox(DefoArcTextBox1)" value="" /> Yes
+          </div>
+       </td>
+    </tr>
+</table>
+
+<div id="DefoArcTextBox1" style="display:none;visibility:hidden;margin-left: 2em">
+<table>
+      <tr>
+	 <td>
+           length [m]
+         </td>
+         <td>
+           1
+         </td>
+         <td>
+           10
+         </td>
+         <td>
+           100
+         </td>
+         <td>
+           500
+         </td>
+         <td>
+           1000
+         </td>
+         <td>
+           2000
+         </td>
+         <td>
+           3000
+         </td>
+         <td>
+           4000
+         </td>
+         <td>
+           5000
+         </td>
+     </tr>
+     <tr>
+        <td>
+          deformation [m]
+        </td>
+        <td>
+          <input type="text" name="DefoArcValue1" id="DefoArcValue1" size="6" maxlength="6" value="" />
+        </td>
+        <td>
+          <input type="text" name="DefoArcValue2" id="DefoArcValue2" size="6" maxlength="6" value="" />
+        </td>
+        <td>
+          <input type="text" name="DefoArcValue3" id="DefoArcValue3" size="6" maxlength="6" value="" />
+        </td>
+        <td>
+          <input type="text" name="DefoArcValue4" id="DefoArcValue4" size="6" maxlength="6" value="" />
+        </td>
+        <td>
+          <input type="text" name="DefoArcValue5" id="DefoArcValue5" size="6" maxlength="6" value="" />
+        </td>
+        <td>
+          <input type="text" name="DefoArcValue6" id="DefoArcValue6" size="6" maxlength="6" value="" />
+        </td>
+        <td>
+          <input type="text" name="DefoArcValue7" id="DefoArcValue7" size="6" maxlength="6" value="" />
+        </td>
+        <td>
+          <input type="text" name="DefoArcValue8" id="DefoArcValue8" size="6" maxlength="6" value="" />
+        </td>
+        <td>
+          <input type="text" name="DefoArcValue9" id="DefoArcValue9" size="6" maxlength="6" value="" />
+        </td>
+     </tr>
+     <tr>
+       <td>
+         <input type="submit" value="Insert data" id="insertdata" name="insertdata" /><br>
+       </td>
+     </tr>
+</table>
+<table>
+     <tr>
+       <td>
+          <div id="response2">
+          </div>
+       </td>
+     </tr>
+</table>
+</div>
+<!--ENDINPUT-->
+
+
+<div class="BCNbuttons">
+   <span class="BackClassButton"></span>
+   <span class="ContinueClassButton"></span>
+</div>
+
+
+<span class="progId"></span>
+
+</ul>
+
+<!--FOR ADDING NEW QUESTION-->
+
+</form>
+</div>
+<!--ENDPAGE-->
+
+</body>
+</html>
+
+
+{% endblock %}

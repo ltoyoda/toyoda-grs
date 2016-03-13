@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'geoposition',
-#    'hw1',
+    'plot',
+    'hw1',
+    'lua',
+    # 'contacts',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -54,6 +57,7 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'tree.urls'
+# ROOT_URLCONF = 'plot.urls'
 
 TEMPLATES = [
     {
@@ -85,6 +89,11 @@ def relative2absolute_path(relative_path):
     """Return the absolute path correspodning to relative_path."""
     dir_of_this_file = os.path.dirname(os.path.abspath(__file__))
     return dir_of_this_file + '/' + relative_path
+
+# TEMPLATE_DIRS = [relative2absolute_path('../../tree/hw1/static'),
+# ]
+
+
 
 
 
@@ -142,8 +151,26 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
+######################################################################
+# Added at the start
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = ''
+
+# Additional locations of static files
+# STATICFILES_DIRS = (
+#     os.path.join(os.path.dirname(__file__), 'static'),
+# )
+#####################################################################
+# # Added for the graph
+# SETTINGS_DIR = os.path.dirname(__file__)
+# PROJECT_PATH = os.path.join(SETTINGS_DIR, os.pardir)
+# PROJECT_PATH = os.path.abspath(PROJECT_PATH)
+# STATIC_PATH = os.path.join(PROJECT_PATH,'static')
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = (
+#     STATIC_PATH,
+# )
 
 
 #########################################################

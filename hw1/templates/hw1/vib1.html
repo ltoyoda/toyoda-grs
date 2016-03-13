@@ -1,0 +1,48 @@
+{% extends "initial/layout.html" %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <h2>{{title}}</h2>
+    <h3>{{ message }}</h3>
+
+ <br /><br />
+</head>
+
+<body>
+
+<form method=post action="">{% csrf_token %}
+<table>
+  {% for field in form %}
+    <tr>
+    <!--<td>{{ field.name }}</td>-->
+        <td>{{ field.label }}</td>
+        <td>{{ field }}</td>
+        <td>{{ field.errors }}</td>
+    <td></td>
+    </tr>
+  {% endfor %}
+</table>
+
+<p><input type=submit value=Calculate></form></p>
+
+<p>
+{% if result != None %}
+{% load static %}
+{% load staticfiles %}
+    <img src="{% static "first graph.png" %}" alt="My image"  width="50%" height="50%"/>
+
+{% endif %}
+    <p><br /></p>
+
+<input type="button" name="Calculate" value="Load figure: "
+    onclick="<img src="{% static "first graph.png" %}" alt="My image"  width="50%" height="50%"/>
+
+</form>
+</body>
+{% endblock %}
+
+
+

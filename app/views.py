@@ -12,7 +12,7 @@ from app.models import *
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
     context = {'latest_question_list': latest_question_list}
-    return render(request, 'app/questions.html', context)
+    return render(request, 'app/questions_edit.html', context)
 
 def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
@@ -24,6 +24,15 @@ def results(request, question_id):
 
 
 ################################################################################
+
+def questionnaire(request):
+    """Renders the about page."""
+    assert isinstance(request, HttpRequest)
+    return render(request, 'app/questions.html', context_instance = RequestContext(request,
+        {'title':'Questionnaire',
+            'message':'Your application description page.',
+            'year':datetime.now().year,}))
+
 
 class IndexView(generic.ListView):
     template_name = 'app/questions.html'
@@ -129,12 +138,31 @@ def poi_list(request):
             'message':'Locating using coordinates.',
             'year':datetime.now().year,}))
 
+def poi_list2(request):
+    """Renders the Google maps page."""
+    pois = PointOfInterest.objects.all()
+    assert isinstance(request, HttpRequest)
+    return render(request,'initial/poi_list2.html', context_instance = RequestContext(request,
+        {'title':'Point of interest',
+            'message':'Testing.',
+            'year':datetime.now().year,}))
+
+def poi_list2(request):
+    """Renders the Google maps page."""
+    pois = PointOfInterest.objects.all()
+    assert isinstance(request, HttpRequest)
+    return render(request,'initial/weather.html', context_instance = RequestContext(request,
+        {'title':'Weather Information',
+            'message':'Region: The Netherlands.',
+            'year':datetime.now().year,}))
+
+
 def poi_list_amir(request):
     """Renders Amir's map."""
     pois = PointOfInterest.objects.all()
     assert isinstance(request, HttpRequest)
     return render(request,'initial/poi_list_amir.html', context_instance = RequestContext(request,
-        {'title':'Map Amir',
+        {'title':'Map',
             'message':'Your application description page.',
             'year':datetime.now().year,}))
 
@@ -165,8 +193,9 @@ def model(request):
             'message':'Your application description page - change in app/views.py',
             'year':datetime.now().year,}))
 
+
 #####################################################################################
-# # Simple views for the questionaire:
+# # Simple views for the questionaire tree:
 ## Filhos
 def B1(request):
     assert isinstance(request, HttpRequest)
@@ -229,7 +258,7 @@ def B2_b(request):
 def B2_c(request):
     assert isinstance(request, HttpRequest)
     return render(request,'app/B2_c.html',context_instance = RequestContext(request,
-        {'title':'Vulcanism',
+        {'title':'Volcanism',
             'message':'Your application description page - change in app/views.py',
             'year':datetime.now().year,}))
 ##
@@ -253,62 +282,3 @@ def variogram_input(request):
         {'title':'variogram_imput B2',
             'message':'Your application description page - change in app/views.py',
             'year':datetime.now().year,}))
-
-##############################################################################################
-# # # From the Django for scientists tutorial
-
-from django.shortcuts import render_to_response
-from django.template import RequestContext
-from django.http import HttpResponse
-from app.models import InputForm
-from app.compute import compute, soma, mean
-
-# def index_hw1(request):
-#     if request.method == 'POST':
-#         form = InputForm(request.POST)
-#         if form.is_valid():
-#             form = form.save(commit=False)
-#             return present_output(form)
-#     else:
-#         form = InputForm()
-#
-#     return render_to_response('hw1/hw2.html',
-#             {'form': form}, context_instance=RequestContext(request))
-
-# def present_output(form):
-#     r = form.r
-#     s = form.s
-#     t = form.t
-#     u = form.u
-#     a = compute(r,s,t,u)
-#     b = soma(r,s,t,u)
-#     c = mean(r,s,t,u)
-#     return HttpResponse(' voce e a melhor mae do mundo!;D  The calculated result is: sin (%s) = %s' % (r, a))
-
-def index_math_hw2(request):
-    a = None  # initial value of result
-    b = None  # initial value of result
-    c = None  # initial value of result
-    if request.method == 'POST':
-        form = InputForm(request.POST)
-        if form.is_valid():
-            form = form.save(commit=False)
-            r = form.r
-            s = form.s
-            t = form.t
-            u = form.u
-            a = compute(r)
-            b = soma(r,s,t,u)
-            c = mean(r,s,t,u)
-    else:
-        form = InputForm()
-
-    return render_to_response('hw1/hw2.html',
-            {'form': form,
-             'b': '%.2f' % b if isinstance(b, float) else '',
-             'a': '%.2f' % a if isinstance(a, float) else '',
-             'c': '%.2f' % c if isinstance(c, float) else ''
-             }, context_instance=RequestContext(request))
-
-
-

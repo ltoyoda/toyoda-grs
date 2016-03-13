@@ -1,56 +1,62 @@
 {% extends "initial/layout.html" %}
-
+{% load staticfiles %}
 {% block content %}
 
 <h2>{{title}}</h2>
-<h3>{{ message }}</h3>
+<!--<h3>{{ message }}</h3>-->
 
-            <p> </p>
-            <br />
-            <p> </p>
-            <br />
-            <p></p>
+    <p></p><br/>
 
 <!-- Add script here -->
 
 <div class="row">
     <div class="col-md-4">
         <a href="{% url 'questions' %}"><h2>Questionnaire</h2></a></p>
-            <p> Get started with the questions.</p>
+            <a href="{% url 'questions' %}"><img id="compImg" src="{% static "lua/images/muro.jpg" %}" alt="laser"/></a></p>
+            <p> Get started with questions.</p>
     </div>
 
     <div class="col-md-4">
-        <a href="{% url 'links' %}"><h2>Data Check</h2></a></p>
-            <p>This connects you to other sites,<br /> </p>
+        <a href="{% url 'weather' %}"><h2>Weather</h2></a></p>
+        <a href="{% url 'weather' %}"><img id="solImg" src="{% static "lua/images/sun.jpg" %}" alt="image of a sum"/></a></p>
+            <p>Using KNMI  & Buienradar<br /> </p>
     </div>
 
     <div class="col-md-4">
-        <a href="{% url 'points' %}"><h2>Study Area</h2></a></p>
-            <p>A link to select the study area <br /> </p>
-            <p> </p>
-            <br />
-            <p> </p>
-            <br />
-            <p></p>
-
-    </div>
-
-
-
-    <div class="col-md-4">
-        <a href="{% url 'hw2' %}"><h2>Variogram</h2></a></p>
-            <p>Input elements <br /> Output Variogram.</p>
-
-
+        <a href="{% url 'geo' %}"><h2>Geolocation</h2></a></p>
+        <a href="{% url 'geo' %}"><img id="compImg" src="{% static "lua/images/compass.jpg" %}" alt="compass"/></a></p>
+            <p>Googlemaps - current location <br /> </p>
     </div>
 
     <div class="col-md-4">
-        <a href="{% url 'hw2' %}"><h2>Probability Density Function</h2></a></p>
-            <p>Input elements <br /> Output graph PDF.</p>
-
-
-
+        <a href="{% url 'vib1' %}"><h2>Variogram</h2></a></p>
+        <a href="{% url 'vib1' %}"><img id="compImg" src="{% static "lua/images/variogram.jpg" %}" alt="forms"/></a></p>
+            <p>With Python scripts</p>
     </div>
+
+    <div class="col-md-4">
+        <a href="{% url 'contas_2p' %}"><h2>Text file</h2></a></p>
+        <a href="{% url 'contas_2p' %}"><img id="compImg" src="{% static "lua/images/flags.jpg" %}" alt="text"/></a></p>
+            <p> With Python scripts.</p>
+    </div>
+
+    <div class="col-md-4">
+        <a href="{% url 'irock' %}"><h2>Forms </h2></a></p>
+        <a href="{% url 'irock' %}"><img id="compImg" src="{% static "lua/images/forms.jpg" %}" alt="forms"/></a></p>
+            <p>With JavaScript + JSON. <br /></p>
+    </div>
+        <br/>
+
+    <div class="col-md-4">
+                <a href="{% url 'questions_edit' %}"><h2>Questions</h2></a></p>
+            <p>Using Django Admin. <br /></p>
+    </div>
+
+        <div class="col-md-4">
+                <a href="{% url 'points_amir' %}"><h2>Coordinates </h2></a></p>
+            <p>Testing - Code from Amir <br /></p>
+    </div>
+
 </div>
 
 
@@ -59,7 +65,6 @@
 
 
 <!-- Finish script here -->
-
 {% endblock %}
 
 

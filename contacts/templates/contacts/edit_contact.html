@@ -1,0 +1,92 @@
+{% extends "initial/layout.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<head>
+    <title>Test Battle field - irock</title>
+
+    <script>
+function save(item) {
+    var playlistArray = getStoreArray("playlist");
+    playlistArray.push(item);
+    localStorage.setItem("playlist", JSON.stringify(playlistArray));
+}
+function loadPlaylist() {
+    var playlistArray = getSavedSongs();
+    var ul = document.getElementById("playlist");
+    if (playlistArray != null) {
+        for (var i = 0; i < playlistArray.length; i++) {
+            var li = document.createElement("li");
+            li.innerHTML = playlistArray[i];
+            ul.appendChild(li);
+        }
+    }
+}
+
+function getSavedSongs() {
+    return getStoreArray("playlist");
+}
+
+function getStoreArray(key) {
+	var playlistArray = localStorage.getItem(key);
+	if (playlistArray == null || playlistArray == "") {
+		playlistArray = new Array();
+	}
+	else {
+		playlistArray = JSON.parse(playlistArray);
+	}
+	return playlistArray;
+}
+    </script>
+
+
+
+    <script src="{% static "lua/js/playlist_store.js" %}" type="text/javascript"></script>
+    <script src="{% static "lua/js/playlist.js" %}" type="text/javascript"></script>
+
+</head>
+
+<body style>
+        <style type="text/css">
+            body {
+            background-color: #008080;
+            margin-left: 20%;
+            margin-right: 20%;
+            border: 2px dotted black;
+            padding: 60px 10px 10px 10px;
+            font-family: cursive;
+            color: white
+            }
+            </style>
+    <img id="jujuImg" src="{% static "lua/images/wave.jpg" %}" alt="iRock" style="cursor:pointer" onclick="touchRock()"/><br /><br />
+
+    <h1>Testing forms!</h1>
+
+    <h3>Using Django</h3>
+
+        <h1>Add Contact</h1>
+
+<h1>Add Contact</h1>
+
+<form action="{% url "contacts-new" %}" method="POST">
+  {% csrf_token %}
+  <ul>
+    {{ form.as_ul }}
+  </ul>
+  <input id="save_contact" type="submit" value="Save" />
+</form>
+
+<a href="{% url "contacts-list" %}">back to list</a>
+
+
+
+
+
+
+
+
+</body>
+
+<!-- Finish script here -->
+{% endblock %}
+

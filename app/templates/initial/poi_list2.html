@@ -1,0 +1,202 @@
+{% extends "initial/layout.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+                  <p>  </p><br />
+        <p>  </p><br />
+<h2>{{title}}</h2>
+<h3>{{ message }}</h3>
+
+          <p> <strong>Testing again.... </strong></p>
+</head>
+  <body>
+
+  <iframe src="http://weergrafieken.buienradar.nl" scrolling=no width=520 height=1000 frameborder=no></iframe>
+  <br /><br />
+<!--<IFRAME SRC="http://api.buienradar.nl/image/1.0/RadarMapNL?w=256&h=256"...-->
+        <!--NORESIZE SCROLLING=NO HSPACE=0 VSPACE=0 FRAMEBORDER=0 MARGINHEIGHT=0 MARGINWIDTH=0 WIDTH=356 HEIGHT=356></IFRAME>-->
+
+<iframe src="http://www.buienradar.nl/lokalebuienradar/?lat=52.08169&lng=4.2901&overname=2&zoom=8&naam=2518gj&size=3&voor=1"...
+        scrolling=no width=550 height=512 frameborder=no></iframe>
+  <br /><br />
+
+
+
+
+  <br /><br />
+
+
+<script language="javascript" type="text/javascript">
+var siteID = new Array();
+function IDArray(ID,lat,lon,elev) {
+this.ID=ID;
+this.lat=lat;
+this.lon=lon;
+this.elev=elev;
+}
+siteID[0]=new IDArray("Drexel",39.955,-75.188,10.);
+siteID[1]=new IDArray("home",40.178,-75.333,140.);
+siteID[2]=new IDArray("NC",35.452,-81.022,246);
+siteID[3]=new IDArray("Argentina",-34.617,-58.37,30.);
+siteID[4]=new IDArray("Netherlands",52.382,4.933,-1);
+var i;
+for (i=0; i<siteID.length; i++){
+document.write(siteID[i].ID + ", " + siteID[i].lat + ", " + siteID[i].lon+ "," +siteID[i].elev + "<br />");
+}
+</script>
+
+ <br /> <br />
+  <br /> <br />
+
+
+<head>
+<title>Solving the Quadratic Equation</title>
+</head><body><form>
+Enter coefficients for ax<sup>2</sup> + bx + c = 0:
+<br />
+a = <input type="text" value="2" name="a" />
+(must not be 0)<br />
+b = <input type="text" value="-9" name="b" /><br />
+c = <input type="text" value="3" name="c" /><br />
+
+<input type="button" name="Calculate" value="Click here to get r1: "
+onclick="var A=parseFloat(a.value),B=parseFloat(b.value),C=parseFloat(c.value);
+r1.value=(-B+Math.sqrt(B*B-4.*A*C))/2./A; " />
+<input type="text" value="0" name="r1" /> <br />
+
+<input type="button" name="Calculate" value="Click here to get r2: "
+onclick="var A=parseFloat(a.value),B=parseFloat(b.value),C=parseFloat(c.value);
+r2.value=(-B-Math.sqrt(B*B-4.*A*C))/2./A; " />
+<input type="text" value="0" name="r2"  />
+
+</form></body>
+  <br /> <br />
+
+<head>
+<font size="+1">
+<b>Convert sea level pressure to station pressure
+(true pressure)</b></font><br /><br />
+</head>
+<body bgcolor="lightblue">
+This application converts sea level pressure to station pressure. <br />
+Station pressure is the actual pressure at an observer's observing site. <br />
+It is always less than or equal to sea level pressure (unless you are below <br />
+sea level). <br />
+<form>
+Fill in elevation and sea-level pressure:
+<input type="text" name="elevation" value="0" size="8" maxlength="7" /> (m)
+<input type="text" name="sea_level_pressure" value="1013.25" size="8" maxlength="7" /> (mbar) <br />
+<input type="button" name="Calculate" value="Click here to get station pressure: "
+
+onclick= "result.value = parseFloat(sea_level_pressure.value)- parseFloat(elevation.value)/9.2; " />
+<input type="text" name="result" value="1013.25" size="8" maxlength="7" /> (mbar)<br />
+<input type="reset" value="Reset all fields." />
+</form>
+</body>
+
+
+
+<br /><br />
+
+<form method="post"
+action="mailto:my_mail@university.edu"
+enctype="text/plain">
+
+<br />Please enter your last name:
+<input type="text" name="last_name" value="your_name" size="20"
+maxlength="20" /><br />
+
+<br />Please enter your latitude:
+<input type="text" name="lat" value="40" size="7"
+maxlength="7" />
+    N <input type="radio" name="NS" value="N" checked />
+or S <input type="radio" name="NS" value="S" /><br />
+
+    <br />Please enter your longitude:
+<input type="text" name="lon" value="75" size="8"
+maxlength="8" />
+E <input type="radio" name="EW" value="E" /> or W
+<input type="radio" name="EW" value="W" checked /><br />
+
+<br /> Please enter your elevation:
+<input type="text" name="elevation" value="-5" size="8" maxlength="8"
+/> meters<br />
+
+    <br /> Please indicate the seasons during which your site reports
+data:<br />
+Winter: <input type="checkbox" name="seasons"
+value="Winter" />
+Spring: <input type="checkbox" name="seasons"
+value="Spring" />
+Summer: <input type="checkbox" name="seasons"
+value="Spring" />
+Fall: <input type="checkbox" name="seasons"
+value="Fall" />
+   <br /> <br />  <input type="submit"
+value="Click here to send your data. " />
+
+    <br /> <br />
+</form>
+
+Select a month from this menu:
+<select name="testing">
+<option value="1" selected>January</option>
+<option value="2">February</option>
+<option value="3">March</option>
+<option value="4">April</option>
+<option value="5">May</option>
+<option value="6">June</option>
+<option value="7">July</option>
+<option value="8">August</option>
+<option value="9">September</option>
+<option value="10">October</option>
+<option value="11">November</option>
+<option value="12">December</option>
+</select>
+
+
+
+
+<!--
+
+<div align="center">
+<iframe width="100%" height="550" frameborder="1" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps/ms?ie=UTF8&amp;hl=nl&amp;t=k&amp;msa=0&amp;msid=208097547969447395026.0004a40396677668ffbe7&amp;ll=52.133488,5.372314&amp;spn=3.237243,7.03125&amp;z=7&amp;output=embed"></iframe>
+
+
+          <p> <strong>Testing opening other websites...........        {{ form.f }} </strong></p>
+        <iframe src="http://www.bing.com" style="width: 90%; height: 300px"></iframe>
+
+####################################
+      <iframe width="100%" height="480" frameborder="1" scrolling="no" marginheight="0" marginwidth="0"src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt2JrdlwkZXbfc9lrdAtCGm6ki32boS6s =initMap">
+
+    <style type="text/css">
+      html, body { height: 100%; margin: 0; padding: 0; }
+      #map { height: 100%; }
+    </style>
+
+    <div id="map"></div>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt2JrdlwkZXbfc9lrdAtCGm6ki32boS6s
+        &libraries=visualization&callback=initMap">
+
+    </script>
+    <script src="map.js"> </script>
+-->
+    <!--<br /> <br />-->
+    <!--<img src="{% static "app/images/julia.jpg" %}" alt="My image"  width="25%" height="25%"/>-->
+    <!--<img src="{% static "app/images/grafico.png" %}" alt="My image"  width="50%" height="50%"/>-->
+  <!--<img src="{ftp://ftp.knmi.nl/pub_weerberichten/AL0200.gif"}" alt="My image"  width="50%" height="50%"/>-->
+
+
+  ftp://ftp.knmi.nl/pub_weerberichten/AL0200.gif
+  </body>
+
+
+
+
+
+
+{% endblock %}

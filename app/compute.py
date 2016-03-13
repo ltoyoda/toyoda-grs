@@ -4,11 +4,11 @@ import math
 import time
 
 # from numpy import exp, cos, linspace
-import numpy
+#  import numpy
 # import matplotlib.pyplot
 # import matplotlib.pyplot as plt
 # import os, time, glob
-# import numpy as np
+import numpy as np
 
 def compute(r):
     return math.sin(r)
@@ -21,13 +21,21 @@ def mean(r, s, t, u):
 #    return math.sin(r)
     return ((r + s + t + u)/4.)
 
+
+
 # if __name__ == '__main__':
 #     print compute(20)
 #     print soma(20,3,5,8)
-# def plotando(r,s,t,u):
+#
+#
 #     x = [5, 10, 50, 100]
-#     y = [r, s, t, u]
-#     return (plt.plot(x, y))
+#     y = [20,3,5,8]
+#     plt.plot(x, y)
+#     plt.title('Testing plot')
+#     plt.xlabel('Number of Points')
+#     plt.grid(True)
+#     plt.ylabel('Running time')
+#     plt.show()
 #
 # if __name__ == "__main__":
 #

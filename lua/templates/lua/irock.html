@@ -1,0 +1,205 @@
+{% extends "initial/layout.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<head>
+    <title>Test Battle field - irock</title>
+
+        <script>
+    var guessInput = document.getElementById("guess");
+    var guess = guessInput.value;
+    var answer = null;
+
+    var answers = [ "red",
+        "green",
+        "blue"];
+
+    var index = Math.floor(Math.random() * answers.length);
+
+    if (guess == answers[index]) {
+        answer = "You're right! I was thinking of " + answers[index];
+    } else {
+        answer = "Sorry, I was thinking of " + answers[index];
+    }
+    alert(answer);
+
+        window.onload = Fido.bark()
+        function Dog(name, breed, weight){
+        this,.name = name;
+        this.breed = breed;
+        this.weight = weight;
+        this bark = function() {
+            if (this.weight > 25) {
+                alert(this.name + "says WOOF!");
+            else {
+                alert (this.name + "says yipp!");
+                }
+            };
+        }
+
+        var fido = new Dog('Fido','mixed','38');
+
+
+    </script>
+
+        <script src="{% static "lua/js/playlist_store.js" %}" type="text/javascript"></script>
+        <script src="{% static "lua/js/playlist.js" %}" type="text/javascript"></script>
+
+</head>
+
+<body style>
+        <style type="text/css">
+            body {background-color: #FFF8DC;
+            font-family: cursive;
+            color: #008080}
+            </style>
+        <br/><br/>
+    <img id="jujuImg" src="{% static "lua/images/coord.jpg" %}" alt="iRock" style="cursor:pointer" onclick="touchRock()"/>
+        <br /><br />
+
+
+    <h1>Testing forms!</h1>
+
+         <br/><br/>
+    <h3>Using HTML/JavaScript</h3>
+      <form>
+        <input type="text" id="songTextInput" size="40" placeholder="Extra input">
+        <input type="button" id="addButton" value="Add Info">
+      </form>
+        <ul id="playlist">
+        </ul>
+
+
+<h3>Calculations in JavaScript </h3>
+        <form>
+Enter coefficients for ax<sup>2</sup> + bx + c = 0:
+<br />
+a = <input type="text" value="2" name="a" />
+(must not be 0)<br />
+b = <input type="text" value="-9" name="b" /><br />
+c = <input type="text" value="3" name="c" /><br />
+
+<input type="button" name="Calculate" value="Click here to get r1: "
+onclick="var A=parseFloat(a.value),B=parseFloat(b.value),C=parseFloat(c.value);
+r1.value=(-B+Math.sqrt(B*B-4.*A*C))/2./A; " />
+<input type="text" value="0" name="r1" /> <br />
+
+<input type="button" name="Calculate" value="Click here to get r2: "
+onclick="var A=parseFloat(a.value),B=parseFloat(b.value),C=parseFloat(c.value);
+r2.value=(-B-Math.sqrt(B*B-4.*A*C))/2./A; " />
+<input type="text" value="0" name="r2"  />
+</form>
+
+        <br /><br />
+<script language="javascript" type="text/javascript">
+var siteID = new Array();
+function IDArray(ID,lat,lon,elev) {
+this.ID=ID;
+this.lat=lat;
+this.lon=lon;
+this.elev=elev;
+}
+siteID[0]=new IDArray("Drexel",39.955,-75.188,10.);
+siteID[1]=new IDArray("home",40.178,-75.333,140.);
+siteID[2]=new IDArray("NC",35.452,-81.022,246);
+siteID[3]=new IDArray("Argentina",-34.617,-58.37,30.);
+siteID[4]=new IDArray("Netherlands",52.382,4.933,-1);
+var i;
+for (i=0; i<siteID.length; i++){
+document.write(siteID[i].ID + ", " + siteID[i].lat + ", " + siteID[i].lon+ "," +siteID[i].elev + "<br />");
+}
+</script>
+
+</body>
+<!-- Finish script here -->
+{% endblock %}
+
+
+    <!--<h3>Using Django</h3>-->
+<!--<ul>-->
+<!--{% for contact in object_list %}-->
+    <!--<li class="contact">{{ contact }}</li>-->
+<!--{% endfor %}-->
+<!--</ul>-->
+
+    <!--<img src="{% static "app/images/julia.jpg" %}" alt="My image"  width="25%" height="25%"/>-->
+
+
+
+    <!--<form action="http://wickedlysmart.com/hfhtmlcss/contest.php" method="POST">-->
+        <!--<p>-->
+            <!--Just type in your name (and click Submit) to enter the contest: <br><br>-->
+            <!--First name: <input type="text" name="firstname" value=""> <br>-->
+            <!--Last name:  <input type="text" name="lastname" value=""> <br><br>-->
+            <!--<input type="submit">-->
+        <!--</p>-->
+
+            <!--<br>How do you like toye coffee?<br>-->
+            <!--<input type="radio" name="hotornot" value="hot" checked>  hot<br>-->
+            <!--<input type="radio" name="hotornot" value="cold">  cold<br>-->
+
+            <!--<br>What about spices?<br>-->
+            <!--<input type="checkbox" name="spice" value="Salt"> Salt <br>-->
+            <!--<input type="checkbox" name="spice" value="Pepper"> Pepper <br>-->
+            <!--<input type="checkbox" name="spice" value="Garlic" checked> Garlic <br>-->
+
+            <!--<br>Any Comments?<br>-->
+            <!--<textarea name="comments" rows="3" cols="48"></textarea><br>-->
+
+            <!--<br>Hidden multiple options<br>-->
+            <!--<select name="characters">-->
+                <!--<option value="Buckaroo">Buckaroo Banzai</option>-->
+                <!--<option value="Tommy">Perfect Tommy</option>-->
+                <!--<option value="Penny">Penny Priddy</option>-->
+                <!--<option value="Jersey">New Jersey</option>-->
+                <!--<option value="John">John Parker</option>-->
+            <!--</select><br>-->
+
+            <!--<br>Open Multiple options<br>-->
+              <!--<select name="characters" multiple>-->
+                <!--<option value="Buckaroo">Buckaroo Banzai</option>-->
+                <!--<option value="Tommy">Perfect Tommy</option>-->
+                <!--<option value="Penny Priddy">Penny</option>-->
+                <!--<option value="New Jersey">Jersey</option>-->
+                <!--<option value="John Parker">John</option>-->
+              <!--</select>-->
+
+            <!--<br>Number?<br>-->
+                <!--<input type="number" min="0" max="20" value="5"><br>-->
+            <!--<br>Range?<br>-->
+                <!--<input type="range" min="0" max="20" step="5" value="5"><br>-->
+            <!--<br>Color?<br>-->
+                <!--<input type="color" ><br>-->
+            <!--<br>Date?<br>-->
+                <!--<input type="date">-->
+            <!--<br>Email?<br>-->
+                <!--<input type="email">-->
+            <!--<br>Tel?<br>-->
+                 <!--<input type="tel">-->
+            <!--<br>URL?<br>-->
+                <!--<input type="url">-->
+
+            <!--<br>Enter your password<br>-->
+            <!--<input type="password" name="secret">-->
+            <!--<br>Upload a file<br>-->
+            <!--<input type="file" name="doc">-->
+
+            <!--<br>Using Placeholder<br>-->
+            <!--<input type="text" placeholder="Buckaroo Banzai">-->
+            <!--<br>Using required field<br>-->
+             <!--<input type="text" placeholder="Buckaroo Banzai" required>-->
+
+
+
+      <!--<script language="javascript" type="text/javascript">-->
+        <!--function touchRock() {-->
+          <!--var userName = prompt("What is your name?", "Enter your name here.");-->
+
+          <!--if (userName) {-->
+            <!--alert("It is good to meet you, " + userName + ".");-->
+            <!--document.getElementById("jujuImg").src = "{% static "lua/images/mouse2.jpg" %}";-->
+          <!--}-->
+        <!--}-->
+      <!--</script>-->
+
+    <!--</form>-->

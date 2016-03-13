@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+            <p>  </p><br />
+            <p>  </p><br />
+<form method="post" action="">{% csrf_token %}
+
+    <p><strong>First calculations! <br /> Input numbers <br />  Testing for simple math  </strong></p>
+            <p>  </p><br />
+        <p> Question 1    {{ form.r }} </p>
+                <p>  </p><br />
+        <p> Question 2    {{ form.s }} </p>
+                <p>  </p><br />
+        <p> Question 3    {{ form.t }} </p>
+                <p>  </p><br />
+        <p> Question 4    {{ form.u }} </p>
+
+                <p>  </p><br />
+            <p> <input type="submit"value="calculate" /> </p>
+
+
+    <p> The sum is =
+    {% if b != '' %}
+    {{ b }}
+    {% endif %}</p>
+
+    <p> The mean is =
+    {% if c != '' %}
+    {{ c }}
+    {% endif %}</p>
+
+    <p> The sin of input question 1 is =
+    {% if a != '' %}
+    {{ a }}
+    {% endif %}</p>
+
+</form>
+
+</body>
+
+{% endblock %}
+
+<!--
+
+# Make info needed in the web form
+form = InputForm()
+# Make HTML code
+render_to_response('hw1.html',
+    {'form': form}, context_instance=RequestContext(request))
+
+
+<form method="post" action="">
+<div style='display:none'>
+<input type='hidden' name='csrfmiddlewaretoken'
+value='oPWMuuy1gLlXm9GvUZINv49eVUYnux5Q' /></div>
+    Hello, World! The sine of <input type="text" name="r" id="id_r" />
+    <input type="submit" value="equals" />
+</form>  -->
