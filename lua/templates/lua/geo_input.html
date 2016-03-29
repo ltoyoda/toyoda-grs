@@ -106,44 +106,44 @@
             </div>
         </div>
 
-        <div class="col-4">
-            <div class="margin5">
-            <!-- LatlongResponsive -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-0076284559750022"
-                     data-ad-slot="2468952231"
-                     data-ad-format="auto"></ins>
-                <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-        </div>
+        <!--<div class="col-4">-->
+            <!--<div class="margin5">-->
+            <!--&lt;!&ndash; LatlongResponsive &ndash;&gt;-->
+                <!--<ins class="adsbygoogle"-->
+                     <!--style="display:block"-->
+                     <!--data-ad-client="ca-pub-0076284559750022"-->
+                     <!--data-ad-slot="2468952231"-->
+                     <!--data-ad-format="auto"></ins>-->
+                <!--<script>-->
+                <!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+                <!--</script>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 
 
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-0076284559750022"
-         data-ad-slot="2468952231"
-         data-ad-format="auto"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-    </div>
+    <!--<ins class="adsbygoogle"-->
+         <!--style="display:block"-->
+         <!--data-ad-client="ca-pub-0076284559750022"-->
+         <!--data-ad-slot="2468952231"-->
+         <!--data-ad-format="auto"></ins>-->
+    <!--<script>-->
+        <!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+    <!--</script>-->
+    <!--</div>-->
 
-    <div class="margin20">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-0076284559750022"
-             data-ad-slot="5736327830"
-             data-ad-format="autorelaxed"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+    <!--<div class="margin20">-->
+        <!--<ins class="adsbygoogle"-->
+             <!--style="display:block"-->
+             <!--data-ad-client="ca-pub-0076284559750022"-->
+             <!--data-ad-slot="5736327830"-->
+             <!--data-ad-format="autorelaxed"></ins>-->
+        <!--<script>-->
+            <!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+        <!--</script>-->
 
         <form class="bgrs padding10 border margin20">
-            <label for="coordinatesurl">Share this location - Page adapted from www.latlong.com</label>
+            <label for="coordinatesurl"></label>
             <input type="text" id="coordinatesurl" readonly="readonly" class="full-width small" onclick="this.select();" />
         </form>
     </div>
@@ -194,7 +194,9 @@
                     var n = "(" + o.lat().toFixed(6) + " , " + + o.lng().toFixed(6) + ")";
 
                     document.getElementById("latlngspan").innerHTML = n,
-                        document.getElementById("coordinatesurl").value = "http://www.latlong.net/c/?lat=" + o.lat().toFixed(6) + "&long=" + o.lng().toFixed(6),
+                      //  document.getElementById("coordinatesurl").value = "http://www.latlong.net/c/?lat=" + o.lat().toFixed(6) + "&long=" + o.lng().toFixed(6),
+                   document.getElementById("coordinatesurl").value = "latitude =" + o.lat().toFixed(6) + " and longitude =" + o.lng().toFixed(6),
+
                         infowindow.setContent(n),
                         infowindow && infowindow.close(),
                         google.maps.event.addListener(marker, "click", function(){infowindow.open(map, marker)}),
