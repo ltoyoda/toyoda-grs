@@ -2,99 +2,64 @@
 {% load staticfiles %}
 {% block content %}
 
-<h2>{{title}}</h2>
-<!--<h3>{{ message }}</h3>-->
-
-    <p></p><br/>
-
-<!-- Add script here -->
-
-<div class="row">
-
-    <div class="col-md-4">
-        <a href="{% url 'geo_input' %}"><h2>Geolocation</h2></a></p>
-        <a href="{% url 'geo_input' %}"><img id="compImg" src="{% static "lua/images/compass.jpg" %}" alt="compass"/></a></p>
-            <p>Googlemaps - current location <br /> </p>
-    </div>
-
-    <div class="col-md-4">
-        <a href="{% url 'weather' %}"><h2>Weather</h2></a></p>
-        <a href="{% url 'weather' %}"><img id="solImg" src="{% static "lua/images/sun.jpg" %}" alt="image of a sum"/></a></p>
-            <p>Using KNMI  & Buienradar<br /> </p>
-    </div>
-
-    <div class="col-md-4">
-        <a href="{% url 'vib1' %}"><h2>Variogram</h2></a></p>
-        <a href="{% url 'vib1' %}"><img id="compImg" src="{% static "lua/images/variogram.jpg" %}" alt="forms"/></a></p>
-            <p>With Python scripts</p>
-    </div>
-
-    <div class="col-md-4">
-        <a href="{% url 'questions' %}"><h2>Questionnaire</h2></a></p>
-            <a href="{% url 'questions' %}"><img id="compImg" src="{% static "lua/images/muro.jpg" %}" alt="laser"/></a></p>
-            <p> Get started with questions.</p>
-    </div>
+    <h2>{{title}}</h2>
+    <!--<h3>{{ message }}</h3>-->
+        <p></p><br/>
 
 
-    <div class="col-md-4">
-        <a href="{% url 'contas_2p' %}"><h2>Text file</h2></a></p>
-        <a href="{% url 'contas_2p' %}"><img id="compImg" src="{% static "lua/images/flags.jpg" %}" alt="text"/></a></p>
-            <p> With Python scripts.</p>
-    </div>
-
-    <div class="col-md-4">
-        <a href="{% url 'irock' %}"><h2>Forms </h2></a></p>
-        <a href="{% url 'irock' %}"><img id="compImg" src="{% static "lua/images/forms.jpg" %}" alt="forms"/></a></p>
-            <p>With JavaScript + JSON. <br /></p>
-    </div>
-        <br/>
-
-    <div class="col-md-4">
-                <a href="{% url 'questions_edit' %}"><h2>Questions</h2></a></p>
-            <p>Using Django Admin. <br /></p>
-    </div>
+    <div class="row">
 
         <div class="col-md-4">
-                <!--<a href="{% url 'points_amir' %}"><h2>Coordinates Amir</h2></a></p>-->
-                            <!--<a href="{% url 'geo_input_dist' %}"><h2>Coordinates with reverse search</h2></a></p>-->
+            <a href="{% url 'geo_input' %}"><h2>Geolocation</h2></a></p>
+            <a href="{% url 'geo_input' %}"><img id="compImg" src="{% static "lua/images/compass.jpg" %}" alt="compass"/></a>
+                <p>Googlemaps - current location <br /> </p>
+        </div>
 
-                                        <!--<a href="{% url 'geo' %}"><h2>Coordinates with reverse search 2</h2></a></p>-->
-                                        <!--<a href="{% url 'buien' %}"><h2>Buien - not working yet</h2></a></p>-->
-            <!--<p>Testing - geolocation2 <br /></p>-->
+        <div class="col-md-4">
+            <a href="{% url 'weather' %}"><h2>Weather</h2></a></p>
+            <a href="{% url 'weather' %}"><img id="solImg" src="{% static "lua/images/sun.jpg" %}" alt="image of a sum"/></a>
+                <p>Using KNMI  & Buienradar<br /> </p>
+        </div>
+
+        <div class="col-md-4">
+            <a href="{% url 'vib1' %}"><h2>Variogram</h2></a></p>
+            <a href="{% url 'vib1' %}"><img id="compImg" src="{% static "lua/images/variogram.jpg" %}" alt="forms"/></a>
+                <p>With Python scripts</p>
+        </div>
+
+        <div class="col-md-4">
+            <a href="{% url 'questions' %}"><h2>Questionnaire</h2></a></p>
+                <a href="{% url 'questions' %}"><img id="compImg" src="{% static "lua/images/muro.jpg" %}" alt="laser"/></a>
+                <p> Get started with questions.</p>
+        </div>
+
+        <div class="col-md-4">
+            <a href="{% url 'contas_2p' %}"><h2>Text file</h2></a></p>
+            <a href="{% url 'contas_2p' %}"><img id="compImg" src="{% static "lua/images/flags.jpg" %}" alt="text"/></a>
+                <p> With Python scripts.</p>
+        </div>
+
+        <div class="col-md-4">
+            <a href="{% url 'irock' %}"><h2>Forms </h2></a></p>
+            <a href="{% url 'irock' %}"><img id="compImg" src="{% static "lua/images/forms.jpg" %}" alt="forms"/></a></p>
+                <p>With JavaScript + JSON. <br /></p>
+        </div>
+            <br/>
+
+        <div class="col-md-4">
+                    <a href="{% url 'questions_edit' %}"><h2>Questions</h2></a>
+                <p>Using Django Admin. <br /></p>
+        </div>
+
+
     </div>
 
-</div>
-
-
-
-
-
-
-<!-- Finish script here -->
 {% endblock %}
 
-
-
-
-
-<!--
-
-<h2>List of Questions</h2>
-
-
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="/app/{{ question.id }}/">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No questions are available.</p>
-{% endif %}
-
-
-<address>
-    Write your description here - change in testando.html<br />
-    and add nother line with this - change in testando.html<br />
-</address>
--->
+        <!--<div class="col-md-4">-->
+                    <!--<a href="{% url 'points_amir' %}"><h2>Coordinates Amir</h2></a></p>-->
+                    <!--<a href="{% url 'geo_input_dist' %}"><h2>Coordinates with reverse search</h2></a></p>-->
+                    <!--<a href="{% url 'geo' %}"><h2>Coordinates with reverse search 2</h2></a></p>-->
+                    <!--<a href="{% url 'buien' %}"><h2>Buien - not working yet</h2></a></p>-->
+                    <!--<p>Testing - geolocation2 <br /></p>-->
+        <!--</div>-->

@@ -106,51 +106,15 @@
             </div>
         </div>
 
-        <!--<div class="col-4">-->
-            <!--<div class="margin5">-->
-            <!--&lt;!&ndash; LatlongResponsive &ndash;&gt;-->
-                <!--<ins class="adsbygoogle"-->
-                     <!--style="display:block"-->
-                     <!--data-ad-client="ca-pub-0076284559750022"-->
-                     <!--data-ad-slot="2468952231"-->
-                     <!--data-ad-format="auto"></ins>-->
-                <!--<script>-->
-                <!--(adsbygoogle = window.adsbygoogle || []).push({});-->
-                <!--</script>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
 
-
-    <!--<ins class="adsbygoogle"-->
-         <!--style="display:block"-->
-         <!--data-ad-client="ca-pub-0076284559750022"-->
-         <!--data-ad-slot="2468952231"-->
-         <!--data-ad-format="auto"></ins>-->
-    <!--<script>-->
-        <!--(adsbygoogle = window.adsbygoogle || []).push({});-->
-    <!--</script>-->
-    <!--</div>-->
-
-    <!--<div class="margin20">-->
-        <!--<ins class="adsbygoogle"-->
-             <!--style="display:block"-->
-             <!--data-ad-client="ca-pub-0076284559750022"-->
-             <!--data-ad-slot="5736327830"-->
-             <!--data-ad-format="autorelaxed"></ins>-->
-        <!--<script>-->
-            <!--(adsbygoogle = window.adsbygoogle || []).push({});-->
-        <!--</script>-->
-
-        <form class="bgrs padding10 border margin20">
+        <!--<form class="bgrs padding10 border margin20">-->
+                    <form>
             <label for="coordinatesurl"></label>
             <input type="text" id="coordinatesurl" readonly="readonly" class="full-width small" onclick="this.select();" />
+
         </form>
     </div>
 
-
-    </form>
-    <!--<div id="tagmessage"></div>-->
     </div>
     </main>
 
@@ -185,7 +149,9 @@
                 document.getElementById("lng").value = o.lng().toFixed(6), document.getElementById("latlngspan").innerHTML = n,
                 // document.getElementById("coordinatesurl").value = "http://www.latlong.net/c/?lat=" + o.lat().toFixed(6) + "&long=" + o.lng().toFixed(6), dec2dms()}),
 
-             document.getElementById("coordinatesurl").value = "latitude =" + o.lat().toFixed(6) + "and longitude =" + o.lng().toFixed(6), dec2dms()}),
+             document.getElementById("coordinatesurl").value = "latitude =" + o.lat().toFixed(6) + " and longitude = " + o.lng().toFixed(6), dec2dms()}),
+
+
                 google.maps.event.addListener(map, "mousemove", function(e){var o = e.latLng; document.getElementById("mlat").innerHTML = "(" + o.lat().toFixed(6) + ", " + o.lng().toFixed(6) + ")"})}
 
 
@@ -197,7 +163,7 @@
 
                     document.getElementById("latlngspan").innerHTML = n,
                       //  document.getElementById("coordinatesurl").value = "http://www.latlong.net/c/?lat=" + o.lat().toFixed(6) + "&long=" + o.lng().toFixed(6),
-                   document.getElementById("coordinatesurl").value = "latitude =" + o.lat().toFixed(6) + " and longitude =" + o.lng().toFixed(6),
+                   document.getElementById("coordinatesurl").value = "latitude = " + o.lat().toFixed(6) + " and longitude = " + o.lng().toFixed(6),
 
                         infowindow.setContent(n),
                         infowindow && infowindow.close(),
@@ -305,6 +271,7 @@
             latitude: 51.999033,
             longitude:  4.375638 };
 
+
         var options = {enableHighaccuracy: true, timeout:0, maximumage:60};
         <!--window.onload = getMyLocation;  //runs when the page is loaded-->
 
@@ -322,7 +289,14 @@
         }
 
 
+/////////////  Added later! ///////////////////////////////////////////////////////
+        studyArea.coords.latitude =  document.getElementById("lat").value;
+        studyArea.coords.longitude = document.getElementById("lng").value;
+
+///////////////////////////////////////////////////////////////////////////////////////
         function displayLocation(position) {    //gets the attributes lat and long and displays it
+
+//        function displayLocation(studyArea) {    //gets the attributes lat and long and displays it
             var latitude = position.coords.latitude;
             latitude2 = Math.round(latitude * 10000)/10000 //for rounding
             var longitude = position.coords.longitude;
