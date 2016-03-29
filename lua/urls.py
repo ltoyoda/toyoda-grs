@@ -22,7 +22,10 @@ urlpatterns = [
     url(r'^$', views.index, name='index_lua'),
     url(r'^irock$', views.irock, name='irock'),
     url(r'^geo$', views.geo, name='geo'),
-
+    url(r'^geo_input$', views.geo_input, name='geo_input'),
+        url(r'^geo_input_dist$', views.geo_input_dist, name='geo_input_dist'),
+        url(r'^geo_distance$', views.geo_distance, name='geo_distance'),
+        url(r'^buien$', views.buien, name='buien'),
 ]
 
 

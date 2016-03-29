@@ -13,41 +13,71 @@
 </head>
 
 <body style>
-        <style type="text/css">
+    <style type="text/css">
             body {background-color: white;
-                font-family: cursive;
-                text-align: center;
-                color: #teal}
+                font-family: cursive
+                color: #teal
+            }
 
             div#map {
                 margin-right: auto;
-                margin-left: auto;
-                width: 650px;
-                height: 400px;
+                margin-left: 30px;
+                width: 550px;
+                height: 300px;
                 border: 3px solid black;
-}
-        </style>
 
-    <!--<img id="jujuImg" src="{% static "lua/images/compass.jpg" %}" alt="iRock" style="cursor:pointer" onclick="touchRock()"/>-->
+            }
+
+            <!--#location, #distance, #time{-->
+            <!--margin-left: 40px;-->
+            <!--text-align: center;-->
+            <!--}-->
+
+    </style>
 
 <!--************************************************************************************************************-->
-    <h1>Geolocation</h1>
+    <h2>Geolocation - Select the study area:</h2><br/>
+    <p></p><br/>
 
-        <div id="map">
-        </div>
+<div class="row">
+    <div class="col-md-3">
+        <h4>Exact Coordinates</h4>
+        <p><a href="{% url 'geo_input' %}" class="btn btn-primary btn-large">Click here &raquo;</a>
+         <!--<a href="{% url 'geo_input' %}"><h3>Coordinates</h3></a></p><br/>-->
+        <!--<a href="{% url 'geo' %}"><img id="compImg" src="{% static "lua/images/compass.jpg" %}" alt="compass"/></a></p>-->
+    </div>
 
-        <div id="location">
-            Your location will go here. This might take a few seconds...<br/>
-            If nothing changes your browser geolocation s disabled.
-        </div>
+    <div class="col-md-3">
+        <h4>Google Maps Selection</h4>
+        <a href="{% url 'geo_distance' %}" class="btn btn-primary btn-large">Click here &raquo;</a></p>
+         <!--<a href="{% url 'points_amir' %}"><h3>Google Maps</h3></a></p>-->
+        <!--<a href="{% url 'points_amir' %}"><img id="compImg" src="{% static "lua/images/mundo.jpg" %}" alt="text"/></a></p>-->
+    </div>
+</div>
+<p></p><br/>
 
-        <div id="time">
-            Date and time
-        </div>
+<h3>Your current position:</h3>
 
-        <div id="distance">
-            Distance from TU Delft will go here.
-        </div><br/>
+    <div id="location">
+        This may take a while...<br/>
+        If nothing changes your browser geolocation is probably disabled.
+    </div>
+
+    <div id="distance">
+    </div>
+
+    <div id="time">
+    </div><br/>
+
+    <div id="map">
+    </div>
+
+<p></p><br/>
+<p></p><br/>
+<p></p><br/>
+<p></p><br/>
+     </div>
+
 </body>
 
 <!-- Finish script here -->

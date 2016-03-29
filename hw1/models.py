@@ -10,11 +10,11 @@ class Input(models.Model):
     b = models.FloatField(
         verbose_name=' Correlation at distance 500 (m)', default=1)
     c = models.FloatField(
-        verbose_name='Correlation at distance 1000 (m)', default=1)
+        verbose_name='  Correlation at distance 1000 (m)', default=1)
     d = models.FloatField(
-        verbose_name='Correlation at distance 5000 (m)', default=0.5)
+        verbose_name='  Correlation at distance 5000 (m)', default=0.5)
     e = models.FloatField(
-        verbose_name='Correlation at distance 10000 (m)', default=0.25)
+        verbose_name='  Correlation at distance 10000 (m)', default=0.25)
     f = models.FloatField(
         verbose_name='Correlation at distance 15000 (m)', default=0.1)
     g = models.FloatField(

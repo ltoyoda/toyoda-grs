@@ -10,10 +10,11 @@
 <!-- Add script here -->
 
 <div class="row">
+
     <div class="col-md-4">
-        <a href="{% url 'questions' %}"><h2>Questionnaire</h2></a></p>
-            <a href="{% url 'questions' %}"><img id="compImg" src="{% static "lua/images/muro.jpg" %}" alt="laser"/></a></p>
-            <p> Get started with questions.</p>
+        <a href="{% url 'geo_input' %}"><h2>Geolocation</h2></a></p>
+        <a href="{% url 'geo_input' %}"><img id="compImg" src="{% static "lua/images/compass.jpg" %}" alt="compass"/></a></p>
+            <p>Googlemaps - current location <br /> </p>
     </div>
 
     <div class="col-md-4">
@@ -23,16 +24,17 @@
     </div>
 
     <div class="col-md-4">
-        <a href="{% url 'geo' %}"><h2>Geolocation</h2></a></p>
-        <a href="{% url 'geo' %}"><img id="compImg" src="{% static "lua/images/compass.jpg" %}" alt="compass"/></a></p>
-            <p>Googlemaps - current location <br /> </p>
-    </div>
-
-    <div class="col-md-4">
         <a href="{% url 'vib1' %}"><h2>Variogram</h2></a></p>
         <a href="{% url 'vib1' %}"><img id="compImg" src="{% static "lua/images/variogram.jpg" %}" alt="forms"/></a></p>
             <p>With Python scripts</p>
     </div>
+
+    <div class="col-md-4">
+        <a href="{% url 'questions' %}"><h2>Questionnaire</h2></a></p>
+            <a href="{% url 'questions' %}"><img id="compImg" src="{% static "lua/images/muro.jpg" %}" alt="laser"/></a></p>
+            <p> Get started with questions.</p>
+    </div>
+
 
     <div class="col-md-4">
         <a href="{% url 'contas_2p' %}"><h2>Text file</h2></a></p>
@@ -53,8 +55,12 @@
     </div>
 
         <div class="col-md-4">
-                <a href="{% url 'points_amir' %}"><h2>Coordinates </h2></a></p>
-            <p>Testing - Code from Amir <br /></p>
+                <!--<a href="{% url 'points_amir' %}"><h2>Coordinates Amir</h2></a></p>-->
+                            <!--<a href="{% url 'geo_input_dist' %}"><h2>Coordinates with reverse search</h2></a></p>-->
+
+                                        <!--<a href="{% url 'geo' %}"><h2>Coordinates with reverse search 2</h2></a></p>-->
+                                        <!--<a href="{% url 'buien' %}"><h2>Buien - not working yet</h2></a></p>-->
+            <!--<p>Testing - geolocation2 <br /></p>-->
     </div>
 
 </div>

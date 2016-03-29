@@ -5,7 +5,9 @@ var ourCoords =  {      // for calculating the distance to CITG-DELFT
 	latitude: 51.999033,
 	longitude:  4.375638
 };
-var options = {enableHighaccuracy: true, timeout:0, maximumage:60000};
+
+
+var options = {enableHighaccuracy: true, timeout:0, maximumage:60};
 
 window.onload = getMyLocation;  //run it when the page is loaded
 
@@ -31,19 +33,19 @@ function displayLocation(position) {    //gets the attributes lat and long and d
 // For the actual position
 	var div = document.getElementById("location");
 // Displays local position
-	div.innerHTML = "You are at Latitude: " + latitude2 + ", Longitude: " + longitude2;
+	div.innerHTML = "Latitude " + latitude2 + ", Longitude " + longitude2;
 	div.innerHTML += " (with " + position.coords.accuracy + " meters accuracy)";
 
 	var div = document.getElementById("time");
 	var dateTime = new Date(position.timestamp);
 // Displays local position
-	div.innerHTML = "Location retrieved on " + dateTime;
+	div.innerHTML = "  Location retrieved on " + dateTime;
 
 // For the distance from the coordinates set in line 4
 	var km = computeDistance(position.coords, ourCoords);  //using the code below
 	var distance = document.getElementById("distance");
 // and displays the distance
-	distance.innerHTML = "You are " + km + " km away from the TU Delft";
+	distance.innerHTML = "You are " + km + " km away from the TU Delft!";
 
 // for loading/showing a map
 	showMap(position.coords);
@@ -75,7 +77,7 @@ function showMap(coords) {
 	var googleLatAndLong = new google.maps.LatLng(coords.latitude,
 												  coords.longitude);
 	var mapOptions = {
-		zoom: 7, //small number = zoom in
+		zoom: 10, //small number = zoom out
 		center: googleLatAndLong,
 		mapTypeId: google.maps.MapTypeId.HYBRID  // use also ROADMAP, SATELLITE, TERRAIN
 	};
@@ -84,7 +86,7 @@ function showMap(coords) {
 
 	// add the user marker
 	var title = "Your Location";
-    var content = "You are here: " + coords.latitude + ", " + coords.longitude;
+    var content = "Your Coordinates: " + coords.latitude + ", " + coords.longitude;
     addMarker(map, googleLatAndLong, title, content);
 }
 
@@ -93,7 +95,6 @@ function showMap(coords) {
 function addMarker(map, latlong, title, content) {
 	var markerOptions = {
 		position: latlong,
-//		icon:'pinkball.png'
 		map: map,
 		title: title,
 		clickable: true

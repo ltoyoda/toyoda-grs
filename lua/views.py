@@ -21,10 +21,37 @@ def irock(request):
             'message':'Your application description page - change in lua/views.py',
             'year':datetime.now().year,}))
 
-
 def geo(request):
     assert isinstance(request, HttpRequest)
     return render(request,'lua/geo.html',context_instance = RequestContext(request,
+        {'title':'geolocation',
+            'message':'Your application description page - change in lua/views.py',
+            'year':datetime.now().year,}))
+
+def geo_input(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'lua/geo_input.html',context_instance = RequestContext(request,
+        {'title':'geolocation',
+            'message':'Your application description page - change in lua/views.py',
+            'year':datetime.now().year,}))
+
+def geo_input_dist(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'lua/geo_input_dist.html',context_instance = RequestContext(request,
+        {'title':'geolocation',
+            'message':'Your application description page - change in lua/views.py',
+            'year':datetime.now().year,}))
+
+def geo_distance(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'lua/geo_distance.html',context_instance = RequestContext(request,
+        {'title':'geolocation',
+            'message':'Your application description page - change in lua/views.py',
+            'year':datetime.now().year,}))
+
+def buien(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'lua/buien.html',context_instance = RequestContext(request,
         {'title':'geolocation',
             'message':'Your application description page - change in lua/views.py',
             'year':datetime.now().year,}))

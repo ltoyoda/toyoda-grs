@@ -1,0 +1,447 @@
+{% extends "initial/layout.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<head>
+    <title>Where am I?</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+            <link rel="stylesheet" href="{% static "lua/css/coordinates.css" %}">
+            <script src="{% static "lua/js/coordinates.js" %}" type="text/javascript"></script>
+            <script src="{% static "lua/js/coordinates_dist.js" %}" type="text/javascript"></script>
+</head>
+
+<body>
+    <p></p><br />
+        <h1>Study area -  Use Latitude and Longitude or just click! <br />
+             Adapted from www.latlong.com.</h1><br />
+
+<!--Finding out the current location -->
+    <div id="latlongmap" style="height:450px;"></div><br />
+    <input type="button" name="Calculate" onclick="getMyLocation();" value="Click here to get the coordinates of your current location" />
+        <strong><div id="location"></div></strong>
+        <div id="distance"></div>
+        <div id="time"></div><br />
+
+<!--For Study area coordinates    -->
+    <h2>Type the lat and long coordinate values and press Convert button. Reverse geocoded address will shown on the map below.</h2>
+    <header class="shadow">
+    <div class="col-10">
+    <span class="toggle" id="toggle"></span>
+    <nav id="menu"><ul id="navmenu" class="list-horizontal">
+    </ul></nav></div></div></header>
+    <main>
+
+        <!--<div id="latlongmap" style="height:450px;"></div>-->
+        <div class="row bg-gray border">
+            <div class="col-4">
+                <h3 class="titleh3">Latitude, Longitude</h3>
+                <span id="latlngspan" class="coordinatetxt">0,0</span>
+            </div>
+
+            <div class="col-4">
+                <h3 class="titleh3">GPS Coordinates</h3>
+                <span id="dms-lat" class="coordinatetxt">0</span>
+                <span id="dms-lng" class="coordinatetxt">0</span>
+            </div>
+
+            <div class="col-4">
+                <h3 class="titleh3">Map Mouse Over Location</h3>
+                <span id="mlat" class="coordinatetxt">0,0</span>
+            </div>
+        </div>
+    <div class="margin10">
+
+    <!--<input type="button" name="Calculate" onclick="getMyLocationStudy();" value="Click here to see the closest weather station" />-->
+        <!--<strong><div id="location"></div></strong>-->
+        <!--<div id="distance"></div>-->
+        <!--<div id="time"></div><br />-->
+            <!--<div id="teste"></div><br />-->
+
+<!--For reverse geocoding        -->
+    <div class="row">
+        <div class="col-8">
+            <div class="graybox padding10">
+                <form id="latlongform">
+                    <div class="row">
+                        <div class="col-4 m2">
+                            <label for="lat">Latitude</label>
+                            <input type="text" name="lat" id="lat" placeholder="lat" required /><br />
+                            <small>Example: 39.920770</small>
+                        </div>
+                        <div class="col-4 m2">
+                            <label for="lng">Longitude</label>
+                            <input type="text" name="lng" id="lng" placeholder="long" required />
+                        </div>
+                        <div class="col-4">
+                            <button title="Show Lat Long converted address on Map" class="button margin38">Convert</button>
+                        </div>
+                    </div>
+
+                    <label for="address">Reverse geocoded address:</label>
+                    <textarea rows="2" id="address" placeholder="Address from lat long" class="full-width"></textarea>
+                        <div class="social"></div>
+                </form>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="margin5">
+            <!-- LatlongResponsive -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-0076284559750022"
+                     data-ad-slot="2468952231"
+                     data-ad-format="auto"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-0076284559750022"
+         data-ad-slot="2468952231"
+         data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    </div>
+        <form class="bgrs padding10 border margin20">
+            <label for="coordinatesurl">Share this location</label>
+            <input type="text" id="coordinatesurl" readonly="readonly" class="full-width small" onclick="this.select();" />
+        </form>
+        <p>View latitude and longitude coordinates on the map. <strong>Convert lat &amp; long to address</strong>.
+        Note that the tool will try to <em>reverse geocode the lat long</em>, if it failed, only lat long will shown on the map.</p>
+
+        <div class="margin20">
+        <!-- LatlongMatched -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                data-ad-client="ca-pub-0076284559750022"
+                data-ad-slot="5736327830"
+                data-ad-format="autorelaxed"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+             </script>
+        </div>
+
+        <div class="comments"><br />
+            Signed degrees format (DDD.dddd) 41.25 and -120.9762<br />
+            DMS + compass direction formats degrees, minutes, and seconds<br />
+            Degrees minutes seconds formats (DDD MM SS + compass direction) 41 25 01N and 120 58 57W<br />
+            Degrees minutes formats (DDD MM + compass direction) N41 25.117 and W120 58.292<br />
+            Degrees only formats (DDD + compass direction)  N41.092 and W120.8362</p>
+        </div><br />
+    </form>
+    <!--<div id="tagmessage"></div>-->
+    </div>
+    </main>
+        <script src="{% static "lua/js/coordinates.js" %}" type="text/javascript"></script>
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script type="text/javascript">
+            function initialize(){
+                var e = new google.maps.LatLng(52.00, 4.37),
+                o = {zoom:10,
+                    center:e,
+                    panControl:!0,
+                    scaleControl:!0,
+                    scrollwheel:!1,
+                    overviewMapControl:!0,
+                    overviewMapControlOptions:{opened:!0},
+                    mapTypeId:google.maps.MapTypeId.HYBRID
+                };
+
+            map = new google.maps.Map(document.getElementById("latlongmap"), o),
+                marker = new google.maps.Marker({position:e, map:map}),
+                geocoder = new google.maps.Geocoder, map.streetViewControl = !1,
+                infowindow = new google.maps.InfoWindow({content:"(1.10, 1.10)"}),
+                google.maps.event.addListener(map,
+                "click", function(e){marker.setPosition(e.latLng);
+
+            var o = e.latLng,
+                n = "(" + o.lat().toFixed(6) + " , " + + o.lng().toFixed(6) + ")";
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            var studyArea =  {
+                coords: {},
+            };
+                studyArea.coords.latitude =  o.lat();
+                studyArea.coords.longitude = o.lng();
+
+            <!--alert(studyArea.coords.latitude)-->
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            infowindow.setContent(n),
+                google.maps.event.addListener(marker, "click", function(){infowindow.open(map, marker)}),
+                infowindow && infowindow.close(), infowindow.open(map, marker),
+                document.getElementById("lat").value = o.lat().toFixed(6),
+                document.getElementById("lng").value = o.lng().toFixed(6), document.getElementById("latlngspan").innerHTML = n,
+                document.getElementById("coordinatesurl").value = "http://www.latlong.net/c/?lat=" + o.lat().toFixed(6) + "&long=" + o.lng().toFixed(6), dec2dms()}),
+                google.maps.event.addListener(map, "mousemove", function(e){var o = e.latLng; document.getElementById("mlat").innerHTML = "(" + o.lat().toFixed(6) + ", " + o.lng().toFixed(6) + ")"})}
+
+                function showlatlong(e){
+                    e.preventDefault && e.preventDefault();
+                    var o = new google.maps.LatLng(document.getElementById("lat").value, document.getElementById("lng").value);
+                    map.setCenter(o), marker.setPosition(o), map.setZoom(12);
+                    var n = "(" + o.lat().toFixed(6) + " , " + + o.lng().toFixed(6) + ")";
+
+                    document.getElementById("latlngspan").innerHTML = n,
+                        document.getElementById("coordinatesurl").value = "http://www.latlong.net/c/?lat=" + o.lat().toFixed(6) + "&long=" + o.lng().toFixed(6),
+                        infowindow.setContent(n),
+                        infowindow && infowindow.close(),
+                        google.maps.event.addListener(marker, "click", function(){infowindow.open(map, marker)}),
+                        dec2dms(),
+                        codeLatLng(o)}function codeLatLng(e){geocoder.geocode({latLng:e},
+                        function(o, n){n === google.maps.GeocoderStatus.OK?o[1]?(marker.setPosition(e),
+                        infowindow.setContent(o[1].formatted_address),
+                        infowindow.open(map, marker),
+                        document.getElementById("address").value = o[1].formatted_address):alert("No results found, try a different location"):alert("Geocoder failed due to: " + n)})}var latlongform = document.getElementById("latlongform");
+
+                    latlongform.attachEvent?latlongform.attachEvent("submit", showlatlong):latlongform.addEventListener("submit", showlatlong);
+
+                    var map, marker, infowindow, geocoder;
+
+            function dec2dms(){
+                var e = document.getElementById("lat").value, t = document.getElementById("lng").value;
+                document.getElementById("dms-lat").innerHTML = getdms(e, !0),
+                    document.getElementById("dms-lng").innerHTML = getdms(t, !1)}function getdms(e, t){var n = 0, m = 0, l = 0, a = "X"; return a = t && 0 > e?"S":!t && 0 > e?"W":t?"N":"E",
+                    d = Math.abs(e), n = Math.floor(d), l = 3600 * (d - n), m = Math.floor(l / 60), l = Math.round(1e4 * (l - 60 * m)) / 1e4, n + "&deg; " + m + "' " + l + "'' " + a
+            }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!--var stations = {-->
+	<!--groningen: {-->
+    	<!--coords: {},-->
+    	<!--name: "Groningen",-->
+    	<!--code: "06280",-->
+	<!--},-->
+
+	<!--leeuwarden: {-->
+    	<!--coords: {},-->
+  		<!--name: "Leeuwarden",-->
+  		<!--code: "06270",-->
+    <!--},-->
+
+	<!--rotterdam: {-->
+		<!--coords: {},-->
+ 		<!--name: "Rotterdam",-->
+		<!--code: "06344",-->
+    <!--},-->
+
+	<!--maastricht: {-->
+		<!--coords: {},-->
+		<!--name: "Maastricht",-->
+		<!--code: 06380,-->
+    <!--},-->
+
+    <!--eindhoven: {-->
+		<!--coords: {},-->
+		<!--name: "Eindhoven",-->
+		<!--code: 06370,-->
+    <!--},-->
+
+    <!--deBilt: {-->
+		<!--coords: {},-->
+		<!--name: "DeBilt",-->
+		<!--code: 06260,-->
+    <!--},-->
+
+    <!--schiphol: {-->
+		<!--coords: {},-->
+		<!--name: "Schiphol",-->
+		<!--code: 06240,-->
+    <!--},-->
+
+    <!--deKooy: {-->
+		<!--coords: {},-->
+		<!--name: "DeKooy",-->
+		<!--code: 06235,-->
+    <!--},-->
+
+    <!--twenthe: {-->
+		<!--coords: {},-->
+		<!--name: "Twenthe",-->
+		<!--code: 06290,-->
+    <!--},-->
+
+    <!--vlissingen: {-->
+		<!--coords: {},-->
+		<!--name: "Vlissingen",-->
+		<!--code: 06310,-->
+    <!--},-->
+<!--};-->
+
+
+<!--// Adding Coordinates:-->
+<!--[stations.groningen.coords.latitude,stations.groningen.coords.longitude] =      (ParseDMS("53° 07' 0' N. 06° 35' 0' E"));-->
+<!--[stations.leeuwarden.coords.latitude,stations.leeuwarden.coords.longitude] =    (ParseDMS("53° 13' 0' N. 05° 46' 0' E"));-->
+<!--[stations.rotterdam.coords.latitude,stations.rotterdam.coords.longitude] =      (ParseDMS("51° 58' 0' N. 04° 27' 0' E"));-->
+<!--[stations.maastricht.coords.latitude,stations.maastricht.coords.longitude] =    (ParseDMS("50° 54' 0' N. 05° 46' 0' E"));-->
+<!--[stations.eindhoven.coords.latitude,stations.eindhoven.coords.longitude] =      (ParseDMS("51° 27' 0' N. 05° 23' 0' E"));-->
+<!--[stations.deBilt.coords.latitude,stations.deBilt.coords.longitude] =            (ParseDMS("52° 06' 0' N. 05° 11' 0' E"));-->
+<!--[stations.schiphol.coords.latitude,stations.schiphol.coords.longitude] =        (ParseDMS("52° 18' 0' N. 04° 46' 0' E"));-->
+<!--[stations.deKooy.coords.latitude,stations.deKooy.coords.longitude] =            (ParseDMS("52° 56' 0' N. 04° 47' 0' E"));-->
+<!--[stations.twenthe.coords.latitude,stations.twenthe.coords.longitude] =          (ParseDMS("52° 16' 0' N. 06° 53' 0' E"));-->
+<!--[stations.vlissingen.coords.latitude,stations.vlissingen.coords.longitude] =    (ParseDMS("51° 27' 0' N. 03° 36' 0' E"));-->
+
+<!--///////////////////////////////////////////////////////////////////////////////-->
+<!--var map = null;-->
+
+<!--var ourCoords =  {      // for calculating the distance to CITG-DELFT-->
+	<!--latitude: 51.999033,-->
+	<!--longitude:  4.375638 };-->
+
+<!--var options = {enableHighaccuracy: true, timeout:0, maximumage:60};-->
+<!--&lt;!&ndash;window.onload = getMyLocationStudy;  //run it when the page is loaded&ndash;&gt;-->
+
+<!--function getMyLocationStudy() {-->
+	<!--if (navigator.geolocation) {    //checks if there is geolocation in the browser-->
+
+		<!--navigator.geolocation.getCurrentPosition(   //runs the 2 functions below and error-->
+			<!--displayLocation,-->
+			<!--displayError,-->
+			<!--options);-->
+	<!--}-->
+	<!--else {-->
+		<!--alert("Oops, no geolocation support");-->
+	<!--}-->
+<!--}-->
+
+<!--function displayLocation(position) {    //gets the attributes lat and long and displays it-->
+	<!--var latitude = position.coords.latitude;-->
+	<!--latitude2 = Math.round(latitude * 10000)/10000 //for rounding-->
+	<!--var longitude = position.coords.longitude;-->
+	<!--longitude2 = Math.round(longitude * 10000)/10000-->
+
+<!--// For the actual position-->
+	<!--var div = document.getElementById("location");-->
+
+<!--// Displays local position-->
+	<!--div.innerHTML = "Latitude " + latitude2 + ", Longitude " + longitude2;-->
+	<!--div.innerHTML += " (with " + position.coords.accuracy + " meters accuracy)";-->
+
+<!--// Displays local position-->
+	<!--var div = document.getElementById("time");-->
+	<!--var dateTime = new Date(position.timestamp);-->
+	<!--div.innerHTML = "  Location retrieved on " + dateTime;-->
+
+<!--//studyArea-->
+<!--// For the distance from the coordinates set in line 4-->
+	<!--&lt;!&ndash;var km = computeDistance(position.coords, ourCoords);  //using the code below&ndash;&gt;-->
+	<!--var km = computeDistance(studyArea.coords, ourCoords);  //using the code below-->
+	<!--var distance = document.getElementById("distance");-->
+	<!--distance.innerHTML = "You are " + km + " km away from the TU Delft!";-->
+
+<!--alert(studyArea.coords.latitude)-->
+<!--alert(position.coords.latitude)-->
+
+<!--/////////////////////////////////////////////////////////////////////////////////-->
+<!--// For the teste-->
+<!--// To calculate the distance to each point (stations.rotterdam.distance = computeDistance(position.coords, stations.rotterdam.coords))-->
+    <!--function searchDist (obj){-->
+        <!--for (var item in obj){-->
+                <!--stations[item].distance = computeDistance(position.coords, stations[item].coords);-->
+        <!--}-->
+    <!--};-->
+
+    <!--searchDist(stations);-->
+
+<!--// To find out the closest station-->
+    <!--var d = [];-->
+    <!--var st = []-->
+        <!--for (var name in stations) {-->
+            <!--d.push (stations[name].distance);-->
+            <!--st.push(stations[name].name);-->
+        <!--};-->
+
+    <!--var minDistance = Math.min.apply(Math,d);-->
+    <!--var d_index = d.indexOf(minDistance);-->
+    <!--var nameStation = st[d_index]-->
+    <!--&lt;!&ndash;alert (nameStation)&ndash;&gt;-->
+
+    <!--var kmKnmi = computeDistance(position.coords, stations.rotterdam.coords);-->
+	<!--var teste = document.getElementById("teste");-->
+	<!--teste.innerHTML = " The closest KNMI station is  " + nameStation-->
+    <!--teste.innerHTML += ", located about "+ minDistance + " km away from the study area! " ;-->
+
+<!--/////////////////////////////////////////////////////////////////////////////////-->
+
+<!--}      //keep this!-->
+
+<!--// -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+<!--// To convert from degrees to decimals-->
+<!--function ConvertDMSToDD(degrees, minutes, seconds, direction) {-->
+    <!--var dd = Number(degrees) + Number(minutes)/60 + Number(seconds)/(60*60);-->
+    <!--if (direction == "S" || direction == "W") { dd = dd * -1; }-->
+    <!--return dd;-->
+<!--}-->
+
+<!--function ParseDMS(input) {-->
+    <!--var parts = input.split(/[^\d\w]+/);-->
+    <!--var lat = ConvertDMSToDD(parts[0], parts[1], parts[2], parts[3]);-->
+    <!--var lng = ConvertDMSToDD(parts[4], parts[5], parts[6], parts[7]);-->
+    <!--return [lat, lng];-->
+<!--}-->
+<!--// -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<!--// Uses the Spherical Law of Cosines to find the distance between two lat/long points-->
+<!--function computeDistance(startCoords, destCoords) {-->
+	<!--var startLatRads = degreesToRadians(startCoords.latitude);-->
+	<!--var startLongRads = degreesToRadians(startCoords.longitude);-->
+	<!--var destLatRads = degreesToRadians(destCoords.latitude);-->
+	<!--var destLongRads = degreesToRadians(destCoords.longitude);-->
+
+	<!--var Radius = 6371; // radius of the Earth in km-->
+	<!--var distance = Math.acos(Math.sin(startLatRads) * Math.sin(destLatRads) +-->
+					<!--Math.cos(startLatRads) * Math.cos(destLatRads) *-->
+					<!--Math.cos(startLongRads - destLongRads)) * Radius;-->
+	<!--distance = Math.round(distance * 1000)/1000-->
+	<!--return distance;-->
+<!--}-->
+
+<!--function degreesToRadians(degrees) {-->
+	<!--radians = (degrees * Math.PI)/180;-->
+	<!--return radians;-->
+<!--}-->
+
+<!--//-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<!--// Error display-->
+<!--function displayError(error) {-->
+	<!--var errorTypes = {-->
+		<!--0: "Unknown error",-->
+		<!--1: "Permission denied",-->
+		<!--2: "Position is not available",-->
+		<!--3: "Request timeout"-->
+	<!--};-->
+	<!--var errorMessage = errorTypes[error.code];-->
+	<!--if (error.code == 0 || error.code == 2) {-->
+		<!--errorMessage = errorMessage + " " + error.message;-->
+	<!--}-->
+	<!--var div = document.getElementById("location");-->
+	<!--div.innerHTML = errorMessage;-->
+<!--}-->
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?callback=initialize&amp;key=AIzaSyCt2JrdlwkZXbfc9lrdAtCGm6ki32boS6s" async defer></script>
+
+
+</body>
+
+{% endblock %}
+<!--http://www.latlong.net/Show-Latitude-Longitude.html-->

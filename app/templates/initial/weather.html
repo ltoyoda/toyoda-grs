@@ -13,16 +13,16 @@
 </head>
   <body>
 
-<p> <h3><strong>Information table for weather stations - KNMI </strong></h3></p>
-  <iframe src="ftp://ftp.knmi.nl/pub_weerberichten/tabel_10min_data.html"...
-        scrolling=no width=550 height=912 frameborder=no></iframe><br/>
-
-<p> <h3><strong>Detailed Information - Buienradar </strong></h3></p>
-  <iframe src="http://weergrafieken.buienradar.nl" scrolling=no width=520 height=820 frameborder=no></iframe><br /><br/>
-
-<p> <h3><strong>Cloud Cover Forecast - Buienradar</strong></h3></p>
-  <iframe src="http://www.buienradar.nl/lokalebuienradar/?lat=52.08169&lng=4.2901&overname=2&zoom=8&naam=2518gj&size=3&voor=1"...
+    <p> <h3><strong>Cloud Cover Forecast - Buienradar</strong></h3></p>
+        <iframe src="http://www.buienradar.nl/lokalebuienradar/?lat=52.08169&lng=4.2901&overname=2&zoom=8&naam=2518gj&size=3&voor=1"...
         scrolling=no width=550 height=512 frameborder=no></iframe><br /><br/><br/>
+
+    <p> <h3><strong>Detailed Information - Buienradar </strong></h3></p>
+        <iframe src="http://weergrafieken.buienradar.nl" scrolling=no width=520 height=820 frameborder=no></iframe><br /><br/>
+
+    <p> <h3><strong>Information table for weather stations - KNMI </strong></h3></p>
+        <iframe src="ftp://ftp.knmi.nl/pub_weerberichten/tabel_10min_data.html"...
+        scrolling=no width=550 height=912 frameborder=no></iframe><br/>
 
 <!--<p> <h3><strong>Surface Weather Map - KNMI </strong></h3></p>-->
   <!--<iframe src="ftp://ftp.knmi.nl/pub_weerberichten/AL1200.gif "...-->
@@ -33,52 +33,55 @@
         <!--scrolling=no width=550 height=312 frameborder=no></iframe>  <br />-->
 
 <!------------------------------------------------------------------------------------>
-<h2>Calculations in JavaScript </h2>
-
-<script language="javascript" type="text/javascript">
-var siteID = new Array();
-function IDArray(ID,lat,lon,elev) {
-this.ID=ID;
-this.lat=lat;
-this.lon=lon;
-this.elev=elev;
-}
-siteID[0]=new IDArray("Drexel",39.955,-75.188,10.);
-siteID[1]=new IDArray("home",40.178,-75.333,140.);
-siteID[2]=new IDArray("NC",35.452,-81.022,246);
-siteID[3]=new IDArray("Argentina",-34.617,-58.37,30.);
-siteID[4]=new IDArray("Netherlands",52.382,4.933,-1);
-var i;
-for (i=0; i<siteID.length; i++){
-document.write(siteID[i].ID + ", " + siteID[i].lat + ", " + siteID[i].lon+ "," +siteID[i].elev + "<br />");
-}
-</script>
-
- <br /> <br />
-  <br /> <br />
-<body><form>
-Enter coefficients for ax<sup>2</sup> + bx + c = 0:
-<br />
-a = <input type="text" value="2" name="a" />
-(must not be 0)<br />
-b = <input type="text" value="-9" name="b" /><br />
-c = <input type="text" value="3" name="c" /><br />
-
-<input type="button" name="Calculate" value="Click here to get r1: "
-onclick="var A=parseFloat(a.value),B=parseFloat(b.value),C=parseFloat(c.value);
-r1.value=(-B+Math.sqrt(B*B-4.*A*C))/2./A; " />
-<input type="text" value="0" name="r1" /> <br />
-
-<input type="button" name="Calculate" value="Click here to get r2: "
-onclick="var A=parseFloat(a.value),B=parseFloat(b.value),C=parseFloat(c.value);
-r2.value=(-B-Math.sqrt(B*B-4.*A*C))/2./A; " />
-<input type="text" value="0" name="r2"  />
-
-</form></body>
-
-
+            <p></p><br />
+            <p></p><br />
+            <p></p><br />
   </body>
 {% endblock %}
+
+
+<!--<h2>Calculations in JavaScript </h2>-->
+
+<!--<script language="javascript" type="text/javascript">-->
+<!--var siteID = new Array();-->
+<!--function IDArray(ID,lat,lon,elev) {-->
+<!--this.ID=ID;-->
+<!--this.lat=lat;-->
+<!--this.lon=lon;-->
+<!--this.elev=elev;-->
+<!--}-->
+<!--siteID[0]=new IDArray("Drexel",39.955,-75.188,10.);-->
+<!--siteID[1]=new IDArray("home",40.178,-75.333,140.);-->
+<!--siteID[2]=new IDArray("NC",35.452,-81.022,246);-->
+<!--siteID[3]=new IDArray("Argentina",-34.617,-58.37,30.);-->
+<!--siteID[4]=new IDArray("Netherlands",52.382,4.933,-1);-->
+<!--var i;-->
+<!--for (i=0; i<siteID.length; i++){-->
+<!--document.write(siteID[i].ID + ", " + siteID[i].lat + ", " + siteID[i].lon+ "," +siteID[i].elev + "<br />");-->
+<!--}-->
+<!--</script>-->
+
+ <!--<br /> <br />-->
+  <!--<br /> <br />-->
+<!--<body><form>-->
+<!--Enter coefficients for ax<sup>2</sup> + bx + c = 0:-->
+<!--<br />-->
+<!--a = <input type="text" value="2" name="a" />-->
+<!--(must not be 0)<br />-->
+<!--b = <input type="text" value="-9" name="b" /><br />-->
+<!--c = <input type="text" value="3" name="c" /><br />-->
+
+<!--<input type="button" name="Calculate" value="Click here to get r1: "-->
+<!--onclick="var A=parseFloat(a.value),B=parseFloat(b.value),C=parseFloat(c.value);-->
+<!--r1.value=(-B+Math.sqrt(B*B-4.*A*C))/2./A; " />-->
+<!--<input type="text" value="0" name="r1" /> <br />-->
+
+<!--<input type="button" name="Calculate" value="Click here to get r2: "-->
+<!--onclick="var A=parseFloat(a.value),B=parseFloat(b.value),C=parseFloat(c.value);-->
+<!--r2.value=(-B-Math.sqrt(B*B-4.*A*C))/2./A; " />-->
+<!--<input type="text" value="0" name="r2"  />-->
+
+<!--</form></body>-->
 
 <!--
     <!--<br /> <br />-->

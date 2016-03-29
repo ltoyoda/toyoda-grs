@@ -72,3 +72,5 @@ def index_math_2p(request):
     #          } , context_instance=RequestContext(request))
 
     return httpResponse (result)
+
+    # return httpResponse ("calculated")

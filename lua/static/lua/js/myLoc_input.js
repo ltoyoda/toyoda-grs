@@ -29,7 +29,7 @@ function displayLocation(position) {    //gets the attributes lat and long and d
 // For the actual position
 	var div = document.getElementById("location");
 // Displays local position
-	div.innerHTML = "You are at Latitude: " + latitude + ", Longitude: " + longitude;
+	div.innerHTML = "You are at Latitude louco!!!!: " + latitude + ", Longitude: " + longitude;
 // For the distance from the coordinates set in line 4
 	var km = computeDistance(position.coords, ourCoords);  //using the code below
 	var distance = document.getElementById("distance");
