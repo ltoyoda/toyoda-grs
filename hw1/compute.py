@@ -15,8 +15,21 @@ def compute(a, b, c, d, e, f, g, h, i, file):
     # new_y = [ a, b, c, d, e, f, g, h,i]
     # y = [a, b, c, d, e, f, g, h, i]
 
+
+# sill=0.1;
+# range=10^4;
+# nugget=0;
+# h = y_ew
+# # h1=0:1000:3.5*10^5;
+# # step=1;
+#
+# exponent=(sill-nugget)*(1-exp(-3*h/range))+nugget;
+# gauss=(sill-nugget)*(1-exp(-(3*h/range)^2))+nugget;
+# spherical= (sill-nugget)*(3*h/(2*range) - h^3/(2*range^3));
+
+
     plt.figure()  # needed to avoid adding curves in plot
-    plt.plot(t, y_new2)
+    plt.plot(t, y_new2, 'ro')
     plt.title('Variogram')
     plt.xlabel('Distance lag (meters)')
     plt.ylabel('Semivariance (gamma)')

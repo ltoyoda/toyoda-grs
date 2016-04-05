@@ -2,63 +2,41 @@
 {% load staticfiles %}
 {% block content %}
 
+
 <head>
-    <title>Test Battle field - irock</title>
-
-        <script>
-    var guessInput = document.getElementById("guess");
-    var guess = guessInput.value;
-    var answer = null;
-
-    var answers = [ "red",
-        "green",
-        "blue"];
-
-    var index = Math.floor(Math.random() * answers.length);
-
-    if (guess == answers[index]) {
-        answer = "You're right! I was thinking of " + answers[index];
-    } else {
-        answer = "Sorry, I was thinking of " + answers[index];
-    }
-    alert(answer);
-
-        window.onload = Fido.bark()
-        function Dog(name, breed, weight){
-        this,.name = name;
-        this.breed = breed;
-        this.weight = weight;
-        this bark = function() {
-            if (this.weight > 25) {
-                alert(this.name + "says WOOF!");
-            else {
-                alert (this.name + "says yipp!");
-                }
-            };
-        }
-
-        var fido = new Dog('Fido','mixed','38');
+<!--/////////////////////////////////////////////////-->
 
 
-    </script>
-
-        <script src="{% static "lua/js/playlist_store.js" %}" type="text/javascript"></script>
-        <script src="{% static "lua/js/playlist.js" %}" type="text/javascript"></script>
-
-</head>
-
-<body style>
-        <style type="text/css">
-            body {background-color: #FFF8DC;
-            font-family: cursive;
-            color: #008080}
-            </style>
-        <br/><br/>
-    <img id="jujuImg" src="{% static "lua/images/coord.jpg" %}" alt="iRock" style="cursor:pointer" onclick="touchRock()"/>
-        <br /><br />
 
 
-    <h1>Testing forms!</h1>
+                        <!--<iframe src="http://www.meteobeverwijk.nl/weerstations.aspx"...-->
+                   <!--frameborder="0" scrolling="no" marginheight="0" width=750 height=512 frameborder=no></iframe><br /><br/><br/>-->
+
+
+<!--<h2>KNMI weatherstations in the Netherlands		</h2><br>-->
+         <!--<br/><br/>-->
+             <!--<br/><br/>-->
+             <!--<br/><br/>-->
+
+    <!--<div id="content">-->
+    <!--<div style="height:800px;">-->
+        <!--<iframe id="optomaFeed" src="http://www.meteobeverwijk.nl/weerstations.aspx" scrolling="no"-->
+            <!--frameborder="0" height="715" width="100%" style="position:absolute; clip:rect(130px,1000px,1400px,10px);-->
+            <!--top:-150px; left:-30px;"></iframe>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--wget -O bestand &#45;&#45;post-data="variabele=waarde&variabele=waarde&...." http://projects.knmi.nl/klimatologie/daggegevens/getdata_dag.cgi-->
+    <!-- -->
+	<!--<ul class="actions">-->
+			<!--<li>-->
+		<!--<a href="#" onclick="window.print();return false;"><img src="/media/system/images/printButton.png" alt="Print"  /></a>		</li>-->
+
+	<!--</ul>-->
+
+
+
+    <h2>Testing forms...</h2>
 
          <br/><br/>
     <h3>Using HTML/JavaScript</h3>
@@ -203,3 +181,151 @@ document.write(siteID[i].ID + ", " + siteID[i].lat + ", " + siteID[i].lon+ "," +
       <!--</script>-->
 
     <!--</form>-->
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+  <!--<head>-->
+    <!--<meta name="viewport" content="initial-scale=1.0, user-scalable=no">-->
+    <!--<meta charset="utf-8">-->
+    <!--<title>Places Searchbox</title>-->
+    <!--<style>-->
+      <!--html, body {-->
+        <!--height: 100%;-->
+        <!--margin: 0;-->
+        <!--padding: 0;-->
+      <!--}-->
+      <!--#map {-->
+        <!--height: 100%;-->
+      <!--}-->
+      <!--.controls {-->
+        <!--margin-top: 10px;-->
+        <!--border: 1px solid transparent;-->
+        <!--border-radius: 2px 0 0 2px;-->
+        <!--box-sizing: border-box;-->
+        <!-&#45;&#45;moz-box-sizing: border-box;-->
+        <!--height: 32px;-->
+        <!--outline: none;-->
+        <!--box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);-->
+      <!--}-->
+
+      <!--#pac-input {-->
+        <!--background-color: #fff;-->
+        <!--font-family: Roboto;-->
+        <!--font-size: 15px;-->
+        <!--font-weight: 300;-->
+        <!--margin-left: 12px;-->
+        <!--padding: 0 11px 0 13px;-->
+        <!--text-overflow: ellipsis;-->
+        <!--width: 300px;-->
+      <!--}-->
+
+      <!--#pac-input:focus {-->
+        <!--border-color: #4d90fe;-->
+      <!--}-->
+
+      <!--.pac-container {-->
+        <!--font-family: Roboto;-->
+      <!--}-->
+
+      <!--#type-selector {-->
+        <!--color: #fff;-->
+        <!--background-color: #4d90fe;-->
+        <!--padding: 5px 11px 0px 11px;-->
+      <!--}-->
+
+      <!--#type-selector label {-->
+        <!--font-family: Roboto;-->
+        <!--font-size: 13px;-->
+        <!--font-weight: 300;-->
+      <!--}-->
+      <!--#target {-->
+        <!--width: 345px;-->
+      <!--}-->
+    <!--</style>-->
+  <!--</head>-->
+  <!--<body>-->
+    <!--<input id="pac-input" class="controls" type="text" placeholder="Search Box">-->
+    <!--<div id="map"></div>-->
+    <!--<script>-->
+      <!--// This example adds a search box to a map, using the Google Place Autocomplete-->
+      <!--// feature. People can enter geographical searches. The search box will return a-->
+      <!--// pick list containing a mix of places and predicted search terms.-->
+
+      <!--// This example requires the Places library. Include the libraries=places-->
+      <!--// parameter when you first load the API. For example:-->
+      <!--// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">-->
+
+      <!--function initAutocomplete() {-->
+        <!--var map = new google.maps.Map(document.getElementById('map'), {-->
+          <!--center: {lat: -33.8688, lng: 151.2195},-->
+          <!--zoom: 13,-->
+          <!--mapTypeId: google.maps.MapTypeId.ROADMAP-->
+        <!--});-->
+
+        <!--// Create the search box and link it to the UI element.-->
+        <!--var input = document.getElementById('pac-input');-->
+        <!--var searchBox = new google.maps.places.SearchBox(input);-->
+        <!--map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);-->
+
+        <!--// Bias the SearchBox results towards current map's viewport.-->
+        <!--map.addListener('bounds_changed', function() {-->
+          <!--searchBox.setBounds(map.getBounds());-->
+        <!--});-->
+
+        <!--var markers = [];-->
+        <!--// Listen for the event fired when the user selects a prediction and retrieve-->
+        <!--// more details for that place.-->
+        <!--searchBox.addListener('places_changed', function() {-->
+          <!--var places = searchBox.getPlaces();-->
+
+          <!--if (places.length == 0) {-->
+            <!--return;-->
+          <!--}-->
+
+          <!--// Clear out the old markers.-->
+          <!--markers.forEach(function(marker) {-->
+            <!--marker.setMap(null);-->
+          <!--});-->
+          <!--markers = [];-->
+
+          <!--// For each place, get the icon, name and location.-->
+          <!--var bounds = new google.maps.LatLngBounds();-->
+          <!--places.forEach(function(place) {-->
+            <!--var icon = {-->
+              <!--url: place.icon,-->
+              <!--size: new google.maps.Size(71, 71),-->
+              <!--origin: new google.maps.Point(0, 0),-->
+              <!--anchor: new google.maps.Point(17, 34),-->
+              <!--scaledSize: new google.maps.Size(25, 25)-->
+            <!--};-->
+
+            <!--// Create a marker for each place.-->
+            <!--markers.push(new google.maps.Marker({-->
+              <!--map: map,-->
+              <!--icon: icon,-->
+              <!--title: place.name,-->
+              <!--position: place.geometry.location-->
+            <!--}));-->
+
+            <!--if (place.geometry.viewport) {-->
+              <!--// Only geocodes have viewport.-->
+              <!--bounds.union(place.geometry.viewport);-->
+            <!--} else {-->
+              <!--bounds.extend(place.geometry.location);-->
+            <!--}-->
+          <!--});-->
+          <!--map.fitBounds(bounds);-->
+        <!--});-->
+      <!--}-->
+
+    <!--</script>-->
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt2JrdlwkZXbfc9lrdAtCGm6ki32boS6s&libraries=places&callback=initAutocomplete"-->
+         <!--async defer></script>-->
+  <!--</body>-->
+<!--</html>-->
+
+
+<!--</html>-->

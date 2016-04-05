@@ -58,7 +58,7 @@
                 <!--<div class="graybox padding10">-->
                 <div class="graybox">
             <!--<div class="margin10">-->
-                <h2>After selecting the area, you can check here for the closest Koninklijk Nederlands Meteorologisch Instituut (KNMI) weather station</h2>
+                <h2>After selecting the area, you can check here for the closest KNMI weather station</h2>
                     <div id="location"></div>
                     <div id="distance"></div>
                <strong><input type="button" name="Calculate" onclick="getMyLocation();" value="Submit"  class="button margin38" /></strong>
@@ -186,7 +186,7 @@
         var stations = {
             groningen: {
                 coords: {},
-                name: "Groningen (Eelde)",
+                name: "Groningen",
                 code: "06280",
             },
 
@@ -243,119 +243,6 @@
                 name: "Vlissingen",
                 code: 06310,
             },
-
-            <!--valkenburg: {-->
-                <!--coords: {},-->
-                <!--name: "Valkenburg",-->
-                <!--code: 06210,-->
-            <!--},-->
-<!--/////////////////////-->
-            <!--voorschoten: {-->
-                <!--coords: {},-->
-                <!--name: "Voorschoten",-->
-                <!--code: 06215,-->
-            <!--},-->
-
-             <!--ijmuiden: {-->
-                <!--coords: {},-->
-                <!--name: "Ijmuiden",-->
-                <!--code: 06225,-->
-            <!--},-->
-
-            <!--vlietland: {-->
-                <!--coords: {},-->
-                <!--name: "Vlietland",-->
-                <!--code: 06242,-->
-            <!--},-->
-
-            <!--berkenhou: {-->
-                <!--coords: {},-->
-                <!--name: "Berkenhou",-->
-                <!--code: 06210,-->
-            <!--},-->
-
-            <!--valkenburg: {-->
-                <!--coords: {},-->
-                <!--name: "Valkenburg",-->
-                <!--code: 06249,-->
-            <!--},-->
-
-            <!--hoorn: {-->
-                <!--coords: {},-->
-                <!--name: "Hoorn",-->
-                <!--code: 06251,-->
-            <!--},-->
-
-            <!--wijk ann zee: {-->
-                <!--coords: {},-->
-                <!--name: "Wijn aan Zee",-->
-                <!--code: 06210,-->
-            <!--},-->
-
-            <!--valkenburg: {-->
-                <!--coords: {},-->
-                <!--name: "Valkenburg",-->
-                <!--code: 06257,-->
-            <!--},-->
-
-            <!--houtribdijk: {-->
-                <!--coords: {},-->
-                <!--name: "Houtribdijk",-->
-                <!--code: 06258,-->
-            <!--},-->
-
-
-            <!--soesterberg: {-->
-                <!--coords: {},-->
-                <!--name: "Soesterberg",-->
-                <!--code: 06265,-->
-            <!--},-->
-
-
-            <!--stavoren: {-->
-                <!--coords: {},-->
-                <!--name: "Stavoren",-->
-                <!--code: 06267,-->
-            <!--},-->
-
-            <!--lelystad: {-->
-                <!--coords: {},-->
-                <!--name: "Lelystad",-->
-                <!--code: 06269,-->
-            <!--},-->
-
-             <!--manrknesse: {-->
-                <!--coords: {},-->
-                <!--name: "Marknesse",-->
-                <!--code: 06273,-->
-            <!--},-->
-
-            <!--deelen: {-->
-                <!--coords: {},-->
-                <!--name: "Deelen",-->
-                <!--code: 06275,-->
-            <!--},-->
-
-
-            <!--lauwersook: {-->
-                <!--coords: {},-->
-                <!--name: "Lauwersoog",-->
-                <!--code: 06277,-->
-            <!--},-->
-
-            <!--heino: {-->
-                <!--coords: {},-->
-                <!--name: "Heino",-->
-                <!--code: 06278,-->
-            <!--},-->
-
-            <!--hoogeveen: {-->
-                <!--coords: {},-->
-                <!--name: "Hoogeveen",-->
-                <!--code: 06279,-->
-            <!--},-->
-
-<!--////////////////////-->
         };
 
         // Adding Coordinates:
@@ -419,7 +306,7 @@
         <!--// Displays local position-->
             <!--var div = document.getElementById("time");-->
             <!--var dateTime = new Date(position.timestamp);-->
-            <!--div.innerHTML += "  Location retrieved on " + dateTime;-->
+            <!--div.innerHTML = "  Location retrieved on " + dateTime;-->
 
 
         // Study area obtained from the marker on the googlemap

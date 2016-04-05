@@ -31,14 +31,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                        </button>
-                            <a href="/" class="navbar-brand">Home</a>
-                            </div>
-                            <div class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
+                    </button>
+                    <a href="/" class="navbar-brand">Home</a>
+                </div>
+
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
                         <li><a href="{% url 'query' %}">Query</a></li>
                         <li><a href="{% url 'grs' %}">GRS TU Delft</a></li>
-
                         <li><a href="{% url 'contact' %}">Researchers</a></li>
                         <li><a href="{% url 'links' %}">Inspiration</a></li>
                         <li><a href="{% url 'about' %}">About Me</a></li>
@@ -51,8 +51,8 @@
 
         <div class="container body-content">
             {% block content %}{% endblock %}
-            <hr/>
 
+        <div>
             <footer>
                <!--  <a class="btn btn-default" href="{{request.META.HTTP_REFERER}}">Back</a> -->
                 <p></p><br />
@@ -74,4 +74,5 @@
         </div>
 
     </body>
+
 </html>

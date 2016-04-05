@@ -26,6 +26,7 @@ urlpatterns = [
         url(r'^geo_input_dist$', views.geo_input_dist, name='geo_input_dist'),
         url(r'^geo_distance$', views.geo_distance, name='geo_distance'),
         url(r'^buien$', views.buien, name='buien'),
+        url(r'^agua$', views.agua, name='agua'),
 ]
 
 

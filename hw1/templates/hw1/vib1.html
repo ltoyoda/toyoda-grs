@@ -3,10 +3,9 @@
 {% block content %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <h2>{{title}}</h2>
     <!--<h3>{{ message }}</h3>-->
-<head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style type="text/css">
         /*styles for the table on this page*/
@@ -63,31 +62,32 @@
                     <h2>Variogram</h2>
                     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="striped">
                         <thead>
-                        <tr>
-                            <th id="tipo" scope="col">Questions</th>
-                            <th id="tipo" scope="col">Input</th>
-                        </tr>
+                            <tr>
+                                <th id="tipo" scope="col">Questions</th>
+                                <th id="tipo" scope="col">Input</th>
+                            </tr>
                         </thead>
 
                         <tbody>
-                          {% for field in form %}
+                            {% for field in form %}
                             <tr>
                             <!--<td>{{ field.name }}</td>-->
                                 <td id="label">{{ field.label }}</td>
                                 <td id="datain">{{ field }}</td>
                                 <td>{{ field.errors }}</td>
-                            <td></td>
+                                <td></td>
                             </tr>
-                          {% endfor %}
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-      <p><br /></p>
+        <p><br /></p>
+        <p><br /></p>
 
-    <p><input type=submit value=Calculate></form></p>
-        <p>
+        <h4>Calculate and load graph:</h4>
+        <input type=submit value=Submit></form>
             {% if result != None %}
             {% load static %}
             {% load staticfiles %}
@@ -98,11 +98,11 @@
   <!--************************************************************************-->
   <!--For loading the figure from staticfiles: -->
 
-  <div id="ci">
-      <h2>Load figure</h2>
-      <input type="button" name="Calculate" value="Click here"
-      onclick=" <img src="/stickyImage" />
-  </div>
+  <!--<div id="ci">-->
+      <!--<h2>Load figure</h2>-->
+      <!--<input type="button" name="Calculate" value="Click here"-->
+      <!--onclick=" <img src="/stickyImage" />-->
+  <!--</div>-->
 
 <SCRIPT type="text/javascript">
 $("#ci").click(function(){

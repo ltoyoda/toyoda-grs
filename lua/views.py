@@ -55,3 +55,10 @@ def buien(request):
         {'title':'geolocation',
             'message':'Your application description page - change in lua/views.py',
             'year':datetime.now().year,}))
+
+def agua(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'lua/agua.html',context_instance = RequestContext(request,
+        {'title':'geolocation',
+            'message':'Your application description page - change in lua/views.py',
+            'year':datetime.now().year,}))
