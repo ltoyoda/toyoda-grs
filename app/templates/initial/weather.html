@@ -13,97 +13,121 @@
 </head>
   <body>
 
+<!--<Part of head>-->
+         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-  <html>
-<head>
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Adaguc demo: De laatste bui van november</title>
+        <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/nl.js"></script>
 
-<title>Adaguc demo: De laatste bui van november</title>
-<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/nl.js"></script>
+        <link rel="stylesheet" href="http://openlayers.org/en/v3.10.1/css/ol.css" type="text/css">
+        <script src="http://openlayers.org/en/v3.10.1/build/ol.js"></script>
+<!--</part of head>-->
 
-<link rel="stylesheet" href="http://openlayers.org/en/v3.10.1/css/ol.css" type="text/css">
-<script src="http://openlayers.org/en/v3.10.1/build/ol.js"></script>
+<!--<Part of body>-->
+        <!--<div class="container-fluid">-->
+        <div class="row-fluid">
+            <div class="col-md-12">
+                <h2><strong>KNMI AdaguC WMS in combination with OpenLayers</strong></h2>
+                <h3>Input for image selection:       </h3><br />
+            </div>
+        </div>
 
-</head>
-<body>
-<div class="container-fluid">
-<div class="row-fluid">
-  <div class="col-md-12">
-    <h2><strong>KNMI AdaguC WMS in combination with OpenLayers</strong></h2>
-      <h3>Testing ...</h3>
-    <!--<p class="lead">KNMI AdaguC WMS in combination with OpenLayers.</p>-->
-  </div>
-</div>
-<div class="row-fluid">
-  <div class="col-sm-12">
-    <div id="map" class="map"></div>
-    <p id="time"></p>
-  </div>
-  <div class="col-sm-6">
+        <div class="row-fluid">
 
-    <!--<p>Nieuws van 31 augustus:</p>-->
-    <!--<blockquote><p>Het verkeer in het westen heeft maandagochtend te maken gehad met overlast door zware regen- en onweersbuien die over het land trekken. Ook afgelopen nacht werden delen van Nederland geteisterd door noodweer. </p>-->
-    <!--</blockquote>-->
-    <!--<p>Bron: <a href="http://www.nu.nl/binnenland/4116176/noodweer-zorgt-wateroverlast-en-verkeersproblemen.html">nu.nl</a></p>-->
-    <!--<h2>Waarom laten we je dit zien?</h2>-->
-    <!--<p>Hier zie je een eenvoudig voorbeeld van de <a href="https://nl.wikipedia.org/wiki/Web_Map_Service">WMS service</a> van <a href="http://adaguc.knmi.nl/">AdaguC</a>. Binnenkort zal veel meer data uit het <a href="https://data.knmi.nl/">KNMI data centrum</a> via dit systeem worden ontsloten. Wat kun je er mee? Een bookmarkservice van je favoriete weermomenten? Je game voorzien van het actuele, of juist historische, wolkenbeeld? We nodigen je graag uit je eigen ideeën te ontwikkelen! Speel met dit voorbeeld op <a href="http://jsfiddle.net/w12vndvm/2/">JSFiddle</a>.</p>-->
-  </div>
-</div>
+            <div class="col-md-4">
+                <p><strong>Date initial(YYYY-MM-DD) </strong> <input type="text" name="dateImp" id="dateImp" value="2016-04-05" placeholder="yyyy-mm-dd"/></p>
+                <p><strong>Date final(YYYY-MM-DD) </strong> <input type="text" name="dateImp" id="date2Imp" value="2016-04-05" placeholder="yyyy-mm-dd"/></p>
+            </div>
 
-</div>
-<script>
-var rainRadar = new ol.source.ImageWMS({
-  url: 'http://geoservices.knmi.nl/cgi-bin/RADNL_OPER_R___25PCPRR_L3.cgi',
-  params: {
-    'LAYERS': 'RADNL_OPER_R___25PCPRR_L3_COLOR',
-    'TIME': "2015-08-31T13:00:00.000Z"
-  },
-  ratio: 1
-});
+            <div class="col-md-4">
+                <p><strong>Time initial (HH:MM) </strong> <input type="text"  name="timeImp" id="timeImp" value="08:00" placeholder="hh:mm"/></p>
+                <p><strong>Time final(HH:MM) </strong> <input type="text"  name="timeImp" id="time2Imp" value="12:00" placeholder="hh:mm"/></p>
+            </div>
 
-var layers = [
-  new ol.layer.Tile({
-    source: new ol.source.MapQuest({layer: 'sat'})
-  }),
-  new ol.layer.Image({
-    source: rainRadar,
-    opacity: 0.7
-  })
-];
-var map = new ol.Map({
-  layers: layers,
-  target: 'map',
-  view: new ol.View({
-    center: [630000, 6809099],
-    zoom: 6
-  })
-});
+            <div class="col-md-4">
+                <p><strong><input type="button" name="Calculate" onclick="getDateTime()" value="Show image"  class="button margin38" /></strong></p>
+            </div>
 
-var startTime = moment("2016-04-05T02:00")
-var endTime = moment("2016-04-05T13:00")
-var currentTime = startTime.clone();
+            <div class="col-md-4">
+                <p><a href="{% url 'weather' %}"><strong>Default settings</strong></a></p>
+                               <!--<p><a class="btn btn-default" href="{% url 'buien' %}"><strong>Start again</strong></a></p>-->
+            </div>
 
-var stepForward = function() {
-  rainRadar.updateParams({'TIME': currentTime.toISOString()});
-  document.getElementById('time').innerHTML = currentTime.format("LLL");
-  currentTime.add(5,'minutes');
-  if (currentTime > endTime) {
-    currentTime = startTime.clone();
-  }
-  setTimeout(stepForward, 200);
-};
-stepForward();
+        </div>
+            <p></p><br />
 
-</script>
-<!--</body>-->
-<!--</html>-->
-<!--//////////////////////////////////////-->
+        <div class="row-fluid">
+            <div class="col-sm-12">
+                <div id="map" class="map"></div>
+                <p id="time"></p>
+            </div>
 
+            <!--<div class="col-sm-6">-->
+            <!--</div>-->
+        <!--</div>-->
+        </div>
 
+    <script>
+        function getDateTime() {
+        var rainRadar = new ol.source.ImageWMS({
+          url: 'http://geoservices.knmi.nl/cgi-bin/RADNL_OPER_R___25PCPRR_L3.cgi',
+          params: {
+            'LAYERS': 'RADNL_OPER_R___25PCPRR_L3_COLOR',
+            'TIME': "2015-08-31T13:00:00.000Z"
+          },
+          ratio: 1
+        });
+
+        var layers = [
+          new ol.layer.Tile({
+            source: new ol.source.MapQuest({layer: 'sat'})
+          }),
+          new ol.layer.Image({
+            source: rainRadar,
+            opacity: 0.7
+          })
+        ];
+        var map = new ol.Map({
+          layers: layers,
+          target: 'map',
+          view: new ol.View({
+            center: [630000, 6809099],
+            zoom: 6
+          })
+        });
+
+        // Modified for day and time input
+        var dateInput = document.getElementById("dateImp").value
+        var timeInput = document.getElementById("timeImp").value
+        var date2Input = document.getElementById("date2Imp").value
+        var time2Input = document.getElementById("time2Imp").value
+
+        var startTime = moment(dateInput+"T"+timeInput)
+        var endTime =   moment(date2Input+"T"+time2Input)
+        <!--var startTime = moment("2016-04-05T12:00")-->
+        <!--var endTime =   moment("2016-04-05T12:00")-->
+        var currentTime = startTime.clone();
+
+        var stepForward = function() {
+          rainRadar.updateParams({'TIME': currentTime.toISOString()});
+          document.getElementById('time').innerHTML = currentTime.format("LLL");
+          currentTime.add(5,'minutes');
+          if (currentTime > endTime) {
+            currentTime = startTime.clone();
+          }
+          setTimeout(stepForward, 200);
+        };
+        stepForward();
+        }
+     </script>
+<!--</Part of body>-->
+
+          <p></p><br />
+          <p></p><br />
           <p></p><br />
 
         <div class="row">

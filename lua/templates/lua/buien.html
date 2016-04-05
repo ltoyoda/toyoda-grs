@@ -21,25 +21,32 @@
         <div class="row-fluid">
             <div class="col-md-12">
                 <h2><strong>KNMI AdaguC WMS in combination with OpenLayers</strong></h2>
-                <h3>Input for image selection: </h3><br />
+                <h3>Input for image selection:       </h3><br />
             </div>
         </div>
 
         <div class="row-fluid">
 
             <div class="col-md-3">
-                <strong>Date (YYYY-MM-DD) </strong> <input type="text" name="dateImp" id="dateImp" value="2016-04-05" placeholder="yyyy-mm-dd"/>
+                <p><strong>Date (YYYY-MM-DD) </strong> <input type="text" name="dateImp" id="dateImp" value="2016-04-05" placeholder="yyyy-mm-dd"/></p>
             </div>
 
             <div class="col-md-3">
-                <strong>Time (HH:MM) </strong> <input type="text"  name="timeImp" id="timeImp" value="12:00" placeholder="hh:mm"/>
+                <p><strong>Time (HH:MM) </strong> <input type="text"  name="timeImp" id="timeImp" value="12:00" placeholder="hh:mm"/></p>
             </div>
 
             <div class="col-md-3">
-                <strong><input type="button" name="Calculate" onclick="getDateTime()" value="Show image"  class="button margin38" /></strong>
+                <p><strong><input type="button" name="Calculate" onclick="getDateTime()" value="Show image"  class="button margin38" /></strong></p>
+            </div>
+
+            <div class="col-md-3">
+                <p><a href="{% url 'buien' %}"><strong>Default settings</strong></a></p>
+                               <!--<p><a class="btn btn-default" href="{% url 'buien' %}"><strong>Start again</strong></a></p>-->
             </div>
 
         </div>
+            <p></p><br />
+            <p></p><br />
             <p></p><br />
 
         <div class="row-fluid">
