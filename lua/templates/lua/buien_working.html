@@ -1,0 +1,114 @@
+{% extends "initial/layout.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<!--<Part of head>-->
+         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        <title>Adaguc demo: De laatste bui van november</title>
+        <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/nl.js"></script>
+
+        <link rel="stylesheet" href="http://openlayers.org/en/v3.10.1/css/ol.css" type="text/css">
+        <script src="http://openlayers.org/en/v3.10.1/build/ol.js"></script>
+<!--</part of head>-->
+
+<!--<Part of body>-->
+        <!--<div class="container-fluid">-->
+        <div class="row-fluid">
+            <div class="col-md-12">
+                <h2><strong>KNMI AdaguC WMS in combination with OpenLayers</strong></h2>
+                <h3>Input for image selection:       </h3><br />
+            </div>
+        </div>
+
+        <div class="row-fluid">
+
+            <div class="col-md-3">
+                <p><strong>Date (YYYY-MM-DD) </strong> <input type="text" name="dateImp" id="dateImp" value="2016-04-05" placeholder="yyyy-mm-dd"/></p>
+            </div>
+
+            <div class="col-md-3">
+                <p><strong>Time (HH:MM) </strong> <input type="text"  name="timeImp" id="timeImp" value="12:00" placeholder="hh:mm"/></p>
+            </div>
+
+            <div class="col-md-3">
+                <p><strong><input type="button" name="Calculate" onclick="getDateTime()" value="Show image"  class="button margin38" /></strong></p>
+            </div>
+
+            <div class="col-md-3">
+                <p><a href="{% url 'buien' %}"><strong>Default settings</strong></a></p>
+                               <!--<p><a class="btn btn-default" href="{% url 'buien' %}"><strong>Start again</strong></a></p>-->
+            </div>
+
+        </div>
+            <p></p><br />
+            <p></p><br />
+            <p></p><br />
+
+        <div class="row-fluid">
+            <div class="col-sm-12">
+                <div id="map" class="map"></div>
+                <p id="time"></p>
+            </div>
+
+            <!--<div class="col-sm-6">-->
+            <!--</div>-->
+        <!--</div>-->
+        </div>
+
+    <script>
+        function getDateTime() {
+        var rainRadar = new ol.source.ImageWMS({
+          url: 'http://geoservices.knmi.nl/cgi-bin/RADNL_OPER_R___25PCPRR_L3.cgi',
+          params: {
+            'LAYERS': 'RADNL_OPER_R___25PCPRR_L3_COLOR',
+            'TIME': "2015-08-31T13:00:00.000Z"
+          },
+          ratio: 1
+        });
+
+        var layers = [
+          new ol.layer.Tile({
+            source: new ol.source.MapQuest({layer: 'sat'})
+          }),
+          new ol.layer.Image({
+            source: rainRadar,
+            opacity: 0.7
+          })
+        ];
+        var map = new ol.Map({
+          layers: layers,
+          target: 'map',
+          view: new ol.View({
+            center: [630000, 6809099],
+            zoom: 6
+          })
+        });
+
+        // Modified for day and time input
+        var dateInput = document.getElementById("dateImp").value
+        var timeInput = document.getElementById("timeImp").value
+        var startTime = moment(dateInput+"T"+timeInput)
+        var endTime =   moment(dateInput+"T"+timeInput)
+        <!--var startTime = moment("2016-04-05T12:00")-->
+        <!--var endTime =   moment("2016-04-05T12:00")-->
+        var currentTime = startTime.clone();
+
+        var stepForward = function() {
+          rainRadar.updateParams({'TIME': currentTime.toISOString()});
+          document.getElementById('time').innerHTML = currentTime.format("LLL");
+          currentTime.add(5,'minutes');
+          if (currentTime > endTime) {
+            currentTime = startTime.clone();
+          }
+          setTimeout(stepForward, 200);
+        };
+        stepForward();
+        }
+     </script>
+<!--</Part of body>-->
+{% endblock %}

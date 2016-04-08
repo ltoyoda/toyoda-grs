@@ -17,7 +17,6 @@
 <!--</part of head>-->
 
 <!--<Part of body>-->
-        <!--<div class="container-fluid">-->
         <div class="row-fluid">
             <div class="col-md-12">
                 <h2><strong>KNMI AdaguC WMS in combination with OpenLayers</strong></h2>
@@ -26,16 +25,125 @@
         </div>
 
         <div class="row-fluid">
-
             <div class="col-md-3">
-                <p><strong>Date (YYYY-MM-DD) </strong> <input type="text" name="dateImp" id="dateImp" value="2016-04-05" placeholder="yyyy-mm-dd"/></p>
+                <!--<p><strong>Date (YYYY-MM-DD) </strong> <input type="text" name="dateInp" id="dateInp" value="2016-04-05" placeholder="yyyy-mm-dd"/></p>-->
+                <form name="Date">
+                    <p><strong>Date</strong></p>
+                    <select name="day" id="day">
+                            <option  value="01">01</option>
+                            <option  value="02">02</option>
+                            <option  value="03">03</option>
+                            <option  value="04">04</option>
+                            <option  value="05">05</option>
+                            <option  value="06">06</option>
+                            <option selected value="07">07</option>
+                            <option  value="08">08</option>
+                            <option  value="09">09</option>
+                            <option  value="10">10</option>
+                            <option  value="11">11</option>
+                            <option  value="12">12</option>
+                            <option  value="13">13</option>
+                            <option  value="14">14</option>
+                            <option  value="15">15</option>
+                            <option  value="16">16</option>
+                            <option  value="17">17</option>
+                            <option  value="18">18</option>
+                            <option  value="19">19</option>
+                            <option  value="20">20</option>
+                            <option  value="21">21</option>
+                            <option  value="22">22</option>
+                            <option  value="23">23</option>
+                            <option  value="24">24</option>
+                            <option  value="25">25</option>
+                            <option  value="26">26</option>
+                            <option  value="27">27</option>
+                            <option  value="28">28</option>
+                            <option  value="29">29</option>
+                            <option  value="30">30</option>
+                            <option  value="31">31</option>
+                    </select>
+                    <select name="month" id = "month">
+                            <option   value="01">January</option>
+                            <option   value="02">February</option>
+                            <option   value="03">March</option>
+                            <option selected  value="04">April</option>
+                            <option   value="05">May</option>
+                            <option   value="06">June</option>
+                            <option   value="07">July</option>
+                            <option   value="08">August</option>
+                            <option   value="09">September</option>
+                            <option   value="10">October</option>
+                            <option   value="11">November</option>
+                            <option   value="12">December</option>
+                    </select>
+                    <select name="year" id="year">
+                            <option   value="2006">2006</option>
+                            <option   value="2007">2007</option>
+                            <option   value="2008">2008</option>
+                            <option   value="2009">2009</option>
+                            <option   value="2010">2010</option>
+                            <option   value="2011">2011</option>
+                            <option   value="2012">2012</option>
+                            <option   value="2013">2013</option>
+                            <option   value="2014">2014</option>
+                            <option   value="2015">2015</option>
+                            <option selected  value="2016">2016</option>
+                    </select>
+                </form>
             </div>
 
             <div class="col-md-3">
-                <p><strong>Time (HH:MM) </strong> <input type="text"  name="timeImp" id="timeImp" value="12:00" placeholder="hh:mm"/></p>
+                <!--<p><strong>Time (HH:MM) </strong> <input type="text"  name="timeInp" id="timeInp" value="12:00" placeholder="hh:mm"/></p>-->
+                <p><strong>Time</strong></p>
+                <div>
+                    <form name="Time">
+                        <select name="hour" id="hour">
+                            <option  value="00">00</option>
+                            <option  value="01">01</option>
+                            <option  value="02">02</option>
+                            <option  value="03">03</option>
+                            <option  value="04">04</option>
+                            <option  value="05">05</option>
+                            <option  value="06">06</option>
+                            <option  value="07">07</option>
+                            <option  value="08">08</option>
+                            <option selected value="09">09</option>
+                            <option  value="10">10</option>
+                            <option  value="11">11</option>
+                            <option  value="12">12</option>
+                            <option  value="13">13</option>
+                            <option  value="14">14</option>
+                            <option  value="15">15</option>
+                            <option  value="16">16</option>
+                            <option  value="17">17</option>
+                            <option  value="18">18</option>
+                            <option  value="19">19</option>
+                            <option  value="20">20</option>
+                            <option  value="21">21</option>
+                            <option  value="22">22</option>
+                            <option  value="23">23</option>
+                        </select>
+
+                        <select name="minute" id="minute">
+                            <option selected value="00">00</option>
+                            <option  value="05">05</option>
+                            <option  value="10">10</option>
+                            <option  value="15">15</option>
+                            <option  value="20">20</option>
+                            <option  value="25">25</option>
+                            <option  value="30">30</option>
+                            <option  value="35">35</option>
+                            <option  value="40">40</option>
+                            <option  value="45">45</option>
+                            <option  value="50">50</option>
+                            <option  value="55">55</option>
+                        </select>
+                    </form>
+                </div>
             </div>
 
             <div class="col-md-3">
+            <p></p><br />
                 <p><strong><input type="button" name="Calculate" onclick="getDateTime()" value="Show image"  class="button margin38" /></strong></p>
             </div>
 
@@ -90,14 +198,25 @@
         });
 
         // Modified for day and time input
-        var dateInput = document.getElementById("dateImp").value
-        var timeInput = document.getElementById("timeImp").value
+
+        var hourInput = document.Time.hour.value
+        var minuteInput = document.Time.minute.value
+        var timeInput = hourInput+":"+minuteInput
+
+        var dayInput = document.Date.day.value
+        var monthInput = document.Date.month.value
+        var yearInput = document.Date.year.value
+        var dateInput = yearInput+"-"+monthInput+"-"+dayInput
+
         var startTime = moment(dateInput+"T"+timeInput)
         var endTime =   moment(dateInput+"T"+timeInput)
+
+        <!--var dateInput = document.getElementById("dateInp").value-->
+        <!--var timeInput = document.getElementById("timeInp").value-->
         <!--var startTime = moment("2016-04-05T12:00")-->
         <!--var endTime =   moment("2016-04-05T12:00")-->
-        var currentTime = startTime.clone();
 
+        var currentTime = startTime.clone();
         var stepForward = function() {
           rainRadar.updateParams({'TIME': currentTime.toISOString()});
           document.getElementById('time').innerHTML = currentTime.format("LLL");
