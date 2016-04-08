@@ -28,9 +28,9 @@ def geo(request):
             'message':'Your application description page - change in lua/views.py',
             'year':datetime.now().year,}))
 
-def geo_input(request):
+def geolocation(request):
     assert isinstance(request, HttpRequest)
-    return render(request,'lua/geo_input.html',context_instance = RequestContext(request,
+    return render(request,'lua/geolocation.html',context_instance = RequestContext(request,
         {'title':'geolocation',
             'message':'Your application description page - change in lua/views.py',
             'year':datetime.now().year,}))
@@ -49,10 +49,10 @@ def geo_distance(request):
             'message':'Your application description page - change in lua/views.py',
             'year':datetime.now().year,}))
 
-def buien(request):
+def cloud(request):
     assert isinstance(request, HttpRequest)
-    return render(request,'lua/buien.html',context_instance = RequestContext(request,
-        {'title':'geolocation',
+    return render(request,'lua/cloud.html',context_instance = RequestContext(request,
+        {'title':'Cloud Cover',
             'message':'Your application description page - change in lua/views.py',
             'year':datetime.now().year,}))
 
