@@ -62,3 +62,24 @@ def agua(request):
         {'title':'geolocation',
             'message':'Your application description page - change in lua/views.py',
             'year':datetime.now().year,}))
+
+def cloud_world(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'lua/cloud_world.html',context_instance = RequestContext(request,
+        {'title':'Cloud Cover',
+            'message':'Your application description page - change in lua/views.py',
+            'year':datetime.now().year,}))
+
+def cloud_world2(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'lua/cloud_world2.html',context_instance = RequestContext(request,
+        {'title':'Cloud Cover',
+            'message':'Your application description page - change in lua/views.py',
+            'year':datetime.now().year,}))
+
+def cloud_world3(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'lua/cloud_world3.html',context_instance = RequestContext(request,
+        {'title':'Cloud Cover',
+            'message':'Your application description page - change in lua/views.py',
+            'year':datetime.now().year,}))

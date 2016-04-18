@@ -26,6 +26,9 @@ urlpatterns = [
         url(r'^geo_input_dist$', views.geo_input_dist, name='geo_input_dist'),
         url(r'^geo_distance$', views.geo_distance, name='geo_distance'),
         url(r'^cloud$', views.cloud, name='cloud'),
+        url(r'^cloud_world$', views.cloud_world, name='cloud_world'),
+        url(r'^cloud_world2$', views.cloud_world2, name='cloud_world2'),
+        url(r'^cloud_world3$', views.cloud_world3, name='cloud_world3'),
         url(r'^agua$', views.agua, name='agua'),
 ]
 

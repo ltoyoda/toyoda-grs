@@ -1,0 +1,341 @@
+<!--{% extends "initial/layout.html" %}-->
+<!--{% load staticfiles %}-->
+<!--{% block content %}-->
+
+<html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+
+        <title>Aqua Monitor - monitoring surface water changes from satellite imagery in real-time.</title>
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+        <!--<script src="/static/chart.js"></script>-->
+        <script src="{% static "lua/js/chart.js" %}" type="text/javascript"></script>
+
+        <!-- Load the Google Maps API. -->
+        <!--<script src="https://maps.google.com/maps/api/js?sensor=false"></script>-->
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=drawing,places"></script>
+
+        <!-- Load compiled Earth Engine JavaScript client library. -->
+
+        <script src="/static/ExtDraggableObject.js"></script>
+        <script src="/static/CustomTileOverlay.js"></script>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.indigo-pink.min.css">
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css"
+              href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.js"></script>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+              integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+              integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
+              crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+                integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+                crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/css/bootstrap-slider.min.css"
+              crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/bootstrap-slider.min.js"
+                crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
+
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/dc/1.7.5/dc.min.js"></script>
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/dc/1.7.5/dc.min.css">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js"></script>
+
+        <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+
+        <!--<link rel="stylesheet" href="static/normalize.css"/>-->
+        <!--<link rel="stylesheet" href="static/ion.rangeSlider.css">-->
+        <!--<link rel="stylesheet" href="static/ion.rangeSlider.skinModern.css">-->
+
+        <script type="text/javascript" src="static/ion.rangeSlider.js"></script>
+
+        <!--&lt;!&ndash;<link rel="stylesheet" href="static/main.css">&ndash;&gt;-->
+        <!--&lt;!&ndash;<link rel="stylesheet" href="static/chart.css">&ndash;&gt;-->
+        <!--&lt;!&ndash;<link rel="stylesheet" href="static/time-selector.css">&ndash;&gt;-->
+        <!--&lt;!&ndash;<link rel="stylesheet" href="static/searchbox.css">&ndash;&gt;-->
+
+        <!--<link rel="stylesheet" href="static/query-chart.css">-->
+
+        <template id="query-chart-template">
+            <div class="query-chart" id="query-chart"></div>
+        </template>
+    </head>
+    <body>
+        <div id="sidebar" class="ui left demo vertical inverted sidebar labeled icon menu">
+            <a class="item">
+                <i class="area chart icon"></i>
+                Query
+            </a>
+            <a class="item">
+                <i class="download icon"></i>
+                Download
+            </a>
+            <a class="item">
+                <i class="twitter icon"></i>
+                Twitter
+            </a>
+        </div>
+
+        <!-- places autocomplete input -->
+        <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+
+        <!-- The element into which we render the Google Map. -->
+        <div id="map"></div>
+
+        <div id="time-selector-container">
+            <input type="text" id="time-selector-range" value=""/>
+        </div>
+
+        <div id="chart-dashboard">
+            <div id="chart"></div>
+            <div id="chart-range"></div>
+        </div>
+
+                <button id="button-menu-sidebar" class="ui icon button">
+                    <i class="sidebar icon"></i>
+                </button>
+
+        <div id="map-buttons" class="ui vertical small icon buttons">
+            <!--
+            <button id="button-download" class="ui icon button">
+                <i class="download icon"></i>
+            </button>
+            -->
+            <button id="button-query" class="ui icon toggle button">
+                <i class="area chart icon"></i>
+            </button>
+            <!--
+                        <button id="button-info" class="ui icon toggle button">
+                            <i class="info icon"></i>
+                        </button>
+            -->
+        </div>
+
+        <div id="zoom-warning" class="alert alert-warning" role="alert">Warning! Zoom in to see surface water changes
+            for selected dates.
+        </div>
+
+        <div id="message-download" class="ui icon message">
+            <i id="message-download-icon" class="notched circle loading icon"></i>
+
+            <div id="message-download-content" class="content">
+                <div class="header">
+                    Just one second
+                </div>
+                <p>We're fetching that content for you.</p>
+            </div>
+        </div>
+
+        <div id="message-initializing-ee" class="ui icon message">
+            <i id="message-initialize-ee-icon" class="notched circle loading icon"></i>
+
+            <div id="message-initialize-ee-content" class="content">
+                <div class="header">
+                    Initializing
+                </div>
+                <p>Google Earth Engine ...</p>
+            </div>
+        </div>
+
+
+        <div id="twitter-buttons">
+
+            <div id="contact-div">
+                <div class="ui large icon buttons">
+                    <a href="mailto:gennadii.donchyts@deltares.nl?subject=Aqua Monitor Feedback" title="Get in touch!">
+                    <!-- <a href="https://docs.google.com/forms/d/1ospwkbROL-EymaMC1xWXKlyRhwE2jVkE0k644412-Vs/viewform?c=0&w=1"
+                       target="_blank" title="Click to get in touch"> -->
+                        <button class="ui button" href="mailto:gennadii.donchyts@deltares.nl" id="contact-button">
+                            <i class="mail icon"></i>
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div id="twitter-button">
+                <a href="https://twitter.com/aqua_monitor" class="twitter-follow-button" data-show-count="false"
+                   data-show-screen-name="false">Follow @aqua_monitor</a>
+                <script>!function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                    if (!d.getElementById(id)) {
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = p + '://platform.twitter.com/widgets.js';
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }
+                }(document, 'script', 'twitter-wjs');</script>
+            </div>
+
+<!--
+            <div id="twitter-button">
+                <a href="https://twitter.com/share" class="twitter-share-button"
+                   data-url="http://aqua-monitor.appspot.com" data-via="aqua_monitor">Tweet</a>
+                <script>!function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                    if (!d.getElementById(id)) {
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = p + '://platform.twitter.com/widgets.js';
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }
+                }(document, 'script', 'twitter-wjs');</script>
+            </div>
+-->
+        <!--</div>-->
+
+        <!--<div id="deltares-logo">-->
+            <!--<a target="_blank" href="http://deltares.nl/en" title="Click for more information about Deltares">-->
+                <!--<div id="deltares-logo-image-div">-->
+                    <!--<img id="deltares-logo-image" src="static/DeltaresLogoSmall.png" draggable="false">-->
+                <!--</div>-->
+            <!--</a>-->
+        <!--</div>-->
+
+        <!--
+        <div id="slider-div-morph">
+           <input id="slider-morph" data-slider-tooltip="hide" type="text"/>
+        </div>
+
+        <div id="slider-div-image">
+           <input id="slider-image" type="text"/>
+           <div class="slider-label">Image</div>
+        </div>
+        -->
+
+        <div id="label-year-before">2000</div>
+        <div id="label-year-after">2015</div>
+
+        <table id="layers-table">
+          <tr>
+            <td><div class="slider-label">Changes</div></td>
+            <td><input id="slider-change" type="text"/></td>
+          </tr>
+          <tr>
+            <td><div class="slider-label" id='slider-label-after'>2015</div></td>
+            <td><input id="slider-after" type="text"/></td>
+          </tr>
+          <tr>
+            <td><div class="slider-label" id='slider-label-before'>2000</div></td>
+            <td><input id="slider-before" type="text"/></td>
+          </tr>
+        </table>
+
+        <div id="layers-toggle-table">
+            <div class="ui toggle checkbox">
+              <input id="toggle-change" type="checkbox" checked>
+              <label for="toggle-change">Changes</label>
+            </div>
+            <div class="ui toggle checkbox">
+              <input id="toggle-after" type="checkbox">
+              <label for="toggle-after">2015</label>
+            </div>
+            <div class="ui toggle checkbox">
+              <input id="toggle-before" type="checkbox" checked>
+              <label for="toggle-before">2000</label>
+            </div>
+        </div>
+
+        <!--
+        <div id="sliders-div">
+          <div id="slider-div-change" class="slider-div">
+             <input id="slider-change" type="text"/>
+             <div class="slider-label">Changes</div>
+          </div>
+
+          <div id="slider-div-after" class="slider-div">
+            <input id="slider-after" type="text"/>
+            <div class="slider-label" id='slider-label-after'>2015</div>
+          </div>
+
+          <div id="slider-div-before" class="slider-div">
+            <input id="slider-before" type="text"/>
+            <div class="slider-label" id='slider-label-before'>2000</div>
+          </div>
+        </div>
+        -->
+
+        <!--
+        <div id="tud-logo">
+            <a target="_blank" href="http://www.watermanagement.tudelft.nl/" title="Click for more information on TU Delft">
+                <div id="tud-logo-image-div">
+                    <img id="tud-logo-image" src="static/tudelft_logo_small.png" draggable="false">
+                </div>
+            </a>
+        </div>
+        -->
+
+        <!-- Slow loading scripts can be at the end -->
+        <script>
+            // Variables to be filled in by template
+            var client_id = '517222506229-vsmmajv00ul0bs7p89v5m89qs8eb9359.apps.googleusercontent.com';
+            var token_type = 'Bearer';
+            var access_token = 'ya29..ugL8cvyoZfGon8oqT1-GjiA6KhoXFmLFEgJMzZCWv3zvBvQtHY0ykgdSYWFXx41vdlIo';
+            var token_expires_in_sec = '36000';
+            var expire_time = 'Monday, 04. April 2016 08:27PM:55';
+            var view = {};
+            var debug = false;
+            var percentile = 20;
+            var smoothen = true;
+            var site = -1;
+            var refine = true;
+            var waterSlopeThreshold = 0.03;
+            var waterSlopeThreshold2 = 0.02;
+            var allYears = false;
+            var averagingMonths1 = 12;
+            var averagingMonths2 = 12;
+            var minYear = 2000;
+            var maxYear = 2015;
+            var filterCount = 0;
+            var ndviFilter = -99;
+        </script>
+
+        <!-- Load our JavaScript file. -->
+        <!--<script src="/static/script.js"></script>-->
+        <script src="{% static "lua/js/script.js" %}" type="text/javascript"></script>
+
+        <!-- Boot our application once the body loads. -->
+        <!--<script src="static/time-selector.js"></script>-->
+        <script src="{% static "lua/js/time-selector.js" %}" type="text/javascript"></script>
+
+        <!--<script src="/static/ee_api_js.js"></script>-->
+        <!--<script src="static/main.js"></script>-->
+        <!--<script src="static/query-chart.js"></script>-->
+        <!--<script src="static/searchbox.js"></script>-->
+
+        <script src="{% static "lua/js/main.js" %}" type="text/javascript"></script>
+        <script src="{% static "lua/js/ee_api_ja.js" %}" type="text/javascript"></script>
+        <script src="{% static "lua/js/query-chart.js" %}" type="text/javascript"></script>
+        <script src="{% static "lua/js/searchbox.js" %}" type="text/javascript"></script>
+
+    </body>
+</html>
+
+
+
+
+
+<!--{% endblock %}-->
+
+

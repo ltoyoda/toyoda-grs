@@ -1,0 +1,387 @@
+{% extends "initial/layout.html" %}
+{% load staticfiles %}
+{% block content %}
+
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Learning MAP</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+		position: absolute;
+		top: 120px;
+		left: 100px;
+		width: 800px;
+		height: 450px;
+      }
+      #coords {
+        background-color: black;
+        color: white;
+        padding: 5px;
+      }
+
+    </style>
+  </head>
+  <body>
+                    <p></p><br />
+                    <p></p><br />
+	<h1> Testing Maps </h1>
+<!--Here the map is added to the site-->
+    <div id="map"></div>
+    <div id="coords"></div>
+
+    <script>
+      function initMap() {
+
+			var map = new google.maps.Map(document.getElementById('map'), {
+				  zoom: 8,
+				  center: {lat: 52, lng: 4.5},
+				  <!--mapTypeId: google.maps.MapTypeId.SATELLITE-->
+
+				  zoomControl: true,
+				  scaleControl: true,
+			  	  mapTypeControlOptions: {
+						style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+						mapTypeIds: [
+						google.maps.MapTypeId.HYBRID,
+						<!--google.maps.MapTypeId.ROADMAP,-->
+						google.maps.MapTypeId.TERRAIN,
+						google.maps.MapTypeId.SATELLITE,
+						google.maps.MapTypeId.ROADMAP,
+					    ]
+			      }
+            });
+
+		 // Show the lat and lng under the mouse cursor.
+			var coordsDiv = document.getElementById('coords');
+			map.controls[google.maps.ControlPosition.TOP_CENTER].push(coordsDiv);
+			map.addListener('mousemove', function(event) {
+			  coordsDiv.textContent =
+				  <!--'latitude: ' + Math.round(event.latLng.lat()) + ', ' +-->
+				  <!--'longitude: ' + Math.round(event.latLng.lng());-->
+				  'lat: ' + ((event.latLng.lat().toFixed(4))) + ', ' +
+				  'lng: ' + (event.latLng.lng().toFixed(4));
+			});
+
+
+			// Add some markers to the map.
+			map.data.setStyle(function(feature) {
+			    return {
+				  title: feature.getProperty('name'),
+				  optimized: false
+			    };
+			});
+
+			map.data.addGeoJson(cities);
+
+
+var styles = [
+
+  <!--{stylers: [-->
+      <!--{ hue: "#00ffe6" },-->
+      <!--{ saturation: -20 }]},-->
+
+  {featureType: "road",
+    elementType: "geometry",
+    stylers: [
+      { lightness: 30 },
+      { visibility: "simplified" }
+    ]
+  },
+
+  {featureType: "road",
+    elementType: "labels",
+    stylers: [
+      { visibility: "off" }
+    ]},
+
+	{ featureType: "water",
+	 stylers: [ { hue: "#0055ff" }, { gamma: '0.87' }, { saturation: '5' }, {  lightness:' -10' } ]},
+
+	{ featureType: "landscape.man_made",
+	stylers: [ { hue: "	#ff5e00"}, { saturation: '3'  } , {  lightness:' -11' } ] },
+
+	<!--{ featureType: "road.highway",-->
+	<!--stylers: [ { hue: "#ff8800" }, {  lightness:' 5' } ] },-->
+
+	{ elementType: "geometry.fill",
+	stylers: [ { weight: 0.7 }, { gamma: 0.86 }, { lightness: -3 }, { saturation: 13 } ] },
+
+];
+
+
+	<!--{ "featureType": "landscape.man_made", "stylers": [ { "hue": "#ff1100" } ] },-->
+	<!--{ "elementType": "geometry.fill", "stylers": [ { "weight": 0.7 }, { "gamma": 0.86 },-->
+	<!--{ "lightness": -3 }, { "saturation": 13 } ] },-->
+
+
+map.setOptions({styles: styles});
+
+
+	  }
+
+      // GeoJSON, describing the locations and names of some cities.
+    var cities = {
+        type: 'FeatureCollection',
+
+        features: [{
+          type: 'Feature',
+          geometry: {type: 'Point', coordinates: [-87.650, 41.850]},
+          properties: {name: 'Chicago'}
+        }, {
+          type: 'Feature',
+          geometry: {type: 'Point', coordinates: [4.320, 52.052]},
+          properties: {name: 'Home'}
+        }, {
+          type: 'Feature',
+          geometry: {type: 'Point', coordinates: [-149.900, 61.218]},
+          properties: {name: 'Anchorage'}
+        }, {
+          type: 'Feature',
+          geometry: {type: 'Point', coordinates: [-99.127, 19.427]},
+          properties: {name: 'Mexico City'}
+        }, {
+          type: 'Feature',
+          geometry: {type: 'Point', coordinates: [-0.126, 51.500]},
+          properties: {name: 'London'}
+        }, {
+          type: 'Feature',
+          geometry: {type: 'Point', coordinates: [28.045, -26.201]},
+          properties: {name: 'Johannesburg'}
+        }, {
+          type: 'Feature',
+          geometry: {type: 'Point', coordinates: [15.322, -4.325]},
+          properties: {name: 'Kinshasa'}
+        }, {
+          type: 'Feature',
+          geometry: {type: 'Point', coordinates: [151.207, -33.867]},
+          properties: {name: 'Sydney'}
+        }, {
+          type: 'Feature',
+          geometry: {type: 'Point', coordinates: [0, 0]},
+          properties: {name: '0°N 0°E'}
+        }]
+	}
+
+[ { "featureType": "road.highway", "stylers": [ { "hue": "#ff7700" } ] },{ "featureType": "landscape.man_made", "stylers": [ { "hue": "#ff1100" } ] },{ "elementType": "geometry.fill", "stylers": [ { "weight": 0.7 }, { "gamma": 0.86 }, { "lightness": -3 }, { "saturation": 13 } ] },{ "featureType": "water", "stylers": [ { "hue": "#0055ff" }, { "gamma": 0.87 }, { "saturation": 5 }, { "lightness": -12 } ] },{ "featureType": "landscape.man_made", "stylers": [ { "saturation": 3 }, { "hue": "#ff8800" }, { "lightness": -12 } ] },{ } ]
+
+
+    </script>
+
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt2JrdlwkZXbfc9lrdAtCGm6ki32boS6s&callback=initMap&language=en&region=NL">
+    <!--http://maps.googleapis.com/maps/api/staticmap?center=52.087734,4.334793&zoom=12&format=png&sensor=false&size=640x480&maptype=roadmap&style=feature:road.highway|hue:0xff7700&style=feature:landscape.man_made|hue:0xff1100&style=element:geometry.fill|weight:0.7|gamma:0.86|lightness:-3|saturation:13&style=feature:water|hue:0x0055ff|gamma:0.87|saturation:5|lightness:-12&style=feature:landscape.man_made|saturation:3|hue:0xff8800|lightness:-12-->
+		<!--&language=ar&region=EG-->
+		<!--&language=ja&region=JP-->
+    </script>
+  </body>
+<!--</html>-->
+
+
+
+
+{% endblock %}
+
+       <!--{ "featureType": "road.highway", "stylers": [ { "hue": "#ff7700" } ] },-->
+	<!--{ "featureType": "landscape.man_made", "stylers": [ { "hue": "#ff1100" } ] },-->
+	<!--{ "elementType": "geometry.fill", "stylers": [ { "weight": 0.7 }, { "gamma": 0.86 },-->
+	<!--{ "lightness": -3 }, { "saturation": 13 } ] },-->
+	<!--{ "featureType": "water", "stylers": [ { "hue": "#0055ff" },-->
+	<!--{ "gamma": 0.87 }, { "saturation": 5 }, { "lightness": -12 } ] },-->
+	<!--{ "featureType": "landscape.man_made", "stylers": [ { "saturation": 3 },-->
+
+
+<!--&lt;!&ndash;https://www.wunderground.com/wundermap/?units=english&rad=1&rad.num=1&rad.spd=25&rad.opa=81&rad.type=00Q&rad.type2=&rad.smo=1&rad.stm=0&sat=0&stormreports=0&svr=0&pix=0&cams=0&tor=0&riv=0&wxsn=0&ski=0&tfk=0&mm=0&ndfd=0&fire=0&firewfas=0&extremes=0&hurrevac=0&sst=0&livesurge=0&femaflood=0&tsunami=0&seismicrisk=0&fault=0&fissures=0&fronts=0&dir=1&dir.mode=driving&hur=0&ndash;&gt;-->
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+  <!--<meta charset="UTF-8">-->
+  <!--<title>Weather layer</title>-->
+  <!--<style>-->
+    <!--html, body{-->
+      <!--width: 100%;-->
+      <!--height: 100%;-->
+      <!--margin: 0;-->
+      <!--padding: 0;-->
+    <!--}-->
+    <!--#map-canvas {-->
+      <!--width: 100%;-->
+      <!--height: 100%;-->
+    <!--}-->
+    <!--.gm-style-iw {-->
+      <!--text-align: center;-->
+    <!--}-->
+  <!--</style>-->
+  <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js">-->
+<!--</script>-->
+<!--<script>-->
+  <!--var map;-->
+  <!--var geoJSON;-->
+  <!--var request;-->
+  <!--var gettingData = false;-->
+  <!--var openWeatherMapKey = "ABC..."-->
+  <!--function initialize() {-->
+    <!--var mapOptions = {-->
+      <!--zoom: 4,-->
+      <!--center: new google.maps.LatLng(50,-50)-->
+    <!--};-->
+    <!--map = new google.maps.Map(document.getElementById('map-canvas'),-->
+        <!--mapOptions);-->
+    <!--// Add interaction listeners to make weather requests-->
+    <!--google.maps.event.addListener(map, 'idle', checkIfDataRequested);-->
+    <!--// Sets up and populates the info window with details-->
+    <!--map.data.addListener('click', function(event) {-->
+      <!--infowindow.setContent(-->
+       <!--"<img src=" + event.feature.getProperty("icon") + ">"-->
+       <!--+ "<br /><strong>" + event.feature.getProperty("city") + "</strong>"-->
+       <!--+ "<br />" + event.feature.getProperty("temperature") + "&deg;C"-->
+       <!--+ "<br />" + event.feature.getProperty("weather")-->
+       <!--);-->
+      <!--infowindow.setOptions({-->
+          <!--position:{-->
+            <!--lat: event.latLng.lat(),-->
+            <!--lng: event.latLng.lng()-->
+          <!--},-->
+          <!--pixelOffset: {-->
+            <!--width: 0,-->
+            <!--height: -15-->
+          <!--}-->
+        <!--});-->
+      <!--infowindow.open(map);-->
+    <!--});-->
+  <!--}-->
+  <!--var checkIfDataRequested = function() {-->
+    <!--// Stop extra requests being sent-->
+    <!--while (gettingData === true) {-->
+      <!--request.abort();-->
+      <!--gettingData = false;-->
+    <!--}-->
+    <!--getCoords();-->
+  <!--};-->
+  <!--// Get the coordinates from the Map bounds-->
+  <!--var getCoords = function() {-->
+    <!--var bounds = map.getBounds();-->
+    <!--var NE = bounds.getNorthEast();-->
+    <!--var SW = bounds.getSouthWest();-->
+    <!--getWeather(NE.lat(), NE.lng(), SW.lat(), SW.lng());-->
+  <!--};-->
+  <!--// Make the weather request-->
+  <!--var getWeather = function(northLat, eastLng, southLat, westLng) {-->
+    <!--gettingData = true;-->
+    <!--var requestString = "http://api.openweathermap.org/data/2.5/box/city?bbox="-->
+                        <!--+ westLng + "," + northLat + "," //left top-->
+                        <!--+ eastLng + "," + southLat + "," //right bottom-->
+                        <!--+ map.getZoom()-->
+                        <!--+ "&cluster=yes&format=json"-->
+                        <!--+ "&APPID=" + openWeatherMapKey;-->
+    <!--request = new XMLHttpRequest();-->
+    <!--request.onload = proccessResults;-->
+    <!--request.open("get", requestString, true);-->
+    <!--request.send();-->
+  <!--};-->
+  <!--// Take the JSON results and proccess them-->
+  <!--var proccessResults = function() {-->
+    <!--console.log(this);-->
+    <!--var results = JSON.parse(this.responseText);-->
+    <!--if (results.list.length > 0) {-->
+        <!--resetData();-->
+        <!--for (var i = 0; i < results.list.length; i++) {-->
+          <!--geoJSON.features.push(jsonToGeoJson(results.list[i]));-->
+        <!--}-->
+        <!--drawIcons(geoJSON);-->
+    <!--}-->
+  <!--};-->
+  <!--var infowindow = new google.maps.InfoWindow();-->
+  <!--// For each result that comes back, convert the data to geoJSON-->
+  <!--var jsonToGeoJson = function (weatherItem) {-->
+    <!--var feature = {-->
+      <!--type: "Feature",-->
+      <!--properties: {-->
+        <!--city: weatherItem.name,-->
+        <!--weather: weatherItem.weather[0].main,-->
+        <!--temperature: weatherItem.main.temp,-->
+        <!--min: weatherItem.main.temp_min,-->
+        <!--max: weatherItem.main.temp_max,-->
+        <!--humidity: weatherItem.main.humidity,-->
+        <!--pressure: weatherItem.main.pressure,-->
+        <!--windSpeed: weatherItem.wind.speed,-->
+        <!--windDegrees: weatherItem.wind.deg,-->
+        <!--windGust: weatherItem.wind.gust,-->
+        <!--icon: "http://openweathermap.org/img/w/"-->
+              <!--+ weatherItem.weather[0].icon  + ".png",-->
+        <!--coordinates: [weatherItem.coord.lon, weatherItem.coord.lat]-->
+      <!--},-->
+      <!--geometry: {-->
+        <!--type: "Point",-->
+        <!--coordinates: [weatherItem.coord.lon, weatherItem.coord.lat]-->
+      <!--}-->
+    <!--};-->
+    <!--// Set the custom marker icon-->
+    <!--map.data.setStyle(function(feature) {-->
+      <!--return {-->
+        <!--icon: {-->
+          <!--url: feature.getProperty('icon'),-->
+          <!--anchor: new google.maps.Point(25, 25)-->
+        <!--}-->
+      <!--};-->
+    <!--});-->
+    <!--// returns object-->
+    <!--return feature;-->
+  <!--};-->
+  <!--// Add the markers to the map-->
+  <!--var drawIcons = function (weather) {-->
+     <!--map.data.addGeoJson(geoJSON);-->
+     <!--// Set the flag to finished-->
+     <!--gettingData = false;-->
+  <!--};-->
+  <!--// Clear data layer and geoJSON-->
+  <!--var resetData = function () {-->
+    <!--geoJSON = {-->
+      <!--type: "FeatureCollection",-->
+      <!--features: []-->
+    <!--};-->
+    <!--map.data.forEach(function(feature) {-->
+      <!--map.data.remove(feature);-->
+    <!--});-->
+  <!--};-->
+  <!--google.maps.event.addDomListener(window, 'load', initialize);-->
+<!--</script>-->
+<!--</head>-->
+<!--<body>-->
+
+
+<!--&lt;!&ndash;Weather underground example&ndash;&gt;-->
+<!--&lt;!&ndash;<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;<script>&ndash;&gt;-->
+<!--&lt;!&ndash;jQuery(document).ready(function($) {&ndash;&gt;-->
+  <!--&lt;!&ndash;$.ajax({&ndash;&gt;-->
+  <!--&lt;!&ndash;url : "http://api.wunderground.com/api/2df9c28d29823d89/geolookup/conditions/q/IA/Cedar_Rapids.json",&ndash;&gt;-->
+  <!--&lt;!&ndash;// http://api.wunderground.com/api/2df9c28d29823d89/animatedradar/animatedsatellite/image.gif?num=5&delay=50&rad.maxlat=47.709&rad.maxlon=-69.263&rad.minlat=31.596&rad.minlon=-97.388&rad.width=640&rad.height=480&rad.rainsnow=1&rad.reproj.automerc=1&rad.num=5&sat.maxlat=47.709&sat.maxlon=-69.263&sat.minlat=31.596&sat.minlon=-97.388&sat.width=640&sat.height=480&sat.key=sat_ir4_bottom&sat.gtt=107&sat.proj=me&sat.timelabel=0&sat.num=5&ndash;&gt;-->
+  <!--&lt;!&ndash;// GET http://api.wunderground.com/api/2df9c28d29823d89/features/image.format?params&ndash;&gt;-->
+
+  <!--&lt;!&ndash;dataType : "jsonp",&ndash;&gt;-->
+  <!--&lt;!&ndash;success : function(parsed_json) {&ndash;&gt;-->
+  <!--&lt;!&ndash;var location = parsed_json['location']['city'];&ndash;&gt;-->
+  <!--&lt;!&ndash;var temp_f = parsed_json['current_observation']['temp_f'];&ndash;&gt;-->
+  <!--&lt;!&ndash;alert("Current temperature in " + location + " is: " + temp_f);&ndash;&gt;-->
+  <!--&lt;!&ndash;}&ndash;&gt;-->
+  <!--&lt;!&ndash;});&ndash;&gt;-->
+<!--&lt;!&ndash;});&ndash;&gt;-->
+<!--&lt;!&ndash;</script>&ndash;&gt;-->
+
+<!--<div id="map-canvas"></div>-->
+
+<!--</body>-->
+<!--</html>-->
+
