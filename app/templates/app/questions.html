@@ -1,31 +1,57 @@
 {% extends "initial/layout.html" %}
-
+{% load staticfiles %}
 {% block content %}
 
-<h2>What is the cause of the deformation?</h2>
-<h3>{{ message }}</h3>
+<h2>Choose the main topic of the elicitation</h2>
+<!--<h3>{{ message }}</h3>-->
 
-<address>
-    Click on the right answer<br />
-    and it will take you to the next one<br />
-    works as a tree, blablablabla...
-</address>
-
-                    <p> </p> <br />
-                    <p></p>
-
-    <p class="lead">What is the main cause of the deformation?</p>
-        <a class="btn btn-default" href="{% url 'B1' %}">Prospection</a>
-        <a class="btn btn-default" href="{% url 'B2' %}"> Natural Hazards </a>
-        <a class="btn btn-default" href="{% url 'B3' %}"> Soil Decomposition </a>
+<!--<address>-->
+    <!--Click on the right answer<br />-->
+    <!--works as a tree, blablablabla...-->
+<!--</address>-->
 
                     <p> </p> <br />
                     <p></p>
 
+    <!--<p class="lead">What is the main cause of the deformation?</p>-->
+        <div class="row">
 
-         <a class="btn btn-default" href="{% url 'testando' %}"> Earthquakes </a>
+            <div class="col-md-12">
+                <a href="{% url 'civil' %}"><h2>Civil Infrastructure</h2></a>
+                <!--<a href="{% url 'geolocation' %}"><img id="compImg" src="{% static "app/images/muro.jpg" %}" alt="compass"/></a>-->
+                    <p>Civil engineering applications - Dams, Reservoirs and Infrastructure objects</p>
+                    <p></p><br />
+            </div>
+
+                        <div class="col-md-12">
+                <a href="{% url 'B1' %}"><h2>Large Scale Ground Deformation</h2></a>
+                    <p>Prospection - Oil and Gas applications</p>
+                    <p></p><br />
+            </div>
 
 
+                        <div class="col-md-12">
+                <a href="{% url 'B2' %}"><h2>Sink Holes</h2></a>
+                    <p> Get started with questions</p>
+                    <p></p><br />
+            </div>
+
+                        <div class="col-md-12">
+                <a href="{% url 'civil' %}"><h2>Earthquakes</h2></a>
+                    <p> Get started with questions</p>
+                    <p></p><br />
+            </div>
+
+        </div>
+
+
+        <!--<a class="btn btn-default" href="{% url 'civil' %}"> Civil Infrastructure </a>-->
+        <!--<a class="btn btn-default" href="{% url 'B1' %}">Ground Deformation</a>-->
+        <!--<a class="btn btn-default" href="{% url 'B2' %}"> Sink holes </a>-->
+        <!--<a class="btn btn-default" href="{% url 'testando' %}"> Earthquakes </a>-->
+
+                    <p> </p> <br />
+                    <p></p>
 {% endblock %}
 
 

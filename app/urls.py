@@ -23,7 +23,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index, name='index_app'),
     url(r'^questions_edit$', views.index, name='questions_edit'),
-    url(r'^questions$', views.questionnaire, name='questions'),
+    # url(r'^questions$', views.questionnaire, name='questions'),
     # ex: /galho/5/
     url(r'^(?P<question_id>[0-9]+)/$', views.detail, name='detail'),
     # ex: /galho/5/results/
@@ -38,7 +38,7 @@ urlpatterns = [
     url(r'^points_amir$', views.poi_list_amir, name='points_amir'),
     url(r'^testando$', views.testando, name='testando'),
     url(r'^model$', views.model, name='model'),
-    url(r'^query$', views.query, name='query'),
+    # url(r'^query$', views.query, name='query'),
     url(r'^grs$', views.grs, name='grs'),
     url(r'^links$', views.links, name='links'),
     url(r'^contact$', views.contact, name='contact'),
@@ -48,7 +48,7 @@ urlpatterns = [
     ### urls created for the questions
     url(r'^B1$', views.B1, name='B1'),
     url(r'^B2$', views.B2, name='B2'),
-    url(r'^B3$', views.B3, name='B3'),
+    # url(r'^civil$', views.civil, name='civil'),
 
     url(r'^B1_a$', views.B1_a, name='B1_a'),
     url(r'^B1_b$', views.B1_b, name='B1_b'),

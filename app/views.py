@@ -211,10 +211,10 @@ def B2(request):
             'message':'Your application description page - change in app/views.py',
             'year':datetime.now().year,}))
 
-def B3(request):
+def civil(request):
     assert isinstance(request, HttpRequest)
-    return render(request,'app/B3.html',context_instance = RequestContext(request,
-        {'title':'Soil Decomposition',
+    return render(request,'app/civil.html',context_instance = RequestContext(request,
+        {'title':'Structure Orientation',
             'message':'Your application description page - change in app/views.py',
             'year':datetime.now().year,}))
 

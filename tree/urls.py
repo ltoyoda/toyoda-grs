@@ -30,8 +30,15 @@ urlpatterns = [
     url(r'^lua/', include('lua.urls')),
     # url(r'^contacts/', include('contacts.urls')),
 
-# # urls for the initial part
+# # urls for the initial part app
     url(r'^$', 'app.views.home', name='home'),
+    url(r'^query$', 'app.views.query', name='query'),
+    url(r'^questions$', 'app.views.questionnaire', name='questions'),
+    url(r'^civil$', 'app.views.civil', name='civil'),   # To use the adresses directly
+
+# # urls for the geolocation and cloud part lua
+    url(r'^geolocation$', 'lua.views.geolocation', name='geolocation'),
+        url(r'^cloud$', 'lua.views.cloud', name='cloud'),
 
 # urls already installed
     url(r'^login/$',
