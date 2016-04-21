@@ -32,6 +32,7 @@ urlpatterns = [
 
 # # urls for the initial part app
     url(r'^$', 'app.views.home', name='home'),
+    url(r'^in_construction$', 'app.views.in_construction', name='in_construction'),
     url(r'^query$', 'app.views.query', name='query'),
     url(r'^questions$', 'app.views.questionnaire', name='questions'),
     url(r'^civil$', 'app.views.civil', name='civil'),   # To use the adresses directly

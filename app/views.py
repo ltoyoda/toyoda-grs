@@ -33,6 +33,15 @@ def questionnaire(request):
             'message':'Your application description page.',
             'year':datetime.now().year,}))
 
+def in_construction(request):
+    """Renders the about page."""
+    assert isinstance(request, HttpRequest)
+    return render(request, 'app/in_construction.html', context_instance = RequestContext(request,
+        {'title':'In Construction',
+            'message':'I am still working on this part....',
+            'year':datetime.now().year,}))
+
+
 
 class IndexView(generic.ListView):
     template_name = 'app/questions.html'
