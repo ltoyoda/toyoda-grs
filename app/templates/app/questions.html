@@ -2,52 +2,56 @@
 {% load staticfiles %}
 {% block content %}
 
-<h2>Choose the main topic of the elicitation</h2>
+<h2>What is the main cause of the deformation?</h2>
 <!--<h3>{{ message }}</h3>-->
 
-<!--<address>-->
-    <!--Click on the right answer<br />-->
-    <!--works as a tree, blablablabla...-->
-<!--</address>-->
-
-                    <p> </p> <br />
-                    <p></p>
+                    <p></p> <br />
+                    <p></p> <br />
 
     <!--<p class="lead">What is the main cause of the deformation?</p>-->
         <div class="row">
 
-            <div class="col-md-12">
-                <a href="{% url 'civil' %}"><h2>Civil Infrastructure</h2></a>
+            <div class="col-md-4">
+                <a href="{% url 'civil' %}"><h3>Infrastructure</h3></a>
                 <!--<a href="{% url 'geolocation' %}"><img id="compImg" src="{% static "app/images/muro.jpg" %}" alt="compass"/></a>-->
-                    <p>Civil engineering applications - Dams, Reservoirs and Infrastructure objects</p>
-                    <p></p><br />
+                    <p>Civil engineering applications - Dams, railways and foundations.</p>
             </div>
 
-                        <div class="col-md-12">
-                <a href="{% url 'B1' %}"><h2>Large Scale Ground Deformation</h2></a>
-                    <p>Prospection - Oil and Gas applications</p>
-                    <p></p><br />
+            <div class="col-md-4">
+                <a href="{% url 'prospection' %}"><h3>Prospection</h3></a>
+                    <p>Energy related applications - Reservoirs, oil, gas and coal. </p>
             </div>
 
 
-                        <div class="col-md-12">
-                <a href="{% url 'in_construction' %}"><h2>Sink Holes</h2></a>
+            <div class="col-md-4">
+                <a href="{% url 'natural' %}"><h3>Natural Events</h3></a>
+                    <p> Natural Hazards - Earthquakes, landslides, volcanism and glaciers.</p>
+            </div>
+        </div>
+                    <p> </p> <br />
+
+        <div class="row">
+            <div class="col-md-4">
+                <a href="{% url 'sinkholes' %}"><h3>Sinkholes</h3></a>
                     <p> Get started with questions</p>
-                    <p></p><br />
             </div>
 
-                        <div class="col-md-12">
-                <a href="{% url 'in_construction' %}"><h2>Earthquakes</h2></a>
-                    <p> Get started with questions</p>
-                    <p></p><br />
+            <div class="col-md-4">
+                <a href="{% url 'peat' %}"><h3>Peat Decomposition</h3></a>
+                    <p> Soil decomposition due to Peat oxidation. </p>
+            </div>
+
+            <div class="col-md-4">
+                <a href="{% url 'in_construction' %}"><h3> Other / Unknown</h3></a>
+                    <p> General questions.</p>
             </div>
 
         </div>
 
 
         <!--<a class="btn btn-default" href="{% url 'civil' %}"> Civil Infrastructure </a>-->
-        <!--<a class="btn btn-default" href="{% url 'B1' %}">Ground Deformation</a>-->
-        <!--<a class="btn btn-default" href="{% url 'B2' %}"> Sink holes </a>-->
+        <!--<a class="btn btn-default" href="{% url 'prospection' %}">Ground Deformation</a>-->
+        <!--<a class="btn btn-default" href="{% url 'natural' %}"> Sink holes </a>-->
         <!--<a class="btn btn-default" href="{% url 'testando' %}"> Earthquakes </a>-->
 
                     <p> </p> <br />

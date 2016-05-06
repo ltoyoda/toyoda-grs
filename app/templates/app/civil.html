@@ -5,32 +5,38 @@
 <h2>{{title}}</h2>
 <!--<h3>{{ message }}</h3>-->
 
-    <p class="lead"> Please answer the following questions:</p>
-
-            <p>  </p><br />
-        <h4>What is the orientation of the dam?.............................................................. <input type="text" size=10 id="field1" />  {{ form.r }}  </h4>
-            <p> azimuth heading of dam, with water side to the left</p>
-            <p>  </p><br />
-        <h4>What is the slope of dam?........................................................................... <input type="text" size=10 id="field1" /> {{ form.s }} </h4>
-            <p>expressed in degrees, positive for a slope corresponding to</p>
-            <p>  </p><br />
-        <h4>Is there a curvature to the right of a rail track............................................... <input type="text" size=10 id="field1" />  {{ form.t }} </h4>
-            <p> bla bla bla</p>
-            <p>  </p><br />
-        <h4>What is the incidence angle?...................................................................... <input type="text" size=10 id="field1" />  {{ form.u }} </h4>
-            <p>Incidence angle in degrees, e.g 38 degree</p>
-            <p>  </p><br />
-        <h4>What is the TSX_heading : ........................................................................ <input type="text" size=10 id="field1" />  {{ form.u }} </h4>
-            <p>Heading of track, e.g. 352 for ascending</p>
-            <p>  </p><br />
-
-            <p> </p><br />
-            <p></p><br />
+    <p class="lead">To wich activity is the deformation related?</p>
 
 
-    <p class="lead">Continue to studyarea?</p>
-        <a class="btn btn-default" href="{% url 'geolocation' %}">Geolocation</a>
-        <a class="btn btn-default" href="{% url 'in_construction' %}"> Other </a>
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <a href="{% url 'dams' %}"><h3>Dams</h3></a>
+                <!--<a href="{% url 'dams' %}"><img id="compImg" src="{% static "app/images/muro.jpg" %}" alt="compass"/></a>-->
+                    <!--<p>Civil engineering applications - Dams, railways and Infrastructure objects</p>-->
+                    <p></p><br />
+            </div>
+
+            <div class="col-md-4">
+                <a href="{% url 'q_railways' %}"><h3>Railways</h3></a>
+                <!--<a href="{% url 'railways' %}"><img id="compImg" src="{% static "app/images/muro.jpg" %}" alt="compass"/></a>-->
+                    <!--<p>Civil engineering applications - Dams, railways and Infrastructure objects</p>-->
+                    <p></p><br />
+            </div>
+
+            <div class="col-md-4">
+                <a href="{% url 'foundations' %}"><h3>Foundations</h3></a>
+                <!--<a href="{% url 'foundations' %}"><img id="compImg" src="{% static "app/images/muro.jpg" %}" alt="compass"/></a>-->
+                    <!--<p>Civil engineering applications - Dams, railways and Infrastructure objects</p>-->
+                    <p></p><br />
+            </div>
+
+         </div>
+
+    <!--<p class="lead">Continue to studyarea?</p>-->
+        <!--<a class="btn btn-default" href="{% url 'geolocation' %}">Geolocation</a>-->
+        <!--<a class="btn btn-default" href="{% url 'in_construction' %}"> Other </a>-->
 
 
 {% endblock %}

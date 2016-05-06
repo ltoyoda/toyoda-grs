@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'plot',
     'hw1',
     'lua',
+    'questions',
     # 'contacts',
 ]
 

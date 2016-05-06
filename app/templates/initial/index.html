@@ -1,5 +1,5 @@
 {% extends "initial/layout.html" %}
-
+{% load staticfiles %}
 {% block content %}
 
 <div class="row">
@@ -22,7 +22,7 @@
             <br />
             <p> </p>
             <p></p>
-    <p><a href="{% url 'query' %}" class="btn btn-primary btn-large">Get Started! &raquo;</a></p>
+    <p><a href="{% url 'questions' %}" class="btn btn-primary btn-large">Get Started! &raquo;</a></p>
         <!--<p><a href="{% url 'testando' %}" class="btn btn-primary btn-large">Get Started! &raquo;</a></p>-->
 </div>
 

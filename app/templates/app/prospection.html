@@ -1,0 +1,48 @@
+{% extends "initial/layout.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<h2>{{title}}</h2>
+<!--<h3>{{ message }}</h3>-->
+
+    <p class="lead">To wich activity is the deformation related?</p>
+        <!--<a class="btn btn-default" href="{% url 'oil' %}">Oil</a>-->
+        <!--<a class="btn btn-default" href="{% url 'gas' %}"> Gas </a>-->
+        <!--<a class="btn btn-default" href="{% url 'mining' %}"> Mining </a>-->
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <a href="{% url 'oil' %}"><h3>Oil</h3></a>
+                <!--<a href="{% url 'oil' %}"><img id="compImg" src="{% static "app/images/muro.jpg" %}" alt="compass"/></a>-->
+                    <!--<p>Civil engineering applications - Dams, railways and Infrastructure objects</p>-->
+                    <p></p><br />
+            </div>
+
+            <div class="col-md-4">
+                <a href="{% url 'gas' %}"><h3>Gas</h3></a>
+                <!--<a href="{% url 'gas' %}"><img id="compImg" src="{% static "app/images/muro.jpg" %}" alt="compass"/></a>-->
+                    <!--<p>Civil engineering applications - Dams, railways and Infrastructure objects</p>-->
+                    <p></p><br />
+            </div>
+
+            <div class="col-md-4">
+                <a href="{% url 'mining' %}"><h3>Mining</h3></a>
+                <!--<a href="{% url 'mining' %}"><img id="compImg" src="{% static "app/images/muro.jpg" %}" alt="compass"/></a>-->
+                    <!--<p>Civil engineering applications - Dams, railways and Infrastructure objects</p>-->
+                    <p></p><br />
+            </div>
+
+         </div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

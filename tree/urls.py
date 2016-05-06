@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^plot/', include('plot.urls')),
     url(r'^hw1/', include('hw1.urls')),
     url(r'^lua/', include('lua.urls')),
+    url(r'^questions/', include('questions.urls')),
     # url(r'^contacts/', include('contacts.urls')),
 
 # # urls for the initial part app

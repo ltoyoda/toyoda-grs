@@ -205,72 +205,117 @@ def model(request):
 
 #####################################################################################
 # # Simple views for the questionaire tree:
-## Filhos
-def B1(request):
+## Parents
+def prospection(request):
     assert isinstance(request, HttpRequest)
-    return render(request,'app/B1.html',context_instance = RequestContext(request,
+    return render(request,'app/prospection.html',context_instance = RequestContext(request,
         {'title':'Prospection',
             'message':'Your application description page - change in app/views.py',
             'year':datetime.now().year,}))
 
-def B2(request):
+def natural(request):
     assert isinstance(request, HttpRequest)
-    return render(request,'app/B2.html',context_instance = RequestContext(request,
-        {'title':'Natural Hazards',
+    return render(request,'app/natural.html',context_instance = RequestContext(request,
+        {'title':'Natural Events',
             'message':'Your application description page - change in app/views.py',
             'year':datetime.now().year,}))
 
 def civil(request):
     assert isinstance(request, HttpRequest)
     return render(request,'app/civil.html',context_instance = RequestContext(request,
+        {'title':'Infrastructure',
+            'message':'Your application description page - change in app/views.py',
+            'year':datetime.now().year,}))
+
+
+### Children Civil
+def dams(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/dams.html',context_instance = RequestContext(request,
+        {'title':'Dams',
+            'message':'Your application description page - change in app/views.py',
+            'year':datetime.now().year,}))
+
+def railways(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/railways.html',context_instance = RequestContext(request,
         {'title':'Structure Orientation',
             'message':'Your application description page - change in app/views.py',
             'year':datetime.now().year,}))
 
-### Netos
-def B1_a(request):
+def foundations(request):
     assert isinstance(request, HttpRequest)
-    return render(request,'app/B1_a.html',context_instance = RequestContext(request,
+    return render(request,'app/foundations.html',context_instance = RequestContext(request,
+        {'title':'Foundations',
+            'message':'Your application description page - change in app/views.py',
+            'year':datetime.now().year,}))
+
+
+### Children Prospection
+def oil(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/oil.html',context_instance = RequestContext(request,
         {'title':'Oil',
             'message':'Your application description page - change in app/views.py',
             'year':datetime.now().year,}))
 
-def B1_b(request):
+def gas(request):
     assert isinstance(request, HttpRequest)
-    return render(request,'app/B1_b.html',context_instance = RequestContext(request,
+    return render(request,'app/gas.html',context_instance = RequestContext(request,
         {'title':'Gas',
             'message':'Your application description page - change in app/views.py',
             'year':datetime.now().year,}))
 
-def B1_c(request):
+def mining(request):
     assert isinstance(request, HttpRequest)
-    return render(request,'app/B1_b.html',context_instance = RequestContext(request,
+    return render(request,'app/mining.html',context_instance = RequestContext(request,
         {'title':'Mineral extraction',
             'message':'Your application description page - change in app/views.py',
             'year':datetime.now().year,}))
 
-##
-def B2_a(request):
+
+### Children Natural Events
+def landslides(request):
     assert isinstance(request, HttpRequest)
-    return render(request,'app/B2_a.html',context_instance = RequestContext(request,
+    return render(request,'app/landslides.html',context_instance = RequestContext(request,
         {'title':'Landslides',
             'message':'Your application description page - change in app/views.py',
             'year':datetime.now().year,}))
 
-def B2_b(request):
+def earthquakes(request):
     assert isinstance(request, HttpRequest)
-    return render(request,'app/B2_b.html',context_instance = RequestContext(request,
+    return render(request,'app/earthquakes.html',context_instance = RequestContext(request,
         {'title':'Earthquakes',
             'message':'Your application description page - change in app/views.py',
             'year':datetime.now().year,}))
 
-def B2_c(request):
+def volcanism(request):
     assert isinstance(request, HttpRequest)
-    return render(request,'app/B2_c.html',context_instance = RequestContext(request,
+    return render(request,'app/volcanism.html',context_instance = RequestContext(request,
         {'title':'Volcanism',
             'message':'Your application description page - change in app/views.py',
             'year':datetime.now().year,}))
+
 ##
+
+def sinkholes(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/sinkholes.html',context_instance = RequestContext(request,
+        {'title':'Sinkholes',
+            'message':'Your application description page - change in app/views.py',
+            'year':datetime.now().year,}))
+
+
+def peat(request):
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/peat.html',context_instance = RequestContext(request,
+        {'title':'Peat',
+            'message':'Your application description page - change in app/views.py',
+            'year':datetime.now().year,}))
+
+####
+
+
 def B3_a(request):
     assert isinstance(request, HttpRequest)
     return render(request,'app/B3_a.html',context_instance = RequestContext(request,

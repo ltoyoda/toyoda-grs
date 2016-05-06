@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<form method="post" action="">{% csrf_token %}
+    Hello, World! The sine of {{ form.r }}
+    <input type="submit" value="equals" />
+</form>
+
+</body>
+</html>
+
+
+<!--
+
+# Make info needed in the web form
+form = InputForm()
+# Make HTML code
+render_to_response('hw1.html',
+    {'form': form}, context_instance=RequestContext(request))
+
+
+<form method="post" action="">
+<div style='display:none'>
+<input type='hidden' name='csrfmiddlewaretoken'
+value='oPWMuuy1gLlXm9GvUZINv49eVUYnux5Q' /></div>
+    Hello, World! The sine of <input type="text" name="r" id="id_r" />
+    <input type="submit" value="equals" />
+</form>  -->

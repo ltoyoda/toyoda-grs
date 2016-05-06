@@ -1,0 +1,124 @@
+{% extends "initial/layout.html" %}
+{% load staticfiles %}
+{% block content %}
+<html lang="en">
+<head>
+    <h2>{{title}}</h2>
+    <!--<h3>{{ message }}</h3>-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style type="text/css">
+        /*styles for the table on this page*/
+        table {
+            <!--border-right: 1px solid #A7A37E;-->
+            border-bottom: 1px solid #A7A37E;
+            border: 2px solid black;
+            text-align: center;
+        }
+        td, th {
+            font-size: 14px;
+            <!--padding: 3px;-->
+        }
+        th {
+            font-weight: bold !important;
+            border-bottom: 1px solid #333333;
+            background: url(images/th_bg.png) repeat-x;
+            border-top: 1px solid #333333;
+            padding-top: 4px;
+            border-left: 1px solid #A7A37E;
+            position: relative;
+        }
+        td {
+            border-left: 1px solid #A7A37E;
+        }
+
+        #label {
+            text-align: left;
+        }
+        #datain {
+	        position: relative;
+            text-align: center;
+        }
+        #tipo{
+            font-size: 16px;
+            text-align: center;
+        }
+        .even {
+            background-color: #DCDCDC;
+        }
+    </style>
+            <!--<link rel="stylesheet" href="{% static "lua/css/global.css" %}">-->
+        <script src="{% static "hw1/js/jquery.js" %}" type="text/javascript"></script>
+        <script src="{% static "hw1/js/table_jquery.js" %}" type="text/javascript"></script>
+</head>
+
+<body>
+  <form method=post action="">{% csrf_token %}
+    <body id="twoCol">
+        <div id="container">
+          <!--<div id="banner"><img src="../images/banner.png" alt="figure?" width="760" height="65"><span id="badge"><a href="http://www.sawmac.com/missing/js/"></a></span></div>-->
+            <div id="contentWrap">
+                <div id="main">
+                    <h2>Variogram</h2>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="striped">
+                        <thead>
+                            <tr>
+                                <th id="tipo" scope="col">Questions</th>
+                                <th id="tipo" scope="col">Input</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for field in form %}
+                            <tr>
+                            <!--<td>{{ field.name }}</td>-->
+                                <td id="label">{{ field.label }}</td>
+                                <td id="datain">{{ field }}</td>
+                                <td>{{ field.errors }}</td>
+                                <td></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <p><br /></p>
+        <p><br /></p>
+
+        <h4>Calculate and load graph:</h4>
+        <input type=submit value=Submit></form>
+            {% if result != None %}
+            {% load static %}
+            {% load staticfiles %}
+            <img src="{% static "first graph.png" %}" alt="My image"  width="50%" height="50%"/>
+            {% endif %}
+        <p><br /></p>
+
+  <!--************************************************************************-->
+  <!--For loading the figure from staticfiles: -->
+
+  <!--<div id="ci">-->
+      <!--<h2>Load figure</h2>-->
+      <!--<input type="button" name="Calculate" value="Click here"-->
+      <!--onclick=" <img src="/stickyImage" />-->
+  <!--</div>-->
+
+<SCRIPT type="text/javascript">
+$("#ci").click(function(){
+
+    $("img",this).remove();
+    $(this).html('<img src="{% static "first graph.png" %}" alt="Variogram image"  width="50%" height="50%"/ />');
+
+    return false;
+});
+</SCRIPT>
+
+
+
+  </form>
+</body>
+{% endblock %}
+
+
+

@@ -46,15 +46,21 @@ urlpatterns = [
 
 
     ### urls created for the questions
-    url(r'^B1$', views.B1, name='B1'),
-    url(r'^B2$', views.B2, name='B2'),
+    url(r'^prospection$', views.prospection, name='prospection'),
+    url(r'^natural$', views.natural, name='natural'),
     # url(r'^civil$', views.civil, name='civil'),
+    url(r'^dams$', views.dams, name='dams'),
+    url(r'^railways$', views.railways, name='railways'),
+    url(r'^foundations$', views.foundations, name='foundations'),
 
-    url(r'^B1_a$', views.B1_a, name='B1_a'),
-    url(r'^B1_b$', views.B1_b, name='B1_b'),
-    url(r'^B1_c$', views.B1_c, name='B1_c'),
+    url(r'^oil$', views.oil, name='oil'),
+    url(r'^gas$', views.gas, name='gas'),
+    url(r'^mining$', views.mining, name='mining'),
 
-    url(r'^B2_a$', views.B2_a, name='B2_a'),
-    url(r'^B2_b$', views.B2_b, name='B2_b'),
-    url(r'^B2_c$', views.B2_c, name='B2_c'),
+    url(r'^landslides$', views.landslides, name='landslides'),
+    url(r'^earthquakes$', views.earthquakes, name='earthquakes'),
+    url(r'^volcanism$', views.volcanism, name='volcanism'),
+
+    url(r'^sinkholes$', views.sinkholes, name='sinkholes'),
+    url(r'^peat$', views.peat, name='peat'),
 ]

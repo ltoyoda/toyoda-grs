@@ -30,6 +30,7 @@
       }
 
     </style>
+
   </head>
   <body>
                     <p></p><br />
@@ -174,6 +175,10 @@ map.setOptions({styles: styles});
 
 [ { "featureType": "road.highway", "stylers": [ { "hue": "#ff7700" } ] },{ "featureType": "landscape.man_made", "stylers": [ { "hue": "#ff1100" } ] },{ "elementType": "geometry.fill", "stylers": [ { "weight": 0.7 }, { "gamma": 0.86 }, { "lightness": -3 }, { "saturation": 13 } ] },{ "featureType": "water", "stylers": [ { "hue": "#0055ff" }, { "gamma": 0.87 }, { "saturation": 5 }, { "lightness": -12 } ] },{ "featureType": "landscape.man_made", "stylers": [ { "saturation": 3 }, { "hue": "#ff8800" }, { "lightness": -12 } ] },{ } ]
 
+
+          var script = document.createElement('script');
+script.src = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp';
+document.getElementsByTagName('head')[0].appendChild(script);
 
     </script>
 
