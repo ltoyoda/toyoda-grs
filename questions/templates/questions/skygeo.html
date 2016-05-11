@@ -1,0 +1,154 @@
+{% extends "initial/layout.html" %}
+{% load staticfiles %}
+{% block content %}
+
+
+
+
+<!DOCTYPE html>
+
+
+
+<html lang="en">
+<head>
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+    <meta http-equiv="CACHE-CONTROL" content="NO-STORE">
+    <meta charset="utf-8">
+    <title>SkyGeo Image Catalog</title>
+    <meta name="author" content="MWS">
+    <!--<link href="/static/base/lib/bootstrap/css/bootstrap.css" rel="stylesheet">-->
+
+	<!--<link href="/static/base/lib/leaflet/leaflet.css" rel="stylesheet">-->
+	<!--<link href="/static/base/lib/leaflet/leaflet.draw.css" rel="stylesheet">-->
+	<!--<link href="/static/base/css/angular-ui-switch.min.css" rel="stylesheet">-->
+	<!--<link href="/static/base/css/angular-ui-notification.min.css" rel="stylesheet">-->
+	<!--<link href="/static/base/css/leaflet-search.css" rel="stylesheet">-->
+	<!--<link href="/static/base/css/tsxcat.css" rel="stylesheet">-->
+	<!--<link href="/static/base/css/ng-table.min.css" rel="stylesheet">-->
+	<!--<link href='https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css' rel='stylesheet' />-->
+	<!--<link href="/static/base/css/angular-slider.min.css" rel="stylesheet">-->
+
+    <!-- Begin Inspectlet Embed Code -->
+    <!--If we would really like to use a third party service to analyze a customer's behavior  -->
+    <!-- End Inspectlet Embed Code -->
+</head>
+
+
+
+
+
+<!--<div id="mainheader" class="navbar navbar-inverse navbar-fixed-top" role="navigation">-->
+<!--<div  class="navbar navbar-inverse navbar-fixed-top" role="navigation">-->
+    <!--<div class="container-fluid" style="">-->
+
+        <!--<div class="navbar-header">-->
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <!--<a style="color:white; font-weight: bold;font-size: 25px" class="navbar-brand" href="">-->
+                <!--<img style="margin:-5px;max-height:45px; margin-top: -7px;" src="/static/base/img/skygeo.jpeg" alt="SkyGeo logo"/> SkyGeo Image Catalog-->
+            <!--</a>-->
+        <!--</div>-->
+
+    <!--<div class="navbar-collapse collapse in" collapse="true" aria-expanded="true">-->
+        <!--<ul class="nav navbar-nav navbar-right  ">-->
+            <!--<li id="fat-menu" class="dropdown">-->
+              <!--<a id="drop" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">-->
+                <!--<span style="color:white;" class="glyphicon glyphicon-user">-->
+                  <!--luciana.toyoda <span class="caret" style="margin-top:-5px"></span>-->
+              <!--</a>-->
+              <!--<ul class="dropdown-menu" aria-labelledby="drop3">-->
+                <!--<li><a href="/accounts/password_change">Change password</a></li>-->
+              <!--</ul>-->
+            <!--</li>-->
+
+            <!--<li>-->
+                <!--<a  href="/accounts/logout/"><span style=" color:white;" class="glyphicon glyphicon-log-out">&nbsp;</span></a>-->
+            <!--</li>-->
+        <!--</ul>-->
+         <!--</div>-->
+
+    <!--</div>-->
+<!--</div>-->
+
+<body>
+
+<h2>Testing</h2>
+<input type="hidden" id="user_id" ng-model="userid" value="41" />
+
+
+<div class="container" >
+
+<div data-ng-app="TSXCatalogue">
+	<div >
+		<div ui-view></div>
+	</div>
+</div>
+
+</div>
+
+
+<!--Using jquery full instead of jqlite so that jquery ui can work -->
+    <!--<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>-->
+    <!--<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>-->
+    <!--<script src="/static/base/lib/angular/angular.js"></script>-->
+    <!--<script src="/static/base/lib/angular/angular-resource.js"></script>-->
+    <!--<script src="/static/base/lib/angular/angular-cookies.js"></script>-->
+    <!--<script src="/static/base/lib/angular/angular-route.js"></script>-->
+    <!--<script src="/static/base/lib/ng-upload/ng-file-upload-shim.min.js"></script>-->
+    <!--<script src="/static/base/lib/ng-upload/ng-file-upload.min.js"></script>-->
+
+
+	<script>L_PREFER_CANVAS = true</script>
+	<script src="/static/base/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/static/base/lib/leaflet/leaflet.js"></script>
+	<script src="/static/base/lib/leaflet/leaflet.draw.js"></script>
+	<script src="/static/base/lib/angular-leaflet-directive.min.js"></script>
+	<!--<script src="/static/base/lib/ui-bootstrap-tpls-0.10.0.js"></script>-->
+	<script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
+	<script src="/static/base/lib/smart-table.min.js"></script>
+	<script src="/static/base/lib/angular-ui-router.min.js"></script>
+	<script src="/static/base/lib/angular-ui-switch.min.js"></script>
+	<script src="/static/base/lib/angular-ui-notification.min.js"></script>
+	<script src="/static/base/lib/angular-slider.min.js"></script>
+	<script src="/static/base/lib/ngClip.js"></script>
+	<script src="https://code.angularjs.org/1.3.0-beta.2/angular-animate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.1.6/ZeroClipboard.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts.src.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="/static/base/lib/highcharts-ng.js"></script>
+	<script src="/static/base/js/app.js"></script>
+	<script src="/static/base/js/directives.js"></script>
+	<script src="https://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
+	<script src="/static/base/js/Google.js"></script>
+	<script src="/static/base/lib/leaflet-search.min.js"></script>
+	<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-image/v0.0.4/leaflet-image.js'></script>
+	<script src="/static/base/js/services.js"></script>
+	<script src="/static/base/js/main_controller.js"></script>
+	<script src="/static/base/js/search_controller.js"></script>
+	<script src="/static/base/js/result_controller.js"></script>
+	<script src="/static/base/js/filter_controller.js"></script>
+    <script src="/static/base/js/order_controller.js"></script>
+	<script src="/static/base/js/print_controller.js"></script>
+	<script src="/static/base/js/session_controller.js"></script>
+	<script src="/static/base/js/subscription_controller.js"></script>
+    <script src="/static/base/js/map_screenshot_controller.js"></script>
+	<script src="/static/base/js/angular-refresh.js"></script>
+<!-- <script src="/static/base/js/follow-celery-task.js"></script> -->
+
+
+
+</body>
+</html>
+
+
+
+
+  <!--</form>-->
+<!--</body>-->
+{% endblock %}
+
+
+

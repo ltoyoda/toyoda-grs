@@ -20,7 +20,8 @@ from . import views
 
 urlpatterns = [
     # url(r'^$', 'hw1.views.index_math', name='home_hw1'),
-    url(r'^vib1/', views.index, name='vib1'),
-    url(r'^q_railways/', views.index, name='q_railways'),
+    # url(r'^q_vib1/', views.index, name='q_vib1'),
+    url(r'^first/', views.index, name='first'),
+    url(r'^skygeo/', views.skygeo, name='skygeo'),
 #    url(r'^hw2/', 'hw1.views.index_math',name='hw2'),
 ]
